@@ -18,7 +18,7 @@
             </div>
             <div class="right">
                 <div align="right">
-                    <header align="right">Welcome! ${user.getUserName()} ${today}</header>
+                    <header align="right">Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</header>
                 </div>
                 <br>
                 <br>

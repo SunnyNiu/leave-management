@@ -1,11 +1,8 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
 import org.niu.leaves.jsp.servlet.dao.ConnectionPool;
 import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
-import org.niu.leaves.jsp.servlet.dao.DepartmentDaoImpl;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 
 import java.sql.Connection;
@@ -18,9 +15,8 @@ import java.util.List;
 public class DepartmentService {
     private DepartmentDao departmentDao;
 
-    public void departmentService() {
-        Injector injector = Guice.createInjector(new ConfigureModule());
-        departmentDao = injector.getInstance(DepartmentDao.class);
+    public DepartmentService() {
+        departmentDao = GuiceInjector.getInstance(DepartmentDao.class);
     }
 
     public UserWithDepartmentInfo getDepartmentManagerNameById(int userId) throws SQLException {

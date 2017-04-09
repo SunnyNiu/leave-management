@@ -1,9 +1,7 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
 import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.dao.UserDao;
 import org.niu.leaves.jsp.servlet.dao.UserDaoImpl;
 import org.niu.leaves.jsp.servlet.model.Permission;
@@ -18,9 +16,8 @@ public class PermissionService {
     private DepartmentDao departmentDao;
 
     public PermissionService(){
-        Injector injector = Guice.createInjector(new ConfigureModule());
-        departmentDao = injector.getInstance(DepartmentDao.class);
-        userDao = injector.getInstance(UserDao.class);
+        departmentDao = GuiceInjector.getInstance(DepartmentDao.class);
+        userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
     public Permission getUserPermission(String username) throws SQLException {

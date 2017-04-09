@@ -1,9 +1,6 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
-import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.dao.LoginDaoImpl;
 import org.niu.leaves.jsp.servlet.dao.UserDao;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
@@ -17,8 +14,7 @@ public class AuthenticationService {
 
 
     public AuthenticationService() {
-        Injector injector = Guice.createInjector(new ConfigureModule());
-        userDao = injector.getInstance(UserDao.class);
+        userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
     public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException {

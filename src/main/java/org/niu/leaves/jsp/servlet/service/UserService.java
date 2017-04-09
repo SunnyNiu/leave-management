@@ -1,8 +1,6 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.dao.*;
 import org.niu.leaves.jsp.servlet.model.UserInfo;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
@@ -18,9 +16,8 @@ public class UserService {
     private UserDao userDao;
 
     public UserService(){
-        Injector injector = Guice.createInjector(new ConfigureModule());
-        loginDao = injector.getInstance(LoginDao.class);
-        userDao = injector.getInstance(UserDao.class);
+        loginDao = GuiceInjector.getInstance(LoginDao.class);
+        userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
     public String getPasswordByLogin(String login) throws SQLException{

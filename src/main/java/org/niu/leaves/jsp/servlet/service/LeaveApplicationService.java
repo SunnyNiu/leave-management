@@ -1,11 +1,7 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
-import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDao;
-import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDaoImpl;
 import org.niu.leaves.jsp.servlet.model.LeaveApplicationHistory;
 
 import java.sql.SQLException;
@@ -15,8 +11,7 @@ public class LeaveApplicationService {
     private LeaveApplicationDao leaveApplicationDao;
 
     public LeaveApplicationService(){
-        Injector injector = Guice.createInjector(new ConfigureModule());
-        leaveApplicationDao = injector.getInstance(LeaveApplicationDao.class);
+        leaveApplicationDao = GuiceInjector.getInstance(LeaveApplicationDao.class);
     }
 
     public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException {
