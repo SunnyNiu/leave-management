@@ -2,7 +2,7 @@ package org.niu.leaves.jsp.servlet.dao;
 
 import java.sql.*;
 
-public class LoginDAO {
+public class LoginDaoImpl implements LoginDao {
 
     //get password from database by username
     public String getPassword(String login) throws SQLException {

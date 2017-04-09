@@ -1,31 +1,41 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDAO;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
+import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
+import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDao;
+import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDaoImpl;
 import org.niu.leaves.jsp.servlet.model.LeaveApplicationHistory;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class LeaveApplicationService {
-    private LeaveApplicationDAO leaveApplicationDAO = new LeaveApplicationDAO();
+    private LeaveApplicationDao leaveApplicationDao;
+
+    public LeaveApplicationService(){
+        Injector injector = Guice.createInjector(new ConfigureModule());
+        leaveApplicationDao = injector.getInstance(LeaveApplicationDao.class);
+    }
 
     public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException {
-        return leaveApplicationDAO.queryApplicationByStatus(approverId, status);
+        return leaveApplicationDao.queryApplicationByStatus(approverId, status);
     }
 
     public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException {
-        return leaveApplicationDAO.getApplicationById(applicationId);
+        return leaveApplicationDao.getApplicationById(applicationId);
     }
 
     public void updateStatus(int applicationId, String status) throws SQLException {
-        leaveApplicationDAO.updateApplicationStatus(applicationId, status);
+        leaveApplicationDao.updateApplicationStatus(applicationId, status);
     }
 
     public List<LeaveApplicationHistory> queryApplicationHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException {
-        return leaveApplicationDAO.queryLeaveHistory(userId, leaveType, fromDate, toDate);
+        return leaveApplicationDao.queryLeaveHistory(userId, leaveType, fromDate, toDate);
     }
 
     public void insertLeaveApplication(int userId, String fromDate, String toDate, double totalDays, String reason, String sickType, int managerId) throws SQLException{
-        leaveApplicationDAO.insertLeaveApplication(userId, fromDate, toDate, totalDays, reason, sickType, managerId);
+        leaveApplicationDao.insertLeaveApplication(userId, fromDate, toDate, totalDays, reason, sickType, managerId);
     }
 }

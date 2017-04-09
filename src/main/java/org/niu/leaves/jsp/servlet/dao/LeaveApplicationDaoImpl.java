@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeaveApplicationDAO {
+public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
 
     //insert leave application into database
     public void insertLeaveApplication(int userId, String dateFrom, String dateTo, Double days, String reason, String sickType, int managerId) throws SQLException {
@@ -163,7 +163,7 @@ public class LeaveApplicationDAO {
             rs = ps.executeQuery();
             if (rs.next())
                 return rs.getInt("days") + 1;
-            else{
+            else {
                 throw new SQLException("There is something wrong with from, to");
             }
         } finally {

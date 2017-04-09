@@ -1,7 +1,11 @@
 package org.niu.leaves.jsp.servlet.service;
 
-import org.niu.leaves.jsp.servlet.dao.LoginDAO;
-import org.niu.leaves.jsp.servlet.dao.UserDAO;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.niu.leaves.jsp.servlet.ConfigurationGuice.ConfigureModule;
+import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
+import org.niu.leaves.jsp.servlet.dao.LoginDaoImpl;
+import org.niu.leaves.jsp.servlet.dao.UserDao;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.utility.Messages;
 
@@ -9,7 +13,13 @@ import java.sql.SQLException;
 
 public class AuthenticationService {
 
-    private UserDAO userDao = new UserDAO();
+    private UserDao userDao;
+
+
+    public AuthenticationService() {
+        Injector injector = Guice.createInjector(new ConfigureModule());
+        userDao = injector.getInstance(UserDao.class);
+    }
 
     public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException {
         if (ifUserPasswordCorrect(login, password)) {
@@ -21,7 +31,7 @@ public class AuthenticationService {
 
     public boolean ifUserPasswordCorrect(String login, String password) throws SQLException {
 
-        String passwordFromDatabase = new LoginDAO().getPassword(login);
+        String passwordFromDatabase = new LoginDaoImpl().getPassword(login);
         //user input empty username and logon
         if (login == null || login.isEmpty()) {
             throw new SQLException(Messages.USER_IS_EMPTY);

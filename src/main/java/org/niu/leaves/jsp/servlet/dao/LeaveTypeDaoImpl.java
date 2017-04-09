@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeaveTypeDAO {
+public class LeaveTypeDaoImpl implements LeaveTypeDao {
 
     public List<LeaveType> queryLeaveTypes() throws SQLException {
         String sql = "select ID, LEAVE_TYPE from AP_LEAVE_TYPE";

@@ -8,11 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * Created by Sunny on 29/01/2017.
- */
-public class UserDAO {
+public class UserDaoImpl implements UserDao {
 
     public List<Integer> queryHRManagerLevelUserIds() throws SQLException {
         ResultSet rs = null;

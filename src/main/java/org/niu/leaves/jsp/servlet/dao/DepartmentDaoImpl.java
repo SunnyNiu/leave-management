@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentDAO {
+public class DepartmentDaoImpl implements DepartmentDao {
 
     public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException {
         ResultSet rs = null;
