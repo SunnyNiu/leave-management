@@ -1,8 +1,5 @@
 package org.niu.leaves.jsp.servlet.model;
 
-/**
- * Created by Sunny on 3/04/2017.
- */
 public class Title {
     private int id;
     private int levelId;

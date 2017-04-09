@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 
-/**
- * Created by Sunny on 4/02/2017.
- */
 public class ConnectionPool {
 
     private static ComboPooledDataSource ds;

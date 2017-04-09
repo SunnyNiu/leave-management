@@ -6,9 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sunny on 17/03/2017.
- */
 public class LeaveApplicationDAO {
 
     //insert leave application into database

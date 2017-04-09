@@ -2,9 +2,6 @@ package org.niu.leaves.jsp.servlet.dao;
 
 import java.sql.*;
 
-/**
- * Created by Sunny on 29/01/2017.
- */
 public class LoginDAO {
 
     //get password from database by username

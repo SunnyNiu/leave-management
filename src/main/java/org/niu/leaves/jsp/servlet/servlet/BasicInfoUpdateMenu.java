@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Sunny on 9/04/2017.
- */
 public class BasicInfoUpdateMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();

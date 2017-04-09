@@ -1,8 +1,5 @@
 package org.niu.leaves.jsp.servlet.model;
 
-/**
- * Created by Sunny on 30/01/2017.
- */
 public class LeaveApplicationHistory {
     private int id;
     private String name;

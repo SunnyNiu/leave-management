@@ -1,7 +1,6 @@
 package org.niu.leaves.jsp.servlet.service;
 
 import org.niu.leaves.jsp.servlet.model.ApplicationForm;
-import org.niu.leaves.jsp.servlet.utility.Messages;
 
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -9,9 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by Sunny on 9/03/2017.
- */
 public class EmailService {
 
     /**

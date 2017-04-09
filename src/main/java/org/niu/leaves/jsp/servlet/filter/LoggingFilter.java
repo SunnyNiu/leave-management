@@ -1,14 +1,9 @@
 package org.niu.leaves.jsp.servlet.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * Created by Sunny on 4/04/2017.
- */
-@WebFilter(filterName = "LoggingFilter")
 public class LoggingFilter implements Filter {
     public void destroy() {
     }

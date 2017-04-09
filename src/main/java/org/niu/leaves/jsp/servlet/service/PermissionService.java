@@ -8,9 +8,6 @@ import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Sunny on 28/03/2017.
- */
 public class PermissionService {
 
     private UserDAO userDAO = new UserDAO();

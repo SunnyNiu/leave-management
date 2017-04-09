@@ -1,8 +1,5 @@
 package org.niu.leaves.jsp.servlet.utility;
 
-/**
- * Created by Sunny on 14/03/2017.
- */
 public class Messages {
     public static String ADD_MEMBER_SUCCESS_MESSAGE = "Add new member successfully!";
     public static String NOT_ALLOWED_ADD_EXISTED_MEMBER_MESSAGE = "Username is existed user in database, please add different user";

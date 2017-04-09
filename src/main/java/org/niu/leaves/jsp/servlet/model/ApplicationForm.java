@@ -2,9 +2,6 @@ package org.niu.leaves.jsp.servlet.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Sunny on 28/03/2017.
- */
 public class ApplicationForm {
     private int userId;
     private String name;

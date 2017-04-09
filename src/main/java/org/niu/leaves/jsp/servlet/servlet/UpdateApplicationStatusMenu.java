@@ -2,7 +2,6 @@ package org.niu.leaves.jsp.servlet.servlet;
 
 import org.niu.leaves.jsp.servlet.model.ApplicationStatus;
 import org.niu.leaves.jsp.servlet.model.LeaveApplicationHistory;
-import org.niu.leaves.jsp.servlet.model.Permission;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.service.*;
 
@@ -19,9 +18,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Sunny on 1/04/2017.
- */
 public class UpdateApplicationStatusMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     LeaveApplicationService leaveApplicationService = new LeaveApplicationService();

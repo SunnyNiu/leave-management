@@ -17,9 +17,6 @@ import java.util.List;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-/**
- * Created by Sunny on 24/01/2017.
- */
 public class Login extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     TitleService titleService = new TitleService();

@@ -19,9 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 
-/**
- * Created by Sunny on 8/03/2017.
- */
 public class EmailLeaveApplication extends HttpServlet {
     DepartmentService departmentService = new DepartmentService();
     LeaveTypeService leaveTypeService = new LeaveTypeService();
@@ -39,14 +36,7 @@ public class EmailLeaveApplication extends HttpServlet {
 
         //keep there are managers and leaveType when jump into SickLeave page
         List<String> errorList = new ArrayList<String>();
-        //get user detailed info
-        /*UserWithDepartmentInfo userWithDepartmentInfo = null;
-        try {
-            userWithDepartmentInfo = userService.getUserWithDepartmentInfo(login);
-            request.setAttribute("userWithDepartmentInfo", userWithDepartmentInfo);
-        } catch (SQLException ex) {
-            errorList.add(ex.toString());
-        }*/
+
         UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo)session.getAttribute("userWithDepartmentInfo");
         try {
             UserWithDepartmentInfo departmentManagerList = departmentService.getDepartmentManagerNameById(userWithDepartmentInfo.getUserId());

@@ -4,12 +4,8 @@ import org.niu.leaves.jsp.servlet.dao.LeaveTypeDAO;
 import org.niu.leaves.jsp.servlet.model.LeaveType;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sunny on 3/04/2017.
- */
 public class LeaveTypeService {
     private LeaveTypeDAO leaveTypeDAO = new LeaveTypeDAO();
 

@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-/**
- * Created by Sunny on 25/01/2017.
- */
-
 public class MainPageMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();
@@ -35,7 +30,6 @@ public class MainPageMenu extends HttpServlet {
         }
 
         List<String> errorList = new ArrayList<String>();
-        //get user detailed info
 
         request.setAttribute("errorList", errorList);
         request.setAttribute("today", new SimpleDateFormat("yyyy/MM/dd").format(new Date()));

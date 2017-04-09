@@ -1,9 +1,7 @@
 package org.niu.leaves.jsp.servlet.filter;
 
-import org.niu.leaves.jsp.servlet.model.Permission;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.service.DepartmentService;
-import org.niu.leaves.jsp.servlet.service.PermissionService;
 import org.niu.leaves.jsp.servlet.service.TitleService;
 
 import javax.servlet.*;
@@ -13,10 +11,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Sunny on 8/04/2017.
- */
-//@WebFilter(filterName = "AuthorizationFilter")
 public class AuthorizationFilter implements Filter {
     public void destroy() {
     }

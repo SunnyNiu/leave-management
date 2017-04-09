@@ -1,9 +1,7 @@
 package org.niu.leaves.jsp.servlet.servlet;
 
 import org.niu.leaves.jsp.servlet.model.LeaveType;
-import org.niu.leaves.jsp.servlet.model.Permission;
 import org.niu.leaves.jsp.servlet.model.UserInfo;
-import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.service.*;
 
 import javax.servlet.RequestDispatcher;
@@ -19,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Sunny on 25/01/2017.
- */
 public class LeaveHistoryMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();

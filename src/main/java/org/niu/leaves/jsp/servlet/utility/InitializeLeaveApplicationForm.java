@@ -5,9 +5,6 @@ import org.niu.leaves.jsp.servlet.model.RowDetail;
 
 import java.util.ArrayList;
 
-/**
- * Created by Sunny on 29/03/2017.
- */
 public class InitializeLeaveApplicationForm {
     public ApplicationForm initializeApplicationForm(){
         ApplicationForm applicationForm = new ApplicationForm();

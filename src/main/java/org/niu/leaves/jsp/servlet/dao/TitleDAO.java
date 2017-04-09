@@ -9,9 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sunny on 31/03/2017.
- */
 public class TitleDAO {
 
     public List<Title> queryTitles() throws SQLException {

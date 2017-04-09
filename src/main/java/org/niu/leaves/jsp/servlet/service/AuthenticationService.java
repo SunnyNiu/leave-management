@@ -7,9 +7,6 @@ import org.niu.leaves.jsp.servlet.utility.Messages;
 
 import java.sql.SQLException;
 
-/**
- * Created by Sunny on 2/04/2017.
- */
 public class AuthenticationService {
 
     private UserDAO userDao = new UserDAO();

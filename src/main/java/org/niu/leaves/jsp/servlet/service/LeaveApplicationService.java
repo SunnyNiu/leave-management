@@ -6,9 +6,6 @@ import org.niu.leaves.jsp.servlet.model.LeaveApplicationHistory;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Sunny on 21/03/2017.
- */
 public class LeaveApplicationService {
     private LeaveApplicationDAO leaveApplicationDAO = new LeaveApplicationDAO();
 

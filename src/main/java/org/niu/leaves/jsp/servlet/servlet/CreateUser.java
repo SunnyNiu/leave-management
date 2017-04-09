@@ -16,9 +16,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by Sunny on 1/03/2017.
- */
 public class CreateUser extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     DepartmentService departmentService = new DepartmentService();

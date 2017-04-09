@@ -1,8 +1,5 @@
 package org.niu.leaves.jsp.servlet.model;
 
-/**
- * Created by Sunny on 24/01/2017.
- */
 public class UserInfo {
     private int userId;
     private String login;

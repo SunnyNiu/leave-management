@@ -11,9 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sunny on 3/04/2017.
- */
 public class DepartmentService {
     private DepartmentDAO departmentDao = new DepartmentDAO();
 

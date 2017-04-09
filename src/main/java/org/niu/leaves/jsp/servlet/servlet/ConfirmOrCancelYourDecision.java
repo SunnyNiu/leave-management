@@ -16,9 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sunny on 2/04/2017.
- */
 public class ConfirmOrCancelYourDecision extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();

@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Sunny on 27/03/2017.
- */
 public class PasswordUpdatedMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();

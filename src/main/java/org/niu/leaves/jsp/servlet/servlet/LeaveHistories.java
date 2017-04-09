@@ -17,9 +17,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by Sunny on 30/03/2017.
- */
 public class LeaveHistories extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();

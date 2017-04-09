@@ -19,9 +19,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * Created by Sunny on 25/02/2017.
- */
 public class LeaveApplication extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     DepartmentService departmentService = new DepartmentService();

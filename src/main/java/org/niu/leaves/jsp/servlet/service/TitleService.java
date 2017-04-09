@@ -6,9 +6,6 @@ import org.niu.leaves.jsp.servlet.model.Title;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Sunny on 31/03/2017.
- */
 public class TitleService {
     private TitleDAO titleDAO = new TitleDAO();
 

@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by Sunny on 27/03/2017.
- */
-//@WebFilter(filterName = "AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
     public void destroy() {
     }

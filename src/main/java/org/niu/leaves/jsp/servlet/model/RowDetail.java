@@ -1,9 +1,6 @@
 package org.niu.leaves.jsp.servlet.model;
 
 
-/**
- * Created by Sunny on 18/02/2017.
- */
 public class RowDetail {
 
     private String fromDate;

@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Sunny on 27/03/2017.
- */
 public class MainPage extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     UserService userService = new UserService();
@@ -62,7 +59,6 @@ public class MainPage extends HttpServlet {
         fos.close();
 
         request.setAttribute("errorList", errorList);
-        //request.setAttribute("user", userWithDepartmentInfo);
         request.setAttribute("today", new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
         RequestDispatcher rd = request.getRequestDispatcher("/mainPage.jsp");
         rd.forward(request, response);
