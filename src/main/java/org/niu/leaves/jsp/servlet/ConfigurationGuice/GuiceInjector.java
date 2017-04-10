@@ -5,16 +5,15 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 
 public class GuiceInjector {
+    static Injector injector;
 
-    public static void initialize(Module module){
+    public static void initializeInjector(Module module) {
         injector = Guice.createInjector(module);
     }
 
-    private static Injector injector;
     public static <T> T getInstance(Class<T> type) {
-        if (injector == null) {
-             injector = Guice.createInjector(new ConfigureModule());
-        }
+        if (injector == null)
+            injector = Guice.createInjector(new ConfigureModule());
         return injector.getInstance(type);
     }
 }
