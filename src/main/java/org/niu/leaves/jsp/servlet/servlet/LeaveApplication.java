@@ -24,7 +24,7 @@ public class LeaveApplication extends HttpServlet {
     DepartmentService departmentService = new DepartmentService();
     LeaveTypeService leaveTypeService = new LeaveTypeService();
     UserService userService = new UserService();
-    CheckTotalDaysByFromTo checkTotalDaysByFromTo = new CheckTotalDaysByFromTo();
+    CheckTotalDaysByFromToService checkTotalDaysByFromToService = new CheckTotalDaysByFromToService();
     TitleService titleService = new TitleService();
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,7 +102,8 @@ public class LeaveApplication extends HttpServlet {
                 try {
                     double totalDays = Double.parseDouble(totalDay);
                     new CheckFromToDaysForamt().checkDateDaysFormat(from, to, totalDay);
-                    int days = checkTotalDaysByFromTo.checkTotalDaysByFromTo(from, to);
+                    int days = checkTotalDaysByFromToService.checkTotalDaysByFromTo(from, to);
+                    checkTotalDaysByFromToService.checkFromLessThanTo(from, to);
 
                     if ((double) days == totalDays) {
                         errorList.add("Please populate correct days");
@@ -113,10 +114,6 @@ public class LeaveApplication extends HttpServlet {
                     errorList.add(Messages.DATE_FORMAT_INCORRECT_MESSAGE);
                 } catch (SQLException ex) {
                     errorList.add(ex.toString());
-                }
-
-                if (from.compareTo(to) > 0) {
-                    errorList.add(Messages.START_SHOULD_LESS_THAN_END_MESSAGE);
                 }
             }
             applicationForm.setLeaveList(rowDetailList);

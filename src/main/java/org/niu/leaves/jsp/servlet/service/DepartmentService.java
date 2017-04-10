@@ -5,6 +5,7 @@ import org.niu.leaves.jsp.servlet.dao.DepartmentDao;
 import org.niu.leaves.jsp.servlet.ConfigurationGuice.GuiceInjector;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +20,11 @@ public class DepartmentService {
         departmentDao = GuiceInjector.getInstance(DepartmentDao.class);
     }
 
-    public UserWithDepartmentInfo getDepartmentManagerNameById(int userId) throws SQLException {
+    public UserWithDepartmentInfo getDepartmentManagerNameById(int userId) throws SQLException,IOException {
         return departmentDao.getDepartmentManagerByUserId(userId);
     }
 
-    public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException {
+    public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException,IOException {
         ResultSet rs = null;
         String sql = "select distinct dp.id as departmentId ,dp.DEPARTMENT_NAME as departmentName, " +
                 "dp.MANAGER_USER_ID as managerUserId, " +

@@ -2,6 +2,7 @@ package org.niu.leaves.jsp.servlet.dao;
 
 import org.niu.leaves.jsp.servlet.model.LeaveType;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class LeaveTypeDaoImpl implements LeaveTypeDao {
 
-    public List<LeaveType> queryLeaveTypes() throws SQLException {
+    public List<LeaveType> queryLeaveTypes() throws SQLException, IOException {
         String sql = "select ID, LEAVE_TYPE from AP_LEAVE_TYPE";
         ResultSet rs = null;
         List<LeaveType> leaveTypeList = new ArrayList<>();

@@ -22,4 +22,6 @@ public class Messages {
     public static String PASSWORD_IS_EMPTY = "Password is empty";
     public static String USER_OR_PASSWORD_INCORRECT = "Username/Password is not correct";
     public static String Days_FORMAT_INCORRECT = "Day format is not correct";
+    public static String FROM_LESS_THAN_TO = "There is something wrong with calculation of 'from' and 'to' ";
+    public static String FROM_TO_DAYS_INCORRECT = "Days is not correct base on from, to";
 }

@@ -7,6 +7,7 @@ import org.niu.leaves.jsp.servlet.dao.UserDaoImpl;
 import org.niu.leaves.jsp.servlet.model.Permission;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class PermissionService {
         userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
-    public Permission getUserPermission(String username) throws SQLException {
+    public Permission getUserPermission(String username) throws SQLException,IOException {
         Permission p = new Permission();
         int userId = userDao.getUserId(username);
         p.setApproveRejectIsPermitted(hasApproveRejectLeavePermission(userId));
@@ -29,7 +30,7 @@ public class PermissionService {
     }
 
     //Those managers have permission to approve and reject leave apply
-    public boolean hasApproveRejectLeavePermission(int userId) throws SQLException {
+    public boolean hasApproveRejectLeavePermission(int userId) throws SQLException,IOException {
         List<UserWithDepartmentInfo> UserWithDepartmentInfoList = departmentDao.queryAllDepartments();
         for (UserWithDepartmentInfo userWithDepartmentInfo : UserWithDepartmentInfoList) {
             if (userWithDepartmentInfo.getManagerUserId() == userId) {
@@ -39,7 +40,7 @@ public class PermissionService {
         return false;
     }
 
-    public static boolean hasCreateMemberPermission(int userId) throws SQLException {
+    public static boolean hasCreateMemberPermission(int userId) throws SQLException,IOException {
         boolean hasPermission = false;
         List<Integer> userIds = new UserDaoImpl().queryHRManagerLevelUserIds();
         for (Integer hrManagerLevelId : userIds) {

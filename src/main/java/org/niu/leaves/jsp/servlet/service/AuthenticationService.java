@@ -6,6 +6,7 @@ import org.niu.leaves.jsp.servlet.dao.UserDao;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.utility.Messages;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AuthenticationService {
@@ -17,7 +18,7 @@ public class AuthenticationService {
         userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
-    public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException {
+    public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException,IOException {
         if (ifUserPasswordCorrect(login, password)) {
             return userDao.getUserWithDepartmentInfo(login);
         } else {
@@ -25,7 +26,7 @@ public class AuthenticationService {
         }
     }
 
-    public boolean ifUserPasswordCorrect(String login, String password) throws SQLException {
+    public boolean ifUserPasswordCorrect(String login, String password) throws SQLException,IOException {
 
         String passwordFromDatabase = new LoginDaoImpl().getPassword(login);
         //user input empty username and logon

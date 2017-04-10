@@ -2,6 +2,7 @@ package org.niu.leaves.jsp.servlet.dao;
 
 import org.niu.leaves.jsp.servlet.model.Title;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class TitleDaoImpl implements TitleDao {
 
-    public List<Title> queryTitles() throws SQLException {
+    public List<Title> queryTitles() throws SQLException,IOException {
         ResultSet rs = null;
         List<Title> titleList = new ArrayList<>();
         String sql = "select ID, LEVEL_ID, TITLE FROM AP_TITLE";
@@ -32,7 +33,7 @@ public class TitleDaoImpl implements TitleDao {
         }
     }
 
-    public int getLevelIdByTitle(String title) throws SQLException {
+    public int getLevelIdByTitle(String title) throws SQLException,IOException {
         String sql = "Select level_id from AP_TITLE where title =?";
         ResultSet rs = null;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {

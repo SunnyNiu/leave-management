@@ -6,6 +6,7 @@ import org.niu.leaves.jsp.servlet.model.UserInfo;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.utility.Messages;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,25 +21,25 @@ public class UserService {
         userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
-    public String getPasswordByLogin(String login) throws SQLException{
+    public String getPasswordByLogin(String login) throws SQLException,IOException {
         return loginDao.getPassword(login);
     }
 
-    public void updateUserPassword(String login, String newPassword) throws SQLException {
+    public void updateUserPassword(String login, String newPassword) throws SQLException,IOException {
         userDao.updateUserPassword(login, newPassword);
     }
 
-    public List<UserInfo> getAllUsers() throws SQLException {
+    public List<UserInfo> getAllUsers() throws SQLException,IOException {
         List<UserInfo> userInfo = userDao.queryAllUsers();
         return userInfo;
     }
 
-    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException {
+    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException,IOException {
         UserWithDepartmentInfo userDepartmentTitle = userDao.getUserWithDepartmentInfo(login);
         return userDepartmentTitle;
     }
 
-    public void addNewMember(String login, String password, String department, String title, String joinDate, String birthDate, String firstName, String lastName, String email, boolean userIsExist) throws SQLException {
+    public void addNewMember(String login, String password, String department, String title, String joinDate, String birthDate, String firstName, String lastName, String email, boolean userIsExist) throws SQLException,IOException {
         try {
             //Verify joinDate and birthDate is date format
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,11 +56,11 @@ public class UserService {
         }
     }
 
-    public boolean userExist(String login) throws SQLException {
+    public boolean userExist(String login) throws SQLException,IOException {
         return userDao.ifUserIdExist(login);
     }
 
-    public void updateBasicInfo(String login,String firstName,String lastName,String phoneNumber,String physicalAddress)throws SQLException{
+    public void updateBasicInfo(String login,String firstName,String lastName,String phoneNumber,String physicalAddress)throws SQLException,IOException{
         userDao.updateBasicInfo(login, firstName, lastName, phoneNumber, physicalAddress);
     }
 }
