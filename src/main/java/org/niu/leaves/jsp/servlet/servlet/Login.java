@@ -58,11 +58,9 @@ public class Login extends HttpServlet {
                 //ensure only the right approver can approve this leave application, add new member
                 request.setAttribute("today", new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
                 request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
-                return;
             } else {
                 request.setAttribute("errorList", errorList);
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
-                return;
             }
         } catch (SQLException ex) {
             //keep stay at login page if there is any error

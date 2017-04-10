@@ -19,7 +19,6 @@ public class AuthorizationFilter implements Filter {
 
         DepartmentService departmentService = new DepartmentService();
         HttpSession session = ((HttpServletRequest) req).getSession();
-        String login = (String) session.getAttribute("login");
         TitleService titleService = new TitleService();
         UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
         if (((HttpServletRequest) req).getRequestURI().contains("/approveRejectWithdrawn.do")) {
