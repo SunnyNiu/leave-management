@@ -40,9 +40,9 @@ public class PermissionService {
         return false;
     }
 
-    public static boolean hasCreateMemberPermission(int userId) throws SQLException,IOException {
+    public boolean hasCreateMemberPermission(int userId) throws SQLException,IOException {
         boolean hasPermission = false;
-        List<Integer> userIds = new UserDaoImpl().queryHRManagerLevelUserIds();
+        List<Integer> userIds = userDao.queryHRManagerLevelUserIds();
         for (Integer hrManagerLevelId : userIds) {
             if (hrManagerLevelId == userId)
                 hasPermission = true;
