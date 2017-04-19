@@ -11,39 +11,64 @@ li a {
     font-size: larger;
     padding: 8px 16px;
     text-decoration: none;
+    color: snow;
 }
 
 /* Change the link color on hover */
 li a:hover {
-    color: white;
+    color: #FF4500;
 }
 
 body {
-    background-color: antiquewhite;
+    background-size: cover !important;
+    background-image: url("background.jpg");
+    color: snow;
+
+}
+
+#parent {
+    margin-top: 120px;
+    left: 0px;
 }
 
 .right {
-    float: left;
-    width: 80%;
+    float: right;
+    width: 70%;
+    top: 0px;
 }
 
 .left {
     float: left;
-    width: 20%;
-    background-color: #eeeeee;
+    width: 30%;
+}
+
+#button1, #button2, #button3 {
+    width: 120px;
+}
+
+.setting > button, input, select {
+    background-color: #FF9966;
+    border-radius: 8px;
+    align-content: center;
 }
 
 #header {
-    background-color: black;
-    color: white;
     text-align: center;
-    padding: 5px;
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    clear: both;
+    font-weight: bold;
+    color: snow;
+    border-style: solid;
+    border-bottom: thick #FF4500;
 }
 
 #footer {
-    background-color: black;
-    color: white;
     clear: both;
     text-align: center;
     padding: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: snow;
 }

@@ -5,7 +5,7 @@
 <head>
 </head>
 <body>
-<ul class="nav nav-tabs">
+<ul class="nav-tabs">
     <li><a href="mainPageMenu.do">Personal Info</a></li>
     <br>
     <li><a href="leaveMenu.do">Apply for Leave</a></li>

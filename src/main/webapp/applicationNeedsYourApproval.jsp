@@ -1,11 +1,10 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <style type="text/css">@import "style.css";</style>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body>
-<div style="text-align:center; vertical-align:middle" class="formdiv">
+<div >
     <div id="header">
         <h1>Leave Management System</h1>
     </div>
@@ -19,14 +18,13 @@
             </div>
             <br>
             <br>
-
             <div align="center">
                 <label> <strong> Approve Reject Withdraw Application</strong></label>
                 <label>${messages}</label>
                 <label>
                     <%@ include file="error.jsp" %>
                 </label>
-                <form action="approveRejectWithdrawn.do" method="post">
+                <form action="approveRejectWithdrawn.do" method="post" class="setting">
                     <select name="status" id="statusId">
                         <c:forEach items="${status}" var="entry">
                             <option value="${entry}">
@@ -81,15 +79,18 @@
                                 <td hidden><input name="approver" type="text"
                                                   value="${leaveApplicationHistory.getApproverName()}" hidden></td>
                                 <td width=10%>
-                                    <button type="submit" name="approveBtn" value=${leaveApplicationHistory.getId()}>
+                                    <button id="button1" type="submit" name="approveBtn"
+                                            value=${leaveApplicationHistory.getId()}>
                                         Approve
                                     </button>
                                     <br>
-                                    <button type="submit" name="rejectBtn" value=${leaveApplicationHistory.getId()}>
+                                    <button id="button2" type="submit" name="rejectBtn"
+                                            value=${leaveApplicationHistory.getId()}>
                                         Reject
                                     </button>
                                     <br>
-                                    <button type="submit" name="withdrawBtn" value=${leaveApplicationHistory.getId()}>
+                                    <button id="button3" type="submit" name="withdrawBtn"
+                                            value=${leaveApplicationHistory.getId()}>
                                         Withdrawn
                                     </button>
                                 </td>
@@ -100,9 +101,10 @@
             </div>
         </div>
     </div>
+    <div id="footer" align="center">
+        Copyright © xxx.com
+    </div>
 </div>
-<div id="footer">
-    Copyright © xxx.com
-</div>
+
 </body>
 </html>
