@@ -2,64 +2,72 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cerulean.bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div>
-    <div id="header">
-        <h1>Leave Management System</h1>
-    </div>
-    <div id="parent">
-        <div class="left">
-            <%@ include file="menus.jsp" %>
-        </div>
-        <div class="right">
-            <div align="right">
-                <header align="right">Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</header>
-            </div>
-            <br>
-            <br>
-            <label>
-                <%@ include file="error.jsp" %>
-            </label>
-            <label>${messages}</label>
-            <form action="updatePassword.do" method="post">
-                <div align="center">
-                    <table>
-                        <tr>
-                            <td>Username</td>
-                            <td><input disabled text="type" name="username" id="nameId"
-                                       value="${userWithDepartmentInfo.getUserName()}"/></td>
-                        </tr>
-                        <tr>
-                            <td>OldPassword</td>
-                            <td><input type="password" name="oldPassword" id="oldPasswordId"
-                                       maxlength="10" required/>
-                        </tr>
-                        <tr>
-                            <td>NewPassword</td>
-                            <td><input type="password" name="newPassword" id="newPasswordId"
-                                       maxlength="10" required/>
-                        </tr>
-                        <td>ConfirmNewPassword</td>
-                        <td><input type="password" name="newPasswordConfirmation" id="newPasswordConfirmationId"
-                                   maxlength="10" required/>
-                        </td>
-                        </tr>
-                    </table>
-                </div>
-                <br>
+<div class="form-inline">
+    <header class="container">
+        <%@ include file="menus.jsp" %>
+    </header>
+    <section id="body" class="container">
+        <div id="parent">
+            <div class="page-header">
                 <div>
-                    <div class="setting" align="center">
-                        <button type="submit" name="btnUpdate">Update</button>
-                    </div>
+                    <ol class="breadcrumb right">
+                        <li class="active">ChangePassword
+                            Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                    </ol>
                 </div>
-            </form>
+            </div>
+            <div>
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+                <label>${messages}</label>
+                <form action="updatePassword.do" method="post">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Username</td>
+                                <td><input disabled text="type" name="username" id="nameId"
+                                           value="${userWithDepartmentInfo.getUserName()}"/></td>
+                            </tr>
+                            <tr>
+                                <td>OldPassword</td>
+                                <td><input type="password" name="oldPassword" id="oldPasswordId"
+                                           maxlength="10" required/>
+                            </tr>
+                            <tr>
+                                <td>NewPassword</td>
+                                <td><input type="password" name="newPassword" id="newPasswordId"
+                                           maxlength="10" required/>
+                            </tr>
+                            <td>ConfirmNewPassword</td>
+                            <td><input type="password" name="newPasswordConfirmation" id="newPasswordConfirmationId"
+                                       maxlength="10" required/>
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div>
+                        <div class="setting" align="center">
+                            <button class="btn btn-primary" type="submit" name="btnUpdate">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
     <div id="footer" align="center">
         Copyright © xxx.com
     </div>
 </div>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

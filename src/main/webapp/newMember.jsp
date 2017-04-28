@@ -2,30 +2,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cerulean.bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div>
-    <div id="header">
-        <h1>Leave Management System</h1>
-    </div>
+<div class="form-inline">
+    <header class="container">
+        <%@ include file="menus.jsp" %>
+    </header>
+    <section id="body" class="container">
     <div id="parent">
-        <div class="left">
-            <%@ include file="menus.jsp" %>
-        </div>
         <div class="right">
-            <div align="right">
-                <header align="right">Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</header>
+            <div class="page-header">
+                <div>
+                    <ol class="breadcrumb right">
+                        <li class="active">AddNewMember Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                    </ol>
+                </div>
             </div>
-            <br>
-            <br>
             <label>
                 <%@ include file="error.jsp" %>
             </label>
             <label>${messages}</label>
             <form action="addNewMember.do" method="post">
-                <div align="center">
-                    <table>
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <tr>
                             <td>Login</td>
                             <td><input text="type" name="newLogin" id="nameId" maxlength="10"/>
@@ -70,22 +74,25 @@
                         </tr>
                         <tr>
                             <td>Office Email</td>
-                            <td><input type="email" name="email" maxlength="25" width="15px"></td>
+                            <td><input type="email" name="email" maxlength="25" width="15px"><span class="glyphicon glyphicon-envelope"></span></td>
                         </tr>
                     </table>
                 </div>
                 <br>
                 <div>
                     <div class="setting" align="center">
-                        <button type="submit" name="addBtn">Submit</button>
+                        <button class="btn btn-primary" type="submit" name="addBtn">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    </section>
     <div id="footer" align="center">
         Copyright © xxx.com
     </div>
 </div>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

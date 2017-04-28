@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
     TitleService titleService = new TitleService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login = request.getParameter("login");
+        String login = request.getParameter("username");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         session.setAttribute("login", login);

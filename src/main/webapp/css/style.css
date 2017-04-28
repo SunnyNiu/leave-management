@@ -1,4 +1,30 @@
+@media screen and (max-width: 768px) {
+    h1{
+        font-size:14px;
+    }
+}
 
+@media screen and (max-width: 992px) {
+    h1{
+        font-size:17px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    h1{
+        font-size:20px;
+    }
+}
+
+#body{
+    margin-top: 70px;
+}
+
+.table-responsive > .table
+{
+    background-color: transparent;
+}
+/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -14,14 +40,13 @@ li a {
     color: snow;
 }
 
-/* Change the link color on hover */
 li a:hover {
     color: #FF4500;
 }
 
 body {
     background-size: cover !important;
-    background-image: url("background.jpg");
+    background-image: url("../background.jpg");
     color: snow;
 
 }
@@ -72,3 +97,4 @@ body {
     font-weight: bold;
     color: snow;
 }
+*/
