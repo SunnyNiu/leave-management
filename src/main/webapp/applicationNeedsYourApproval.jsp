@@ -8,117 +8,143 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
-        <div id="parent">
-            <div>
-                <div class="page-header">
-                    <div>
-                        <ol class="breadcrumb right">
-                            <li class="active">NeedYourApprove
-                                Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
-                        </ol>
-                    </div>
+        <div>
+            <div class="page-header">
+                <div>
+                    <ol class="breadcrumb right">
+                        <li class="active">NeedYourApprove
+                            Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                    </ol>
                 </div>
-                <div align="center">
-                    <label> <strong> Approve Reject Withdraw Application</strong></label>
-                    <label>${messages}</label>
-                    <label>
-                        <%@ include file="error.jsp" %>
-                    </label>
-                    <form action="approveRejectWithdrawn.do" method="post" class="setting">
-                        <select name="status" id="statusId">
-                            <c:forEach items="${status}" var="entry">
-                                <option value="${entry}">
-                                        ${entry}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <button class="btn btn-primary" type="submit" name="searchApplication">Search</button>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
+            </div>
+            <div align="center">
+                <label> <strong> Approve Reject Withdraw Application</strong></label>
+                <label>${messages}</label>
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+                <form action="approveRejectWithdrawn.do" method="post" class="setting">
+                    <select name="status" id="statusId">
+                        <c:forEach items="${status}" var="entry">
+                            <option value="${entry}">
+                                    ${entry}
+                            </option>
+                        </c:forEach>
+                    </select>
+                    <button class="btn btn-primary" type="submit" name="searchApplication">Search</button>
+                    <br>
+                    <div>
+                        <div class="">
+                            <table class="table table-responsive table-striped table-bordered table-condensed">
+                                <thead>
                                 <tr>
-                                    <td hidden>Id</td>
-                                    <td><strong>Name</strong></td>
-                                    <td><strong>LeaveType</strong></td>
-                                    <td><strong>FromDate</strong></td>
-                                    <td><strong>ToDate</strong></td>
-                                    <td><strong>LeaveDays</strong></td>
-                                    <td><strong>Status</strong></td>
-                                    <td><strong>Approver</strong></td>
-                                    <td>A/R</td>
+                                    <th hidden>Id</th>
+                                    <th>Name</th>
+                                    <th>LeaveType</th>
+                                    <th>FromDate</th>
+                                    <th>ToDate</th>
+                                    <th>LeaveDays</th>
+                                    <th>Status</th>
+                                    <th>Approver</th>
+                                    <th>A/R</th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory"
                                            varStatus="leaveHistoryStatus">
-                                    <tr>
-                                        <td hidden><input type="text" value="${leaveApplicationHistory.getId()}"
-                                                          disabled></td>
-                                        <td hidden><input name="Id" type="text"
-                                                          value="${leaveApplicationHistory.getId()}"
-                                                          hidden></td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getUserName()}"
-                                                   disabled></td>
-                                        <td hidden><input name="name" type="text"
-                                                          value="${leaveApplicationHistory.getUserName()}"
-                                                          hidden> </input>
-                                        </td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getLeaveType()}"
-                                                   disabled></td>
-                                        <td hidden><input name="leaveType" type="text"
-                                                          value="${leaveApplicationHistory.getLeaveType()}" hidden></td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getFromDate()}"
-                                                   disabled></td>
-                                        <td hidden><input name="fromDate" type="text"
-                                                          value="${leaveApplicationHistory.getFromDate()}" hidden></td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getToDate()}" disabled>
-                                        </td>
-                                        <td hidden><input name="toDate" type="text"
-                                                          value="${leaveApplicationHistory.getToDate()}" hidden>
-                                        </td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getDays()}" disabled>
-                                        </td>
-                                        <td hidden><input name="days" type="text"
-                                                          value="${leaveApplicationHistory.getDays()}"
-                                                          hidden>
-                                        </td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getStatus()}" disabled>
-                                        </td>
-                                        <td hidden><input name="HistoryStatus" type="text"
-                                                          value="${leaveApplicationHistory.getStatus()}" hidden>
-                                        </td>
-                                        <td><input type="text" value="${leaveApplicationHistory.getApproverName()}"
-                                                   disabled>
-                                        </td>
-                                        <td hidden><input name="approver" type="text"
-                                                          value="${leaveApplicationHistory.getApproverName()}" hidden>
-                                        </td>
-                                        <td width=10%>
-                                            <button class="btn btn-primary" id="button1" type="submit" name="approveBtn"
+                                <tr>
+
+                                    <td hidden><input class="form-control" type="text"
+                                                      value="${leaveApplicationHistory.getId()}"
+                                                      disabled></td>
+                                    <td hidden><input class="form-control" name="Id" type="text"
+                                                      value="${leaveApplicationHistory.getId()}"
+                                                      hidden></td>
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getUserName()}"
+                                               disabled></td>
+
+                                    <td hidden><input class="form-control" name="name" type="text"
+                                                      value="${leaveApplicationHistory.getUserName()}"
+                                                      hidden> </input>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getLeaveType()}"
+                                               disabled></td>
+                                    <td hidden><input class="form-control" name="leaveType" type="text"
+                                                      value="${leaveApplicationHistory.getLeaveType()}"
+                                                      hidden>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getFromDate()}"
+                                               disabled></td>
+                                    <td hidden><input class="form-control" name="fromDate" type="text"
+                                                      value="${leaveApplicationHistory.getFromDate()}"
+                                                      hidden>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getToDate()}" disabled>
+                                    </td>
+                                    <td hidden><input class="form-control" name="toDate" type="text"
+                                                      value="${leaveApplicationHistory.getToDate()}" hidden>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getDays()}" disabled>
+                                    </td>
+                                    <td hidden><input class="form-control" name="days" type="text"
+                                                      value="${leaveApplicationHistory.getDays()}"
+                                                      hidden>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getStatus()}" disabled>
+                                    </td>
+                                    <td hidden><input class="form-control" name="HistoryStatus" type="text"
+                                                      value="${leaveApplicationHistory.getStatus()}" hidden>
+                                    </td>
+
+                                    <td><input class="form-control" type="text"
+                                               value="${leaveApplicationHistory.getApproverName()}"
+                                               disabled>
+                                    </td>
+                                    <td hidden><input class="form-control" name="approver" type="text"
+                                                      value="${leaveApplicationHistory.getApproverName()}"
+                                                      hidden>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <button class="btn btn-primary" type="submit" name="approveBtn"
                                                     value=${leaveApplicationHistory.getId()}>
                                                 Approve
                                             </button>
-                                            <br>
-                                            <button class="btn btn-primary" id="button2" type="submit" name="rejectBtn"
+                                            <button class="btn btn-primary" type="submit" name="rejectBtn"
                                                     value=${leaveApplicationHistory.getId()}>
                                                 Reject
                                             </button>
-                                            <br>
-                                            <button class="btn btn-primary" id="button3" type="submit"
+                                            <button class="btn btn-primary" type="submit"
                                                     name="withdrawBtn"
                                                     value=${leaveApplicationHistory.getId()}>
                                                 Withdrawn
                                             </button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
+                                        </div>
+                                    </td>
                         </div>
-                    </form>
-                </div>
+                        </tr>
+                        </c:forEach>
+                        </tbody>
+                        </table>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

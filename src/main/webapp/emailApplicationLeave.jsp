@@ -29,7 +29,7 @@
                         <button class="btn btn-primary" type="submit" name="cancelBtn">Cancel</button>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered table-condensed">
                             <tr>
                                 <td>
                                     <lable>UserId</lable>

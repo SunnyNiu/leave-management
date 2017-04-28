@@ -29,7 +29,7 @@
             <label>${messages}</label>
             <form action="addNewMember.do" method="post">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered table-condensed">
                         <tr>
                             <td>Login</td>
                             <td><input text="type" name="newLogin" id="nameId" maxlength="10"/>

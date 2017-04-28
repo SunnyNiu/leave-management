@@ -30,26 +30,31 @@
                 <label>${messages}</label>
                 <form action="basicInfoUpdate.do" method="post">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-bordered table-condensed">
                             <tr>
-                                <td>First Name</td>
-                                <td><input text="type" name="firstName" id="firstNameId" maxlength="10"
-                                           value="${userWithDepartmentInfo.getUserFirstName()}"/>
-                                </td>
-                                <td>Last Name</td>
-                                <td><input text="type" name="lastName" id="lastNameId"
+                                <div class="form-group">
+                                    <label for="firstNameId">First Name</label>
+                                    <input type="type" class="form-control" name="firstName" id="firstNameId"
+                                           maxlength="10" value="${userWithDepartmentInfo.getUserFirstName()}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastNameId">Last Name</label>
+                                    <input type="type" class="form-control" name="lastName" id="lastNameId"
                                            maxlength="10" value="${userWithDepartmentInfo.getUserLastName()}"/>
-                                </td>
+                                </div>
                             </tr>
                             <tr>
-                                <td>Phone Number</td>
-                                <td><input text="type" name="phoneNumber" id="phoneNumberId"
+                                <div class="form-group">
+                                    <label for="phoneNumberId">Phone Number</label>
+                                    <input type="type" class="form-control" name="phoneNumber" id="phoneNumberId"
                                            maxlength="15" value="${userWithDepartmentInfo.getPhoneNumber()}"/>
-                                </td>
-                                <td>Physical Address</td>
-                                <td><input text="type" name="physicalAddress" id="physicalAddressId"
+                                </div>
+                                <div class="form-group">
+                                    <label for="physicalAddressId">First Name</label>
+                                    <input type="type" class="form-control" name="physicalAddress"
+                                           id="physicalAddressId"
                                            maxlength="30" value="${userWithDepartmentInfo.getPhysicalAddress()}"/>
-                                </td>
+                                </div>
                             </tr>
                         </table>
                     </div>

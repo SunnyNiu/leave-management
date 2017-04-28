@@ -31,10 +31,14 @@
             <br>
             <div></div>
             <form action="searchLeaveHistory.do" method="post">
-                <div align="center">
-                    From: <input type="date" name="userFromDate" required/>
-                    To: <input type="date" name="userToDate" required/>
-                    <label>Leave Type:</label>
+                <div class="form-group">
+                    <label for="fromId">From: </label>
+                    <input id="fromId" type="date" name="userFromDate" required/>
+                    <label for="toId">To:  </label>
+                    <input id="toId" type="date" name="userToDate" required/>
+                </div>
+                <div class="form-group">
+                    <label for="staffId">Leave Type:</label>
                     <select name="leaveType" id="staffId">
                         <c:forEach items="${leaveTypesList}" var="entry">
                             <option value="${entry.getId()}">
@@ -42,7 +46,7 @@
                             </option>
                         </c:forEach>
                     </select>
-                    <label>Staff Name:</label>
+                    <label for="leaveTypeId">Staff Name:</label>
                     <select name="username" id="leaveTypeId">
                         <c:forEach items="${userList}" var="entry">
                             <option value="${entry.getUserId()}">
@@ -52,7 +56,7 @@
                     </select>
                 </div>
                 <br>
-                <div class="setting" align="center">
+                <div align="center">
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>

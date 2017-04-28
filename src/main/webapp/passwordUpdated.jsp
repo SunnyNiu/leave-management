@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
@@ -23,40 +23,60 @@
                     </ol>
                 </div>
             </div>
-            <div>
+            <div align="center">
                 <label>
                     <%@ include file="error.jsp" %>
                 </label>
                 <label>${messages}</label>
-                <form action="updatePassword.do" method="post">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <tr>
-                                <td>Username</td>
-                                <td><input disabled text="type" name="username" id="nameId"
-                                           value="${userWithDepartmentInfo.getUserName()}"/></td>
-                            </tr>
-                            <tr>
-                                <td>OldPassword</td>
-                                <td><input type="password" name="oldPassword" id="oldPasswordId"
-                                           maxlength="10" required/>
-                            </tr>
-                            <tr>
-                                <td>NewPassword</td>
-                                <td><input type="password" name="newPassword" id="newPasswordId"
-                                           maxlength="10" required/>
-                            </tr>
-                            <td>ConfirmNewPassword</td>
-                            <td><input type="password" name="newPasswordConfirmation" id="newPasswordConfirmationId"
+
+                <form action="updatePassword.do" method="post" class="form-horizontal table-bordered">
+                    <div id="updatePasswordId">
+                        <div class="form-group">
+                            <label for="email" class="col-sm-5 col-md-5 control-label">Email Address:</label>
+                            <div class="col-sm-4 col-md-4">
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="col-sm-3 col-md-3"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nameId" class="col-sm-5 col-md-5 control-label">Username:</label>
+                            <div class="col-sm-4 col-md-4">
+                                <input disabled type="text" class="form-control" id="nameId"
+                                       value="${userWithDepartmentInfo.getUserName()}"/>
+                            </div>
+                            <div class="col-sm-3 col-md-3"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="oldPasswordId" class="col-sm-5 col-md-5 control-label">Old Password:</label>
+                            <div class="col-sm-4 col-md-4">
+                                <input type="password" class="form-control" name="oldPassword" id="oldPasswordId"
                                        maxlength="10" required/>
-                            </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <br>
-                    <div>
-                        <div class="setting" align="center">
-                            <button class="btn btn-primary" type="submit" name="btnUpdate">Update</button>
+                            </div>
+                            <div class="col-sm-3 col-md-3"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordId" class="col-sm-5 col-md-5 control-label">New Password:</label>
+                            <div class="col-sm-4 col-md-4">
+                                <input type="password" class="form-control" name="newPassword" id="newPasswordId"
+                                       maxlength="10" required/>
+                            </div>
+                            <div class="col-sm-3 col-md-3"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordConfirmationId" class="col-sm-5 col-md-5 control-label">Confirm New
+                                Password:</label>
+                            <div class="col-sm-4 col-md-4">
+                                <input type="password" name="newPasswordConfirmation" class="form-control"
+                                       id="newPasswordConfirmationId" maxlength="10" required/>
+                            </div>
+                            <div class="col-sm-3 col-md-3"></div>
+                        </div>
+                        <br>
+                        <div>
+                            <div align="center">
+                                <button class="btn btn-primary" type="submit" name="btnUpdate">Update</button>
+                            </div>
                         </div>
                     </div>
                 </form>
