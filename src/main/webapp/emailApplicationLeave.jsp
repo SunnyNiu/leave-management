@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
-        <div id="parent">
+        <div>
             <form action="sendEmail.do" method="post">
                 <div>
                     <div class="page-header">
@@ -24,12 +24,12 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="button" align="center" class="setting">
+                    <div class="button" align="center">
                         <button class="btn btn-primary" type="submit" name="sendEmailBtn">Okay</button>
                         <button class="btn btn-primary" type="submit" name="cancelBtn">Cancel</button>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-condensed">
+                    <div >
+                        <table class="table table-striped table-bordered table-condensed table-responsive">
                             <tr>
                                 <td>
                                     <lable>UserId</lable>
@@ -113,7 +113,7 @@
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

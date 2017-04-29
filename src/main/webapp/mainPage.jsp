@@ -9,72 +9,109 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
-        <div>
-            <div class="page-header">
-                <div>
-                    <ol class="breadcrumb right">
-                        <li class="active">MainPage Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
-                    </ol>
-                </div>
+
+        <div class="page-header">
+            <div>
+                <ol class="breadcrumb right">
+                    <li class="active">MainPage Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                </ol>
             </div>
-            <div align="center">
-                <label>
-                    <%@ include file="error.jsp" %>
-                </label>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
+        </div>
+        <div align="center">
+            <label>
+                <%@ include file="error.jsp" %>
+            </label>
+
+            <div class="col-md-12">
+                <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
+                    <table class="table table-bordered table-responsive">
+                        <tbody>
                         <tr>
-                            <td rowspan="10">
-                                <form action="upload.do" method="post" enctype="multipart/form-data" class="setting">
-                                    <table align="left" class="setting">
-                                        <tr><input class="btn btn-primary" type="file" name="photo"/></tr>
-                                        <br/>
-                                        <tr><input class="btn btn-primary" type="submit"/></tr>
-                                        <br/>
-                                        <tr><img height="200" width="200"
-                                                 src="http://localhost:8092/${userWithDepartmentInfo.getUserName()}profile.jpg">
-                                        </tr>
-                                    </table>
-                                </form>
+                            <th style="text-align: right">
+                                Name:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getUserName()}
                             </td>
                         </tr>
                         <tr>
-                            <td align="left"><label>Name:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getUserName()}" disabled></td>
-                        </tr>
-                        <tr>
-                            <td align="left"><label>Title:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getTitle()}" disabled></td>
-                        </tr>
-                        <tr>
-                            <td align="left"><label>Birthday Date:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getBirthday()}" disabled></td>
-                        </tr>
-                        <tr>
-                            <td align="left"><label>Join Date:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getJoinDate()}" disabled></td>
-                        </tr>
-                        <tr>
-                            <td align="left"><label>Department:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getDepartmentName()}" disabled>
+                            <th style="text-align: right">
+                                Title:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getTitle()}
                             </td>
                         </tr>
+
                         <tr>
-                            <td align="left"><label>Manager:</label></td>
-                            <td><input type="text" value="${userWithDepartmentInfo.getManagerName()}" disabled></td>
+                            <th style="text-align: right">
+                                Birthday Date:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getBirthday()}
+
+                            </td>
                         </tr>
+
+                        <tr>
+                            <th style="text-align: right">
+                                Join Date:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getJoinDate()}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th style="text-align: right">
+                                Department:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getDepartmentName()}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th style="text-align: right">
+                                Manager:
+                            </th>
+                            <td>
+                                ${userWithDepartmentInfo.getManagerName()}
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
+                <div class="col-md-2 col-lg-2"></div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
+                <form action="upload.do" method="post" enctype="multipart/form-data" class="table-bordered">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <div>
+                                <div class="col-md-4 col-md-offset-4">
+                                    <input class="btn btn-primary" type="file" name="photo"/></div>
+                                <div class="col-md-4"><input class="btn btn-primary pull-right"
+                                                             type="submit"/></div>
+                            </div>
+                        </tr>
+
+                        <br/>
+                        <tr><img height="200" width="200"
+                                 src="http://localhost:8092/${userWithDepartmentInfo.getUserName()}profile.jpg">
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

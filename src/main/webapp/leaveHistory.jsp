@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
@@ -24,56 +24,75 @@
             <label>
                 <%@ include file="error.jsp" %>
             </label>
-            <div align="center">
-                <tr><label>Name</label> <input text="type" value="${userWithDepartmentInfo.getUserName()}" disabled>
-                </tr>
-            </div>
-            <br>
-            <div></div>
-            <form action="searchLeaveHistory.do" method="post">
-                <div class="form-group">
-                    <label for="fromId">From: </label>
-                    <input id="fromId" type="date" name="userFromDate" required/>
-                    <label for="toId">To:  </label>
-                    <input id="toId" type="date" name="userToDate" required/>
+
+            <form action="searchLeaveHistory.do" method="post" class="table-bordered">
+                <div align="center">
+                    <div class="form-group">
+                        <label for="fromId">Name: </label> <input type="text"
+                                                                  value="${userWithDepartmentInfo.getUserName()}"
+                                                                  disabled/>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="staffId">Leave Type:</label>
-                    <select name="leaveType" id="staffId">
-                        <c:forEach items="${leaveTypesList}" var="entry">
-                            <option value="${entry.getId()}">
-                                    ${entry.getLeaveType()}
-                            </option>
-                        </c:forEach>
-                    </select>
-                    <label for="leaveTypeId">Staff Name:</label>
-                    <select name="username" id="leaveTypeId">
-                        <c:forEach items="${userList}" var="entry">
-                            <option value="${entry.getUserId()}">
-                                    ${entry.getUserName()}
-                            </option>
-                        </c:forEach>
-                    </select>
+                <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2">
+                    <div>
+                        <div class="form-group col-md-6">
+                            <label for="fromId" class="col-sm-4 col-md-4 style="text-align: right">From: </label>
+                            <div class="col-md-3 col-sm-3">
+                                <input id="fromId" type="date" name="userFromDate" required/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="toId" class="col-sm-4 col-md-4 style="text-align: right">To: </label>
+                            <div class="col-md-3 col-sm-3">
+                                <input id="toId" type="date" name="userToDate" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group col-md-6">
+                            <label for="staffId" class="col-sm-4 col-md-4 style="text-align: right">Leave
+                                Type:</label>
+                            <div class="col-md-3 col-sm-3">
+                                <select name="leaveType" id="staffId">
+                                    <c:forEach items="${leaveTypesList}" var="entry">
+                                        <option value="${entry.getId()}">
+                                                ${entry.getLeaveType()}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="leaveTypeId" class="col-sm-4 col-md-4 style="text-align: right">Staff
+                                Name:</label>
+                            <div class="col-md-3 col-sm-3">
+                                <select name="username" id="leaveTypeId">
+                                    <c:forEach items="${userList}" var="entry">
+                                        <option value="${entry.getUserId()}">
+                                                ${entry.getUserName()}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <br>
+
                 <div align="center">
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>
-            <div>
-            </div>
-
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped">
+        <div>
+            <table class="table table-striped table-responsive">
                 <tr>
-                    <td>Name</td>
-                    <td>LeaveType</td>
-                    <td>FromDate</td>
-                    <td>ToDate</td>
-                    <td>LeaveDays</td>
-                    <td>Status</td>
-                    <td>Approver</td>
+                    <th>Name</th>
+                    <th>LeaveType</th>
+                    <th>FromDate</th>
+                    <th>ToDate</th>
+                    <th>LeaveDays</th>
+                    <th>Status</th>
+                    <th>Approver</th>
                 </tr>
                 <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory">
                     <tr>
@@ -90,7 +109,7 @@
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

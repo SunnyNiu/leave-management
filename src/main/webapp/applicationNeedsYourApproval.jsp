@@ -41,7 +41,6 @@
                     <div>
                         <div class="">
                             <table class="table table-responsive table-striped table-bordered table-condensed">
-                                <thead>
                                 <tr>
                                     <th hidden>Id</th>
                                     <th>Name</th>
@@ -53,7 +52,6 @@
                                     <th>Approver</th>
                                     <th>A/R</th>
                                 </tr>
-                                </thead>
                                 <tbody>
                                 <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory"
                                            varStatus="leaveHistoryStatus">
@@ -138,18 +136,20 @@
                                             </button>
                                         </div>
                                     </td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+
+                            </table>
                         </div>
                         </tr>
-                        </c:forEach>
-                        </tbody>
-                        </table>
                     </div>
                 </form>
             </div>
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

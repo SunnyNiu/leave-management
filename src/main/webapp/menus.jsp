@@ -17,9 +17,7 @@
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
                 <div id="logo">
-                    <a href='.'>
-                        <h4>Leave Management</h4>
-                    </a>
+                    <h4>Leave Management</h4>
                 </div>
             </div>
             <div class="navbar-collapse collapse">

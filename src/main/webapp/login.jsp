@@ -13,40 +13,37 @@
         <h1 align="center">Leave Management System</h1>
     </div>
     <section id="body" class="container">
-        <h3 align="center">
-            This is leave management system, you can apply for leave and search your leave histories
-        </h3>
-        <form action="login.do" method="post" class="form-horizontal">
-            <label>
-                <%@ include file="error.jsp" %>
-            </label>
-            <div class="form-group">
-                <label for="username" class="control-label col-md-4">username:</label>
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input type="text" name="username" id="username" maxlength="15" placeholder="e.g. Your Name">
+        <form action="login.do" method="post" class="form-horizontal table-bordered">
+            <div id="borderPadding">
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+                <div class="form-group">
+                    <label for="username" class="control-label col-md-4">Username:</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="text" name="username" id="username" maxlength="15">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password" class="control-label col-md-4">Password:</label>
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input type="password" name="password" id="password" maxlength="15" placeholder="e.g. Password">
+                <div class="form-group">
+                    <label for="password" class="control-label col-md-4">Password:</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="password" name="password" id="password" maxlength="15">
+                        </div>
                     </div>
                 </div>
-            </div>
-            </br>
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4 col-lg-6">
-                    <button class="btn btn-primary" type="submit">Login</button>
+                </br>
+                <div class="col-md-5 col-md-offset-4">
+                    <button class="btn btn-primary pull-left" type="submit">Login</button>
                 </div>
             </div>
         </form>
     </section>
     <footer class="container">
         <div class="col-md-8 col-md-offset-4">
-            <p>Copyright © xxx.com</p>
+            <p>Copyright @www.uc.cn.com</p>
         </div>
     </footer>
 </div>

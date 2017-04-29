@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
-            <%@ include file="menus.jsp" %>
+        <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
         <div id="parent">
@@ -20,7 +20,8 @@
                     <div class="page-header">
                         <div>
                             <ol class="breadcrumb right">
-                                <li class="active">ApplyLeave Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                                <li class="active">ApplyLeave
+                                    Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
                             </ol>
                         </div>
                     </div>
@@ -28,37 +29,38 @@
                         <%@ include file="error.jsp" %>
                     </label>
                     <label>${messages}</label>
-                    <div align="center">
-                        <tr><label>Name</label> <input text="type" name="username" id="nameId"
-                                                       value="${userWithDepartmentInfo.getUserName()}" disabled></tr>
-                        <tr><label>Leave Type</label>
-                            <select name="leaveType" id="leaveTypeId">
-                                <c:forEach items="${leaveTypesList}" var="entry">
-                                    <option value="${entry.getId()}">
-                                            ${entry.getLeaveType()}
-                                    </option>
-                                </c:forEach>
-                            </select>
-                        </tr>
+                    <div class="form-group table-responsive" align="center">
+                        <label style="text-align: right">Leave Type:</label></td>
+                        <select name="leaveType" id="leaveTypeId">
+                            <c:forEach items="${leaveTypesList}" var="entry">
+                                <option value="${entry.getId()}">
+                                        ${entry.getLeaveType()}
+                                </option>
+                            </c:forEach>
+                        </select>
                     </div>
-                    <br>
-                    <div align="center" name="calenderDate" class="setting">
+                    <div class="form-group table-responsive" align="center" name="calenderDate">
                         <c:forEach items="${applicationForm.getLeaveList()}" var="leave" varStatus="rows">
-                            From: <input type="date" pattern="dd/MM/yyyy" name="fromDate"/>
-                            To: <input type="date" pattern="dd/MM/yyyy" name="toDate"/>
-                            Total days:
+                            <label style="text-align: right">From:</label> <input type="date" pattern="dd/MM/yyyy"
+                                                                                  name="fromDate"/>
+                            <label style="text-align: right">To:</label> <input type="date" pattern="dd/MM/yyyy"
+                                                                                name="toDate"/>
+                            <label style="text-align: right">Total Days:</label>
                             <input type="text" name="totalDays" maxlength="2" value="${leave.getTotalDays()}"/>
-                            <button class="btn btn-primary" type="submit" name="btnRemove" value="${rows.index}">Remove one row</button>
+                            <button class="btn btn-primary " type="submit" name="btnRemove" value="${rows.index}">
+                               Remove Row
+                            </button>
                             <br>
                         </c:forEach>
                         <input type="text" hidden name="totalRows" value="${totalRows}">
                         <input type="text" hidden name="applicationForm" value="${applicationForm}">
                         <button class="btn btn-primary" type="submit" name="btnAdd">Add new row</button>
                         <br>
+                        <br>
                         <div>
-                            <label>Reason:</label>
+                            <label style="text-align: right">Reason:</label>
                             <input type="textarea" name="reason" maxlength="100">
-                            <label>Approver:</label>
+                            <label style="text-align: right">Approver:</label>
 
                             <select name="departmentManager" id="departmentId">
                                 <option value="${departmentManager.getManagerUserId()}">
@@ -67,18 +69,16 @@
                             </select>
                         </div>
                     </div>
-                    <div>
-                        <br>
-                        <div class="setting" align="center">
-                            <button class="btn btn-primary" type="submit" name="btnApply">Submit</button>
-                        </div>
+                    <div align="center">
+                        <button class="btn btn-primary" type="submit" name="btnApply">Submit</button>
                     </div>
+
                 </div>
             </form>
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

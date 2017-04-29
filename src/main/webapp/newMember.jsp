@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<div class="form-inline">
+<div>
     <header class="container">
         <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
-    <div id="parent">
-        <div class="right">
+        <div>
             <div class="page-header">
                 <div>
                     <ol class="breadcrumb right">
@@ -27,69 +26,89 @@
                 <%@ include file="error.jsp" %>
             </label>
             <label>${messages}</label>
-            <form action="addNewMember.do" method="post">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-condensed">
-                        <tr>
-                            <td>Login</td>
-                            <td><input text="type" name="newLogin" id="nameId" maxlength="10"/>
-                            </td>
-                            <td>Password</td>
-                            <td><input type="password" name="password" id="passwordId"
-                                       maxlength="10"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Department</td>
-                            <td><select name="department" id="departmentId">
+            <form action="addNewMember.do" method="post" class="table-bordered">
+                <div class="table-responsive" id="borderPadding">
+                    <div class="form-group">
+                        <label for="nameId" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Login:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="text" class="form-control" name="newLogin" id="nameId" maxlength="10"/>
+                        </div>
+
+                        <label for="passwordId" class="col-sm-2 col-md-2 control-label">Password:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="password" class="form-control" name="password" id="passwordId"
+                                   maxlength="10"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="departmentId"
+                               class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Department:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <select name="department" id="departmentId" class="form-control">
                                 <c:forEach items="${departmentManagerList}" var="entry">
                                     <option value="${entry.getDepartmentId()}">
                                             ${entry.getDepartmentName()}
                                     </option>
                                 </c:forEach>
-                            </select></td>
-                            <td>Title</td>
-                            <td><select name="title" id="titleId">
+                            </select>
+                        </div>
+                        <label for="titleId" class="col-sm-2 col-md-2 control-label">Title:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <select name="title" id="titleId" class="form-control">
                                 <c:forEach items="${titleList}" var="entry">
                                     <option value="${entry.getId()}">
                                             ${entry.getTitle()}
                                     </option>
-                                </c:forEach></select></td>
-                        </tr>
-                        <tr>
-                            <td>Join Date</td>
-                            <td><input type="date" pattern="dd/MM/yyyy" name="joinDate"/></td>
-                            <td>Birth Date</td>
-                            <td><input type="date" pattern="dd/MM/yyyy" name="birthDate"/></td>
-                        </tr>
-                        <tr>
-                            <td>First Name</td>
-                            <td><input text="type" name="firstName" id="firstName"
-                                       maxlength="10"/>
-                            </td>
-                            <td>Last Name</td>
-                            <td><input type="type" name="lastName" id="lastName"
-                                       maxlength="10"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Office Email</td>
-                            <td><input type="email" name="email" maxlength="25" width="15px"><span class="glyphicon glyphicon-envelope"></span></td>
-                        </tr>
-                    </table>
-                </div>
-                <br>
-                <div>
-                    <div class="setting" align="center">
-                        <button class="btn btn-primary" type="submit" name="addBtn">Submit</button>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="joinDate" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Join
+                            Date:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="date" class="form-control" pattern="dd/MM/yyyy" name="joinDate"
+                                   id="joinDate"/>
+                        </div>
+                        <label for="birthDate" class="col-sm-2 col-md-2 control-label">Birth Date:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="date" class="form-control" pattern="dd/MM/yyyy" name="birthDate"
+                                   id="birthDate"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">First
+                            Name:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="text" class="form-control" name="firstName" id="firstName" maxlength="10"/>
+                        </div>
+                        <label for="lastName" class="col-sm-2 col-md-2 control-label">Last Name:</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input type="text" class="form-control" name="lastName" id="lastName" maxlength="10"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Email
+                            Address:</label>
+                        <div class="col-sm-8 col-md-8">
+                            <input type="email" class="form-control" name="email" id="email" maxlength="25"
+                                   width="15px">
+                        </div>
                     </div>
                 </div>
+                <div align="center">
+                    <button class="btn btn-primary" type="submit" name="addBtn">Submit</button>
+                </div>
+
             </form>
         </div>
-    </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>

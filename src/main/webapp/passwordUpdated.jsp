@@ -30,15 +30,7 @@
                 <label>${messages}</label>
 
                 <form action="updatePassword.do" method="post" class="form-horizontal table-bordered">
-                    <div id="updatePasswordId">
-                        <div class="form-group">
-                            <label for="email" class="col-sm-5 col-md-5 control-label">Email Address:</label>
-                            <div class="col-sm-4 col-md-4">
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="col-sm-3 col-md-3"></div>
-                        </div>
-
+                    <div id="borderPadding">
                         <div class="form-group">
                             <label for="nameId" class="col-sm-5 col-md-5 control-label">Username:</label>
                             <div class="col-sm-4 col-md-4">
@@ -84,7 +76,7 @@
         </div>
     </section>
     <div id="footer" align="center">
-        Copyright © xxx.com
+        Copyright @www.uc.cn.com
     </div>
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>
