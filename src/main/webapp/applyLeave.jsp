@@ -47,7 +47,7 @@
 
                             <label for="reason" class="col-sm-1 col-md-1 control-label">Reason: </label>
                             <div class="col-sm-2 col-md-2">
-                                <input class="form-control" id="reason" type="date" name="reason" maxlength="100"
+                                <input class="form-control" id="reason" type="text" name="reason" maxlength="100"
                                        class="form-control" type="textarea">
                             </div>
 

@@ -28,86 +28,108 @@
                         <button class="btn btn-primary" type="submit" name="sendEmailBtn">Okay</button>
                         <button class="btn btn-primary" type="submit" name="cancelBtn">Cancel</button>
                     </div>
-                    <div >
-                        <table class="table table-striped table-bordered table-condensed table-responsive">
-                            <tr>
-                                <td>
-                                    <lable>UserId</lable>
-                                    <input type="text" name="userId" value="${applicationForm.getUserId()}" disabled>
+                    <form class="form-horizontal">
+                        <div id="borderPadding">
+                            <div class="form-group  form-control">
+                                <label for="userId" class="control-label col-md-1 col-md-offset-1">UserId:</label>
+                                <div class="col-md-2">
+                                    <label type="text" name="userId" id="userId"
+                                           class="control-label">${applicationForm.getUserId()}</label>
+
                                     <input type="text" name="userId" value="${applicationForm.getUserId()}" hidden>
-                                </td>
-                                <td>
-                                    <lable>Name</lable>
-                                    <input type="text" name="name" value="${applicationForm.getName()}" disabled>
+                                </div>
+
+                                <lable for="name" class="control-label col-md-1 col-md-offset-1" style="text-align: right">Name:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="name" id="name"
+                                           class="control-label">${applicationForm.getName()}</lable>
+
                                     <input type="text" name="name" value="${applicationForm.getName()}" hidden>
-                                </td>
-                                <td>
-                                    <lable>LeaveType</lable>
+                                </div>
+
+                                <lable for="leaveType" class="control-label col-md-1 col-md-offset-1">LeaveType:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="leaveType" id="leaveType"
+                                           class="control-label">${applicationForm.getApplicationLeaveType()}</lable>
+
                                     <input type="text" name="leaveType"
                                            value="${applicationForm.getApplicationLeaveType()}"
-                                           disabled></td>
-                                <input type="text" name="leaveType" value="${applicationForm.getApplicationLeaveType()}"
-                                       hidden>
-                                <input type="text" name="leaveTypeId" value="${applicationForm.getLeaveTypeId()}"
-                                       hidden>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <lable>Reason</lable>
-                                    <input type="text" name="reason" value="${applicationForm.getReason()}" disabled>
+                                           hidden>
+                                    <input type="text" name="leaveTypeId"
+                                           value="${applicationForm.getLeaveTypeId()}"
+                                           hidden>
+
+                                </div>
+                            </div>
+                            <div class="form-group form-control">
+                                <lable for="reason" class="control-label col-md-1 col-md-offset-1" style="text-align: right">Reason:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="reason" id="reason"
+                                           class="control-label">${applicationForm.getReason()}</lable>
                                     <input type="text" name="reason" value="${applicationForm.getReason()}" hidden>
-                                </td>
-                                <td>
-                                    <lable>Manager</lable>
+                                </div>
+
+                                <lable for="manager" class="control-label col-md-1 col-md-offset-1">Manager:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="manager" id="manager"
+                                           class="control-label">${applicationForm.getManagerName()}</lable>
                                     <input type="text" name="manager" value="${applicationForm.getManagerName()}"
-                                           disabled>
-                                    <input type="text" name="manager" value="${applicationForm.getManagerName()}"
                                            hidden>
-                                </td>
-                                <td>
-                                    <lable>ManagerId</lable>
+                                </div>
+
+                                <lable for="managerId" class="control-label col-md-1 col-md-offset-1">ManagerId:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="managerId" id="managerId"
+                                           class="control-label">${applicationForm.getManagerId()}</lable>
                                     <input type="text" name="managerId" value="${applicationForm.getManagerId()}"
-                                           disabled>
-                                    <input type="text" name="managerId" value="${applicationForm.getManagerId()}"
                                            hidden>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <lable>Department</lable>
-                                    <input type="text" name="department" value="${applicationForm.getDepartment()}"
-                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group form-control">
+                                <lable for="department" class="control-label col-md-1 col-md-offset-1">Department:</lable>
+                                <div class="col-md-2">
+                                    <lable type="text" name="department" id="department"
+                                           class="control-label">${applicationForm.getDepartment()}</lable>
                                     <input type="text" name="department" value="${applicationForm.getDepartment()}"
                                            hidden>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>StartDate</strong></td>
-                                <td><strong>EndDate</strong></td>
-                                <td><strong>LeaveDays</strong></td>
-                            </tr>
-                            <c:forEach items="${applicationForm.getLeaveList()}" var="applicant" varStatus="rows">
-                                <tr>
-                                    <td><input type="text" name="fromDate" value="${applicant.getFromDate()}" disabled>
-                                        <input type="text" name="fromDate" value="${applicant.getFromDate()}" hidden>
-                                    </td>
-                                    <td><input type="text" name="toDate" value="${applicant.getToDate()}" disabled>
+                                </div>
+                            </div>
+                            <c:forEach items="${applicationForm.getLeaveList()}" var="applicant"
+                                       varStatus="rows">
+                                <div class="form-group form-control">
+                                    <label for="fromDate"
+                                           class="control-label col-md-1 col-md-offset-1">StartDate:</label>
+                                    <div class="col-md-2">
+                                        <label type="text" name="fromDate" id="fromDate"
+                                               class="control-label">${applicant.getFromDate()}</label>
+                                        <input type="text" name="fromDate" value="${applicant.getFromDate()}"
+                                               hidden>
+                                    </div>
+                                    <label for="toDate" class="control-label col-md-1 col-md-offset-1">EndDate:</label>
+                                    <div class="col-md-2">
+                                        <label name="toDate" id="toDate"
+                                               class="control-label">${applicant.getToDate()}</label>
                                         <input type="text" name="toDate" value="${applicant.getToDate()}" hidden>
-                                    </td>
-                                    <td><input type="text" name="totalDays" value="${applicant.getTotalDays()}"
-                                               disabled>
-                                        <input type="text" name="totalDays" value="${applicant.getTotalDays()}" hidden>
-                                    </td>
-                                </tr>
+                                    </div>
+
+                                    <label for="totalDays"
+                                           class="control-label col-md-1 col-md-offset-1">LeaveDays:</label>
+                                    <div class="col-md-2">
+                                        <label type="text" name="totalDays" id="totalDays"
+                                               class="control-label">${applicant.getTotalDays()}</label>
+                                        <input type="text" name="totalDays" value="${applicant.getTotalDays()}"
+                                               hidden>
+                                    </div>
+
+                                </div>
                             </c:forEach>
                             <tr hidden>
                                 <td hidden>
                                     <input hidden type="text" name="totalRows" value="${totalRows}">
                                 </td>
                             </tr>
-                        </table>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </form>
         </div>

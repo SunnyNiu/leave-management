@@ -102,19 +102,19 @@ public class LeaveApplication extends HttpServlet {
                 try {
                     double totalDays = Double.parseDouble(totalDay);
                     new CheckFromToDaysForamt().checkDateDaysFormat(from, to, totalDay);
-                    int days = checkTotalDaysByFromToService.checkTotalDaysByFromTo(from, to);
-                    checkTotalDaysByFromToService.checkFromLessThanTo(from, to);
+                    //int days = checkTotalDaysByFromToService.checkTotalDaysByFromTo(from, to);
+                    //checkTotalDaysByFromToService.checkFromLessThanTo(from, to);
 
-                    if ((double) days == totalDays) {
-                        errorList.add("Please populate correct days");
-                    }
+                    //if ((double) days == totalDays) {
+                    //    errorList.add("Please populate correct days");
+                    //}
                 } catch (NumberFormatException ex) {
                     errorList.add(Messages.Days_FORMAT_INCORRECT);
                 } catch (ParseException ex) {
                     errorList.add(Messages.DATE_FORMAT_INCORRECT_MESSAGE);
-                } catch (SQLException ex) {
-                    errorList.add(ex.toString());
-                }
+                } //catch (SQLException ex) {
+                  //  errorList.add(ex.toString());
+                //}
             }
             applicationForm.setLeaveList(rowDetailList);
             request.setAttribute("totalRows", totalRows);

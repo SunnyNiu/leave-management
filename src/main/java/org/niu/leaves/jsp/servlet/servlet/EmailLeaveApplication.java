@@ -58,7 +58,7 @@ public class EmailLeaveApplication extends HttpServlet {
             String userId = request.getParameter("userId");
             int userIdValue = Integer.parseInt(userId);
             String name = request.getParameter("name");
-            String leaveType = request.getParameter("LeaveType");
+            String leaveType = request.getParameter("leaveType");
             String manager = request.getParameter("manager");
             String managerId = request.getParameter("managerId");
             int managerIdValue = Integer.parseInt(managerId);
