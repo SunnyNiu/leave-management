@@ -22,17 +22,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right" id="navbar-collapse">
-                    <li class="nav"><a href="mainPageMenu.do">PersonalInfo</a></li>
-                    <li class="nav"><a href="leaveMenu.do">ApplyLeave</a></li>
-                    <li class="nav"><a href="leaveHistoryMenu.do">LeaveHistory</a></li>
+                    <li class="nav"><a href="mainPageMenu.do">Personal Info</a></li>
+                    <li class="nav"><a href="leaveMenu.do">Apply Leave</a></li>
+                    <li class="nav"><a href="leaveHistoryMenu.do">Leave History</a></li>
                     <c:if test="${approveRejectIsPermitted}" var="hasPermission">
-                        <li class="nav"><a href="MakeYourApprovalDecision.do">YourDecision</a></li>
+                        <li class="nav"><a href="MakeYourApprovalDecision.do">Your Decision</a></li>
                     </c:if>
                     <c:if test="${addMemberIsPermitted}" var="hasPermission">
-                        <li class="nav"><a href="addNewMemberMenu.do">AddNewMember</a></li>
+                        <li class="nav"><a href="addNewMemberMenu.do">Add New Member</a></li>
                     </c:if>
-                    <li class="nav"><a href="updatePasswordMenu.do">ChangePassword</a></li>
-                    <li class="nav"><a href="updateInfoMenu.do">ChangePersonalInfo</a></li>
+                    <li class="nav"><a href="updatePasswordMenu.do">Change Password</a></li>
+                    <li class="nav"><a href="updateInfoMenu.do">Change Personal Info</a></li>
                     <li class="nav"><a href="logout.do">Logout</a></li>
                 </ul>
             </div>

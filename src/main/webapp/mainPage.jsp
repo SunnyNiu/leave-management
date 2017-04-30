@@ -90,16 +90,25 @@
                 <div class="col-md-2 col-lg-2"></div>
             </div>
             <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
-                <form action="upload.do" method="post" enctype="multipart/form-data" class="table-bordered">
-                        <tr><img height="200" width="200"
+                <form id="formBorder" action="upload.do" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <img height="200" width="200"
                                  src="http://localhost:8092/${userWithDepartmentInfo.getUserName()}profile.jpg">
-                        </tr>
-                        <tr>
-                            <div>
-                                <input class="btn btn-primary pull-left" type="file" name="photo"/></div>
-                            <div><input class="btn btn-primary pull-right"
-                                        type="submit"/></div>
-                        </tr>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input id="mainPageUploadFile" class="btn btn-primary" type="file" name="photo"/>
+                            </div>
+                            <div class="col-md-4 col-md-offset-4">
+                                <input class="btn btn-primary"
+                                       type="submit"/>
+                            </div>
+
+                        </div>
+                    </fieldset>
+
+
                 </form>
             </div>
         </div>

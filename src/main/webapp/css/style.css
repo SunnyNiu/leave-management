@@ -25,8 +25,8 @@
     background-color: transparent;
 }
 
-.btn {
-    width: 100px;
+.btn{
+    width: 110px;
 }
 
 #borderPadding {
@@ -40,6 +40,10 @@
 
 label {
     text-align: right;
+}
+
+#mainPageUploadFile{
+    width: 120px;
 }
 /*
 ul {

@@ -59,7 +59,10 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-sm-2 col-sm-2"></div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" type="submit" name="btnAdd">Add New Row
+                                </button>
+                            </div>
                         </div>
 
 
@@ -97,12 +100,13 @@
                         </c:forEach>
                         <input type="text" hidden name="totalRows" value="${totalRows}">
                         <input type="text" hidden name="applicationForm" value="${applicationForm}">
-
                         </table>
 
-                        <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2">
-                            <button class="btn btn-primary pull-right" type="submit" name="btnAdd">Add new row</button>
-                            <button class="btn btn-primary pull-right" type="submit" name="btnApply">Submit</button>
+                        <div>
+                            <div class="col-md-10"></div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" type="submit" name="btnApply">Submit</button>
+                            </div>
                         </div>
 
                     </div>

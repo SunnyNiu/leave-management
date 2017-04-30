@@ -23,23 +23,35 @@
                 </div>
             </div>
             <div align="center">
-                <label> <strong> Approve Reject Withdraw Application</strong></label>
+                <label> <strong> Application Management</strong></label>
+                <br>
                 <label>${messages}</label>
                 <label>
                     <%@ include file="error.jsp" %>
                 </label>
-                <form action="approveRejectWithdrawn.do" method="post" class="setting">
-                    <select name="status" id="statusId">
-                        <c:forEach items="${status}" var="entry">
-                            <option value="${entry}">
-                                    ${entry}
-                            </option>
-                        </c:forEach>
-                    </select>
-                    <button class="btn btn-primary" type="submit" name="searchApplication">Search</button>
-                    <br>
+                <form action="approveRejectWithdrawn.do" method="post">
+                    <fieldset>
+                        <div class="form-group form-horizontal">
+                            <label for="statusId" class="control-label col-md-3 col-md-offset-2">Status: </label>
+                            <div class="col-md-3">
+                                <select name="status" id="statusId" class="form-control">
+                                    <c:forEach items="${status}" var="entry">
+                                        <option value="${entry}">
+                                                ${entry}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" type="submit" name="searchApplication">Search</button>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <div>
-                        <div>
+                        <div id="borderPadding">
                             <table class="table table-responsive table-striped table-bordered table-condensed">
                                 <tr>
                                     <th hidden>Id</th>
@@ -55,96 +67,91 @@
                                 <tbody>
                                 <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory"
                                            varStatus="leaveHistoryStatus">
-                                <tr>
+                                    <tr>
 
-                                    <td hidden><input class="form-control" type="text"
-                                                      value="${leaveApplicationHistory.getId()}"
-                                                      disabled></td>
-                                    <td hidden><input class="form-control" name="Id" type="text"
-                                                      value="${leaveApplicationHistory.getId()}"
-                                                      hidden></td>
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getUserName()}"
-                                               disabled></td>
+                                        <td hidden><label class="control-label"
+                                                          type="text">${leaveApplicationHistory.getId()}</label></td>
+                                        <td hidden><label class="control-label" name="Id" type="text"
+                                                          value="${leaveApplicationHistory.getId()}"
+                                                          hidden></td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getUserName()}</label></td>
 
-                                    <td hidden><input class="form-control" name="name" type="text"
-                                                      value="${leaveApplicationHistory.getUserName()}"
-                                                      hidden> </input>
-                                    </td>
+                                        <td hidden><input class="control-label" name="name" type="text"
+                                                          value="${leaveApplicationHistory.getUserName()}"
+                                                          hidden> </input>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getLeaveType()}"
-                                               disabled></td>
-                                    <td hidden><input class="form-control" name="leaveType" type="text"
-                                                      value="${leaveApplicationHistory.getLeaveType()}"
-                                                      hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getLeaveType()}</label></td>
+                                        <td hidden><input class="control-label" name="leaveType" type="text"
+                                                          value="${leaveApplicationHistory.getLeaveType()}"
+                                                          hidden>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getFromDate()}"
-                                               disabled></td>
-                                    <td hidden><input class="form-control" name="fromDate" type="text"
-                                                      value="${leaveApplicationHistory.getFromDate()}"
-                                                      hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getFromDate()}</label></td>
+                                        <td hidden><input class="control-label" name="fromDate" type="text"
+                                                          value="${leaveApplicationHistory.getFromDate()}"
+                                                          hidden>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getToDate()}" disabled>
-                                    </td>
-                                    <td hidden><input class="form-control" name="toDate" type="text"
-                                                      value="${leaveApplicationHistory.getToDate()}" hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getToDate()}</label>
+                                        </td>
+                                        <td hidden><input class="control-label" name="toDate" type="text"
+                                                          value="${leaveApplicationHistory.getToDate()}" hidden>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getDays()}" disabled>
-                                    </td>
-                                    <td hidden><input class="form-control" name="days" type="text"
-                                                      value="${leaveApplicationHistory.getDays()}"
-                                                      hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getDays()}</label>
+                                        </td>
+                                        <td hidden><input class="control-label" name="days" type="text"
+                                                          value="${leaveApplicationHistory.getDays()}"
+                                                          hidden>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getStatus()}" disabled>
-                                    </td>
-                                    <td hidden><input class="form-control" name="HistoryStatus" type="text"
-                                                      value="${leaveApplicationHistory.getStatus()}" hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getStatus()}</label>
+                                        </td>
+                                        <td hidden><input class="control-label" name="HistoryStatus" type="text"
+                                                          value="${leaveApplicationHistory.getStatus()}" hidden>
+                                        </td>
 
-                                    <td><input class="form-control" type="text"
-                                               value="${leaveApplicationHistory.getApproverName()}"
-                                               disabled>
-                                    </td>
-                                    <td hidden><input class="form-control" name="approver" type="text"
-                                                      value="${leaveApplicationHistory.getApproverName()}"
-                                                      hidden>
-                                    </td>
+                                        <td><label style="font-weight: 100" class="control-label"
+                                                   type="text">${leaveApplicationHistory.getApproverName()}</label>
+                                        </td>
+                                        <td hidden><input class="control-label" name="approver" type="text"
+                                                          value="${leaveApplicationHistory.getApproverName()}"
+                                                          hidden>
+                                        </td>
 
-                                    <td>
-                                        <div>
-                                            <div class="col-md-3">
-                                            <button class="btn btn-primary" type="submit" name="approveBtn"
-                                                    value=${leaveApplicationHistory.getId()}>
-                                                Approve
-                                            </button>
+                                        <td>
+                                            <div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-primary width" type="submit"
+                                                            name="approveBtn"
+                                                            value=${leaveApplicationHistory.getId()}>
+                                                        Approve
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-primary width" type="submit" name="rejectBtn"
+                                                            value=${leaveApplicationHistory.getId()}>
+                                                        Reject
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-primary width" type="submit"
+                                                            name="withdrawBtn"
+                                                            value=${leaveApplicationHistory.getId()}>
+                                                        Withdraw
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-3"></div>
                                             </div>
-                                            <div class="col-md-4">
-                                            <button class="btn btn-primary" type="submit" name="rejectBtn"
-                                                    value=${leaveApplicationHistory.getId()}>
-                                                Reject
-                                            </button>
-                                            </div>
-                                            <div class="col-md-4">
-                                            <button class="btn btn-primary" type="submit"
-                                                    name="withdrawBtn"
-                                                    value=${leaveApplicationHistory.getId()}>
-                                                Withdraw
-                                            </button>
-                                            </div>
-                                            <div class="col-md-1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 </c:forEach>
                                 </tbody>
 

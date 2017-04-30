@@ -95,13 +95,13 @@
                 </tr>
                 <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory">
                     <tr>
-                        <td><label>${leaveApplicationHistory.getUserName()}</label></td>
-                        <td><label>${leaveApplicationHistory.getLeaveType()}</label></td>
-                        <td><label>${leaveApplicationHistory.getFromDate()}</label></td>
-                        <td><label>${leaveApplicationHistory.getToDate()}</label></td>
-                        <td><label>${leaveApplicationHistory.getDays()}</label></td>
-                        <td><label>${leaveApplicationHistory.getStatus()}</label></td>
-                        <td><label>${leaveApplicationHistory.getApproverName()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getUserName()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getLeaveType()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getFromDate()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getToDate()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getDays()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getStatus()}</label></td>
+                        <td><label style="font-weight: 100">${leaveApplicationHistory.getApproverName()}</label></td>
                     </tr>
                 </c:forEach>
             </table>
