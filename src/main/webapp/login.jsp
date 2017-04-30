@@ -35,8 +35,11 @@
                     </div>
                 </div>
                 </br>
-                <div class="col-md-5 col-md-offset-4">
-                    <button class="btn btn-primary pull-left" type="submit">Login</button>
+                <div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2">
+                        <button class="btn btn-primary pull-right" type="submit">Login</button>
+                    </div>
+                    <div class="col-md-8"></div>
                 </div>
             </div>
         </form>

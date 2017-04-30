@@ -70,10 +70,8 @@
                         </div>
                         <div class="col-sm-3 col-md-3"></div>
                     </div>
-                </div>
-                <div>
-                    <div align="center">
-                        <button class="btn btn-primary" type="submit" name="updateBtn">Update</button>
+                    <div class="col-md-7 col-md-offset-2 col-sm-7 col-sm-offset-2">
+                        <button class="btn btn-primary pull-right" type="submit" name="updateBtn">Update</button>
                     </div>
                 </div>
             </form>

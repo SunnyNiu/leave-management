@@ -34,8 +34,7 @@
                         <div class="form-group">
                             <label for="nameId" class="col-sm-5 col-md-5 control-label">Username:</label>
                             <div class="col-sm-4 col-md-4">
-                                <input disabled type="text" class="form-control" id="nameId"
-                                       value="${userWithDepartmentInfo.getUserName()}"/>
+                                <label type="text" class="control-label pull-left" id="nameId">${userWithDepartmentInfo.getUserName()}</label>
                             </div>
                             <div class="col-sm-3 col-md-3"></div>
                         </div>
@@ -64,10 +63,10 @@
                             </div>
                             <div class="col-sm-3 col-md-3"></div>
                         </div>
-                        <br>
                         <div>
-                            <div align="center">
-                                <button class="btn btn-primary" type="submit" name="btnUpdate">Update</button>
+                            <div class="col-md-7 col-md-offset-2 col-sm-7 col-sm-offset-2">
+                                <button class="btn btn-primary pull-right" type="submit" name="btnUpdate">Update
+                                </button>
                             </div>
                         </div>
                     </div>

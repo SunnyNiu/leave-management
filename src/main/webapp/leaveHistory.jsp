@@ -25,61 +25,60 @@
                 <%@ include file="error.jsp" %>
             </label>
 
-            <form action="searchLeaveHistory.do" method="post" class="table-bordered">
-                <div align="center">
+            <form action="searchLeaveHistory.do" method="post" class="form-horizontal">
+                <div class="table table-bordered" id="borderPadding">
                     <div class="form-group">
-                        <label for="fromId">Name: </label> <input type="text"
-                                                                  value="${userWithDepartmentInfo.getUserName()}"
-                                                                  disabled/>
+                        <label for="fromId" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Name: </label>
+                        <label type="text" class="control-label">${userWithDepartmentInfo.getUserName()}</label>
                     </div>
-                </div>
-                <div class="col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2">
-                    <div>
-                        <div class="form-group col-md-6">
-                            <label for="fromId" class="col-sm-4 col-md-4 style="text-align: right">From: </label>
-                            <div class="col-md-3 col-sm-3">
-                                <input id="fromId" type="date" name="userFromDate" required/>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="toId" class="col-sm-4 col-md-4 style="text-align: right">To: </label>
-                            <div class="col-md-3 col-sm-3">
-                                <input id="toId" type="date" name="userToDate" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="form-group col-md-6">
-                            <label for="staffId" class="col-sm-4 col-md-4 style="text-align: right">Leave
-                                Type:</label>
-                            <div class="col-md-3 col-sm-3">
-                                <select name="leaveType" id="staffId">
-                                    <c:forEach items="${leaveTypesList}" var="entry">
-                                        <option value="${entry.getId()}">
-                                                ${entry.getLeaveType()}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="leaveTypeId" class="col-sm-4 col-md-4 style="text-align: right">Staff
-                                Name:</label>
-                            <div class="col-md-3 col-sm-3">
-                                <select name="username" id="leaveTypeId">
-                                    <c:forEach items="${userList}" var="entry">
-                                        <option value="${entry.getUserId()}">
-                                                ${entry.getUserName()}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div align="center">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <div class="form-group ">
+                        <label for="fromId"
+                               class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">From: </label>
+                        <div class="col-sm-2 col-md-2">
+                            <input class="form-control" id="fromId" type="date" name="userFromDate" required/>
+                        </div>
+
+                        <label for="toId" class="col-sm-2 col-md-2 control-label">To: </label>
+                        <div class="col-sm-2 col-md-2">
+                            <input class="form-control" id="toId" type="date" name="userToDate" required/>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staffId" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Leave
+                            Type:</label>
+                        <div class="col-sm-2 col-md-2">
+                            <select name="leaveType" id="staffId" class="form-control">
+                                <c:forEach items="${leaveTypesList}" var="entry">
+                                    <option value="${entry.getId()}">
+                                            ${entry.getLeaveType()}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <label for="leaveTypeId" class="col-sm-2 col-md-2 control-label">Staff
+                            Name:</label>
+                        <div class="col-sm-2 col-md-2">
+                            <select name="username" id="leaveTypeId" class="form-control">
+                                <c:forEach items="${userList}" var="entry">
+                                    <option value="${entry.getUserId()}">
+                                            ${entry.getUserName()}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

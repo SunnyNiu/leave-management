@@ -91,21 +91,15 @@
             </div>
             <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
                 <form action="upload.do" method="post" enctype="multipart/form-data" class="table-bordered">
-                    <table class="table table-bordered table-responsive">
-                        <tr>
-                            <div>
-                                <div class="col-md-4 col-md-offset-4">
-                                    <input class="btn btn-primary" type="file" name="photo"/></div>
-                                <div class="col-md-4"><input class="btn btn-primary pull-right"
-                                                             type="submit"/></div>
-                            </div>
-                        </tr>
-
-                        <br/>
                         <tr><img height="200" width="200"
                                  src="http://localhost:8092/${userWithDepartmentInfo.getUserName()}profile.jpg">
                         </tr>
-                    </table>
+                        <tr>
+                            <div>
+                                <input class="btn btn-primary pull-left" type="file" name="photo"/></div>
+                            <div><input class="btn btn-primary pull-right"
+                                        type="submit"/></div>
+                        </tr>
                 </form>
             </div>
         </div>

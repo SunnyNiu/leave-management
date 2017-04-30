@@ -39,7 +39,7 @@
                     <button class="btn btn-primary" type="submit" name="searchApplication">Search</button>
                     <br>
                     <div>
-                        <div class="">
+                        <div>
                             <table class="table table-responsive table-striped table-bordered table-condensed">
                                 <tr>
                                     <th hidden>Id</th>
@@ -121,19 +121,27 @@
 
                                     <td>
                                         <div>
+                                            <div class="col-md-3">
                                             <button class="btn btn-primary" type="submit" name="approveBtn"
                                                     value=${leaveApplicationHistory.getId()}>
                                                 Approve
                                             </button>
+                                            </div>
+                                            <div class="col-md-4">
                                             <button class="btn btn-primary" type="submit" name="rejectBtn"
                                                     value=${leaveApplicationHistory.getId()}>
                                                 Reject
                                             </button>
+                                            </div>
+                                            <div class="col-md-4">
                                             <button class="btn btn-primary" type="submit"
                                                     name="withdrawBtn"
                                                     value=${leaveApplicationHistory.getId()}>
-                                                Withdrawn
+                                                Withdraw
                                             </button>
+                                            </div>
+                                            <div class="col-md-1">
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

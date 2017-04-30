@@ -26,16 +26,16 @@
                 <%@ include file="error.jsp" %>
             </label>
             <label>${messages}</label>
-            <form action="addNewMember.do" method="post" class="table-bordered">
-                <div class="table-responsive" id="borderPadding">
+            <form action="addNewMember.do" method="post" class="form-horizontal">
+                <div class="table table-bordered" id="borderPadding">
                     <div class="form-group">
                         <label for="nameId" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Login:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="text" class="form-control" name="newLogin" id="nameId" maxlength="10"/>
                         </div>
 
                         <label for="passwordId" class="col-sm-2 col-md-2 control-label">Password:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="password" class="form-control" name="password" id="passwordId"
                                    maxlength="10"/>
                         </div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="departmentId"
                                class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Department:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <select name="department" id="departmentId" class="form-control">
                                 <c:forEach items="${departmentManagerList}" var="entry">
                                     <option value="${entry.getDepartmentId()}">
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <label for="titleId" class="col-sm-2 col-md-2 control-label">Title:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <select name="title" id="titleId" class="form-control">
                                 <c:forEach items="${titleList}" var="entry">
                                     <option value="${entry.getId()}">
@@ -68,12 +68,12 @@
                     <div class="form-group">
                         <label for="joinDate" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Join
                             Date:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="date" class="form-control" pattern="dd/MM/yyyy" name="joinDate"
                                    id="joinDate"/>
                         </div>
                         <label for="birthDate" class="col-sm-2 col-md-2 control-label">Birth Date:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="date" class="form-control" pattern="dd/MM/yyyy" name="birthDate"
                                    id="birthDate"/>
                         </div>
@@ -82,11 +82,11 @@
                     <div class="form-group">
                         <label for="firstName" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">First
                             Name:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="text" class="form-control" name="firstName" id="firstName" maxlength="10"/>
                         </div>
                         <label for="lastName" class="col-sm-2 col-md-2 control-label">Last Name:</label>
-                        <div class="col-sm-3 col-md-3">
+                        <div class="col-sm-2 col-md-2">
                             <input type="text" class="form-control" name="lastName" id="lastName" maxlength="10"/>
                         </div>
                     </div>
@@ -94,16 +94,15 @@
                     <div class="form-group">
                         <label for="email" class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">Email
                             Address:</label>
-                        <div class="col-sm-8 col-md-8">
+                        <div class="col-sm-6 col-md-6">
                             <input type="email" class="form-control" name="email" id="email" maxlength="25"
                                    width="15px">
                         </div>
                     </div>
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                        <button class="btn btn-primary pull-right" type="submit" name="addBtn">Submit</button>
+                    </div>
                 </div>
-                <div align="center">
-                    <button class="btn btn-primary" type="submit" name="addBtn">Submit</button>
-                </div>
-
             </form>
         </div>
     </section>

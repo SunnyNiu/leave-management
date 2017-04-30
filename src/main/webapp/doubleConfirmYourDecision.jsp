@@ -18,11 +18,20 @@
                 <div class="page-header">
                     <div>
                         <ol class="breadcrumb right">
-                            <li class="active">ConfirmYourDecision Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                            <li class="active">ConfirmYourDecision
+                                Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
             <div class="button" align="center">
-                <button class="btn btn-primary" type="submit" name="confirmBtn" value="${leaveApplicationHistory.getId()}"> Confirm</button>
-                <button class="btn btn-primary" type="submit" name="cancelBtn" value="${leaveApplicationHistory.getId()}">Cancel</button>
-                <input class="btn btn-primary" hidden name="applicationStatus" value="${Status}"></input>
+                <button class="btn btn-primary" type="submit" name="confirmBtn"
+                        value="${leaveApplicationHistory.getId()}"> Confirm
+                </button>
+                <button class="btn btn-primary" type="submit" name="cancelBtn"
+                        value="${leaveApplicationHistory.getId()}">Cancel
+                </button>
+                <input type="text" hidden name="applicationStatus" value="${Status}"/>
             </div>
         </form>
     </section>
