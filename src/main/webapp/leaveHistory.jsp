@@ -104,6 +104,17 @@
                         <td><label style="font-weight: 100">${leaveApplicationHistory.getApproverName()}</label></td>
                     </tr>
                 </c:forEach>
+                <div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <c:forEach begin="1" end="5" var="i">
+                                <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+                            </c:forEach>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </table>
         </div>
     </section>
