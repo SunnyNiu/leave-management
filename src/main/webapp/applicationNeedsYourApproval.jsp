@@ -36,7 +36,7 @@
                             <div class="col-md-3">
                                 <select name="status" id="statusId" class="form-control">
                                     <c:forEach items="${status}" var="entry">
-                                        <option value="${entry}">
+                                        <option value="${entry}" ${entry == leaveStatus ? 'selected' : ''}>
                                                 ${entry}
                                         </option>
                                     </c:forEach>
@@ -73,7 +73,7 @@
                                                           type="text">${leaveApplicationHistory.getId()}</label></td>
                                         <td hidden><label class="control-label" name="Id" type="text"
                                                           value="${leaveApplicationHistory.getId()}"
-                                                          hidden></td>
+                                                          hidden/></td>
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${leaveApplicationHistory.getUserName()}</label></td>
 
@@ -128,36 +128,39 @@
 
                                         <td>
                                             <div>
-                                                <div class="col-md-3">
-                                                    <button class="btn btn-primary width" type="submit"
-                                                            name="approveBtn"
-                                                            value=${leaveApplicationHistory.getId()}>
-                                                        Approve
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button class="btn btn-primary width" type="submit" name="rejectBtn"
-                                                            value=${leaveApplicationHistory.getId()}>
-                                                        Reject
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <button class="btn btn-primary width" type="submit"
-                                                            name="withdrawBtn"
-                                                            value=${leaveApplicationHistory.getId()}>
-                                                        Withdraw
-                                                    </button>
-                                                </div>
+                                                <c:if test="${leaveStatus=='Pending'}">
+                                                    <div class="col-md-3">
+                                                        <button class="btn btn-primary width" type="submit"
+                                                                name="approveBtn"
+                                                                value=${leaveApplicationHistory.getId()}>
+                                                            Approve
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button class="btn btn-primary width" type="submit"
+                                                                name="rejectBtn"
+                                                                value=${leaveApplicationHistory.getId()}>
+                                                            Reject
+                                                        </button>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${leaveStatus!='Pending'}">
+                                                    <div class="col-md-3">
+                                                        <button class="btn btn-primary width" type="submit"
+                                                                name="withdrawBtn"
+                                                                value=${leaveApplicationHistory.getId()}>
+                                                            Withdraw
+                                                        </button>
+                                                    </div>
+                                                </c:if>
                                                 <div class="col-md-3"></div>
                                             </div>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-
                             </table>
                         </div>
-                        </tr>
                     </div>
                 </form>
             </div>
@@ -169,6 +172,6 @@
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+<script src="js/application.js"></script>
 </body>
 </html>

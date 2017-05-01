@@ -14,7 +14,7 @@
         <%@ include file="menus.jsp" %>
     </header>
     <section id="body" class="container">
-        <div id="parent">
+        <div>
             <form action="applyLeave.do" method="post" class="form-horizontal">
                 <div>
                     <div class="page-header">
@@ -31,7 +31,6 @@
                     <label>${messages}</label>
 
                     <div class="table table-bordered" id="borderPadding">
-
                         <div class="form-group ">
                             <label for="leaveTypeId"
                                    class="col-sm-2  col-md-2  control-label">Leave Type: </label>
@@ -65,7 +64,6 @@
                             </div>
                         </div>
 
-
                         <c:forEach items="${applicationForm.getLeaveList()}" var="leave" varStatus="rows">
                             <div class="form-group ">
 
@@ -87,7 +85,7 @@
                                     Days:</label>
                                 <div class="col-sm-2 col-md-2">
                                     <input type="text" id="totalDay" name="totalDays" maxlength="2"
-                                           value="${leave.getTotalDays()}" class="form-control"/>
+                                           id="days" value="${leave.getTotalDays()}" class="form-control"/>
                                 </div>
 
                                 <div class="col-sm-2 col-md-2">
@@ -105,11 +103,13 @@
                         <div>
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" type="submit" name="btnApply">Submit</button>
+                                <button class="btn btn-primary" type="submit" name="btnApply" onclick="calculateDate()">
+                                    Submit
+                                </button>
                             </div>
                         </div>
-
                     </div>
+                </div>
             </form>
         </div>
     </section>
@@ -119,5 +119,16 @@
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+    function calculateDate() {
+        var fromDate = document.getElementById('fromDate');
+        var toDate = document.getElementById('toDate');
+        var inputDays = document.getElementById('days');
+        var diffc = toDate.getTime() - fromDate.getTime();
+        var days = Math.round(Math.abs(diffc / (1000 * 60 * 60 * 24)));
+        if (days != inputDays)
+            alert('Please populate correct days!');
+    }
+</script>
 </body>
 </html>

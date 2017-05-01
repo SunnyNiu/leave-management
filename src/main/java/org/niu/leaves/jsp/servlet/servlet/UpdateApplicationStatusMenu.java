@@ -37,6 +37,7 @@ public class UpdateApplicationStatusMenu extends HttpServlet {
 
         List<String> errorList = new ArrayList<String>();
         List<ApplicationStatus> statusList = new ArrayList<>();
+
         for (ApplicationStatus status : ApplicationStatus.values()) {
             statusList.add(status);
         }
@@ -46,6 +47,7 @@ public class UpdateApplicationStatusMenu extends HttpServlet {
             //Default search pending application
             List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), "Pending");
             request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
+            session.setAttribute("leaveStatus","Pending");
         } catch (SQLException ex) {
             errorList.add(ex.toString());
         }

@@ -46,6 +46,7 @@ public class UpdateApplicationStatus extends HttpServlet {
         String searchBtn = request.getParameter("searchApplication");
         if (searchBtn != null) {
             String status = request.getParameter("status");
+            session.setAttribute("leaveStatus",status);
             try {
                 List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), status);
                 request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
