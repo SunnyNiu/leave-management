@@ -27,8 +27,8 @@ public class LeaveApplicationService {
         leaveApplicationDao.updateApplicationStatus(applicationId, status);
     }
 
-    public List<LeaveApplicationHistory> queryApplicationHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException, IOException {
-        return leaveApplicationDao.queryLeaveHistory(userId, leaveType, fromDate, toDate);
+    public List<LeaveApplicationHistory> queryApplicationHistory(int userId, String leaveType, String fromDate, String toDate, int start, int end) throws SQLException, IOException {
+        return leaveApplicationDao.queryLeaveHistory(userId, leaveType, fromDate, toDate, start, end);
     }
 
     public int queryTotalRecords(int userId, String leaveType, String fromDate, String toDate) throws SQLException, IOException {

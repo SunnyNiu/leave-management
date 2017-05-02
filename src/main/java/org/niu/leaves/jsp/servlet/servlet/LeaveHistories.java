@@ -25,6 +25,54 @@ public class LeaveHistories extends HttpServlet {
     TitleService titleService = new TitleService();
     DepartmentService departmentService = new DepartmentService();
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        if (login == null || login.isEmpty()) {
+            request.getRequestDispatcher("/sessionTimeout.jsp").forward(request, response);
+            return;
+        }
+        List<String> errorList = new ArrayList<>();
+        try {
+            List<UserInfo> userList = userService.getAllUsers();
+            request.setAttribute("userList",userList);
+            List<LeaveType> leaveTypesList = leaveTypeService.getLeaveTypes();
+            request.setAttribute("leaveTypesList", leaveTypesList);
+        } catch (SQLException ex) {
+            errorList.add(ex.toString());
+        }
+        LeaveApplicationService leaveApplicationService = new LeaveApplicationService();
+        int rowsPerPage = 2;
+        try {
+            int start = 0;
+            if (request.getParameter("page") != null) {
+                start = Integer.parseInt(request.getParameter("page"));
+                request.setAttribute("page",start);
+            } else {
+                start = 1;
+            }
+            int userId = (int) session.getAttribute("userId");
+            String leaveType = (String) session.getAttribute("leaveType");
+            String fromDate = (String) session.getAttribute("fromDate");
+            String toDate = (String) session.getAttribute("toDate");
+            int end = start + rowsPerPage;
+            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
+            int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
+            int pagesNumber = totalRecord / 2 + totalRecord % 2;
+            request.setAttribute("pagesNumber", pagesNumber);
+            request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
+            RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp");
+            rd.forward(request, response);
+        } catch (SQLException ex) {
+            errorList.add(ex.toString());
+        }
+        String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+        request.setAttribute("messages", "");
+        request.setAttribute("errorList", errorList);
+        request.setAttribute("today", today);
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
@@ -49,6 +97,7 @@ public class LeaveHistories extends HttpServlet {
         //get fromDate, toDate and verify date format
         String fromDate = request.getParameter("userFromDate");
         String toDate = request.getParameter("userToDate");
+
         try {
             new CheckFromToDaysForamt().checkDateFormat(fromDate, toDate);
         } catch (ParseException e) {
@@ -71,12 +120,19 @@ public class LeaveHistories extends HttpServlet {
 
         String username = request.getParameter("username");
         int userId = Integer.parseInt(username);
+        session.setAttribute("userId", userId);
+        session.setAttribute("leaveType", leaveType);
+        session.setAttribute("fromDate", fromDate);
+        session.setAttribute("toDate", toDate);
         //get data from database and convey them to jsp
         if (errorList.isEmpty()) {
+            int rowsPerPage = 2;
             try {
-                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate);
+                int start = 1;
+                int end = start + rowsPerPage;
+                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, rowsPerPage);
                 int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
-                int pagesNumber = totalRecord / 2 + totalRecord % 2;
+                int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
                 request.setAttribute("pagesNumber", pagesNumber);
                 request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
             } catch (SQLException ex) {

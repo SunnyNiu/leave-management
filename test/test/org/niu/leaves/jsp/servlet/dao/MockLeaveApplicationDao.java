@@ -3,6 +3,7 @@ package test.org.niu.leaves.jsp.servlet.dao;
 import org.niu.leaves.jsp.servlet.dao.LeaveApplicationDao;
 import org.niu.leaves.jsp.servlet.model.LeaveApplicationHistory;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class MockLeaveApplicationDao implements LeaveApplicationDao {
 
     }
 
-    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException {
+    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate, int start, int end) throws SQLException {
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList = new ArrayList<>();
         LeaveApplicationHistory leaveApplicationHistory = new LeaveApplicationHistory();
         leaveApplicationHistory.setId(1);

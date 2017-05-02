@@ -28,8 +28,8 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
     }
 
     //Search leaveHistory by user, fromDate, toDate, leaveType
-    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException, IOException {
-        String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate, " +
+    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate, int startRow, int endRow) throws SQLException, IOException {
+        String sql = " select * from (select rownum runm, a.* from(select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate, " +
                 "application.TO_DATE as toDate,application.STATUS as status, " +
                 "application.REASONS as reason,application.TOTAL_DAYS as days, " +
                 "leaveType.LEAVE_TYPE as leaveType,u.FIRST_NAME||u.LAST_NAME as managerName, " +
@@ -40,7 +40,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
                 "and application.from_date >= TO_DATE(?,'yyyy/mm/dd') " +
                 "and application.TO_DATE <=TO_DATE(?,'yyyy/mm/dd') " +
                 "left join AP_USERS u on application.APPROVER_USER_ID=u.USERID " +
-                "left join AP_USERS users on users.USERID = application.USERID order by application.FROM_DATE";
+                "left join AP_USERS users on users.USERID = application.USERID )  a where rownum < ?)where runm > = ?";
 
         ResultSet rs = null;
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList;
@@ -50,6 +50,8 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
             ps.setInt(i++, Integer.parseInt(leaveType));
             ps.setString(i++, fromDate);
             ps.setString(i++, toDate);
+            ps.setInt(i++,endRow);
+            ps.setInt(i++,startRow);
             rs = ps.executeQuery();
             leaveApplicationHistoryList = getLeaveHistoryResult(rs);
             return leaveApplicationHistoryList;

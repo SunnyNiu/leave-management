@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LeaveApplicationDao {
     public void insertLeaveApplication(int userId, String dateFrom, String dateTo, Double days, String reason, String sickType, int managerId) throws SQLException,IOException;
-    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException,IOException;
+    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate, int start, int end) throws SQLException,IOException;
     public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException,IOException;
     public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException,IOException;
     public void updateApplicationStatus(int applicationId, String status) throws SQLException,IOException;

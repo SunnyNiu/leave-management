@@ -81,7 +81,7 @@
             </form>
         </div>
         <div>
-            <table class="table table-striped table-responsive">
+            <!--<table class="table table-striped table-responsive">
                 <tr>
                     <th>Name</th>
                     <th>LeaveType</th>
@@ -105,15 +105,16 @@
                 <div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="searchLeaveHistory.do">Previous</a></li>
                             <c:forEach begin="1" end="${pagesNumber}" var="i">
-                                <li class="page-item"><a class="page-link" href="#" name="pageNumber">${i}</a></li>
+                                <li class="page-item"><a class="page-link" href="searchLeaveHistory.do" name="pageNumber">${i}</a></li>
                             </c:forEach>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="searchLeaveHistory.do">Next</a></li>
                         </ul>
                     </nav>
                 </div>
-            </table>
+            </table>-->
+            <%@ include file="paginationLeaveHistory.jsp" %>
         </div>
     </section>
     <div id="footer" align="center">
