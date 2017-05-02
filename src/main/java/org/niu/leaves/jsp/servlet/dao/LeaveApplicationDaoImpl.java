@@ -10,7 +10,7 @@ import java.util.List;
 public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
 
     //insert leave application into database
-    public void insertLeaveApplication(int userId, String dateFrom, String dateTo, Double days, String reason, String sickType, int managerId) throws SQLException,IOException {
+    public void insertLeaveApplication(int userId, String dateFrom, String dateTo, Double days, String reason, String sickType, int managerId) throws SQLException, IOException {
         String sql = "INSERT INTO AP_LEAVE_APPLICATION (USERID,FROM_DATE,TO_DATE,TOTAL_DAYS,REASONS,LEAVE_TYPE_ID,STATUS,APPROVER_USER_ID) " +
                 "VALUES ( ? , TO_DATE( ?,'yyyy/mm/dd'),TO_DATE(?,'yyyy/mm/dd'),  ? , ? ," +
                 "? ,'Pending',?)";
@@ -28,7 +28,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
     }
 
     //Search leaveHistory by user, fromDate, toDate, leaveType
-    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException,IOException {
+    public List<LeaveApplicationHistory> queryLeaveHistory(int userId, String leaveType, String fromDate, String toDate) throws SQLException, IOException {
         String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate, " +
                 "application.TO_DATE as toDate,application.STATUS as status, " +
                 "application.REASONS as reason,application.TOTAL_DAYS as days, " +
@@ -40,7 +40,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
                 "and application.from_date >= TO_DATE(?,'yyyy/mm/dd') " +
                 "and application.TO_DATE <=TO_DATE(?,'yyyy/mm/dd') " +
                 "left join AP_USERS u on application.APPROVER_USER_ID=u.USERID " +
-                "left join AP_USERS users on users.USERID = application.USERID ";
+                "left join AP_USERS users on users.USERID = application.USERID order by application.FROM_DATE";
 
         ResultSet rs = null;
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList;
@@ -59,7 +59,37 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
         }
     }
 
-    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException,IOException {
+
+    public int queryTotalRecords(int userId, String leaveType, String fromDate, String toDate) throws SQLException, IOException {
+        String sql = "select  count(*) as totalRecord " +
+                "from AP_LEAVE_APPLICATION application " +
+                "inner join AP_LEAVE_TYPE leaveType " +
+                "on application.LEAVE_TYPE_ID=leaveType.ID and application.userId =? and leaveType.ID=? " +
+                "and application.from_date >= TO_DATE(?,'yyyy/mm/dd') " +
+                "and application.TO_DATE <=TO_DATE(?,'yyyy/mm/dd') " +
+                "left join AP_USERS u on application.APPROVER_USER_ID=u.USERID " +
+                "left join AP_USERS users on users.USERID = application.USERID ";
+
+        ResultSet rs = null;
+        int i = 1;
+        try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(i++, userId);
+            ps.setInt(i++, Integer.parseInt(leaveType));
+            ps.setString(i++, fromDate);
+            ps.setString(i++, toDate);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("totalRecord");
+            } else {
+                return 0;
+            }
+        } finally {
+            if (rs != null)
+                rs.close();
+        }
+    }
+
+    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException, IOException {
         String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +
                 "                application.TO_DATE as toDate,application.STATUS as status,  " +
                 "                application.REASONS as reason,application.TOTAL_DAYS as days,  " +
@@ -85,7 +115,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
         }
     }
 
-    public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException,IOException {
+    public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException, IOException {
         String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +
                 "                application.TO_DATE as toDate,application.STATUS as status,  " +
                 "                application.REASONS as reason,application.TOTAL_DAYS as days,  " +
@@ -126,7 +156,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
     }
 
     //updateStatus
-    public void updateApplicationStatus(int applicationId, String status) throws SQLException,IOException {
+    public void updateApplicationStatus(int applicationId, String status) throws SQLException, IOException {
         String sql = "UPDATE AP_LEAVE_APPLICATION SET status =? WHERE ID =?";
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             int i = 1;
@@ -137,7 +167,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
         }
     }
 
-    public ArrayList<LeaveApplicationHistory> getLeaveHistoryResult(ResultSet rs) throws SQLException,IOException {
+    public ArrayList<LeaveApplicationHistory> getLeaveHistoryResult(ResultSet rs) throws SQLException, IOException {
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList = new ArrayList<>();
         while (rs.next()) {
             LeaveApplicationHistory leaveApplicationHistory = new LeaveApplicationHistory();
@@ -154,7 +184,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
         return leaveApplicationHistoryList;
     }
 
-    public int getTotalDays(String from, String to) throws SQLException,IOException {
+    public int getTotalDays(String from, String to) throws SQLException, IOException {
         ResultSet rs = null;
         String sql = "select ceil(To_date(?,'yyyy/mm/dd') - To_date(?,'yyyy/mm/dd')) as days FROM DUAL";
         int i = 1;

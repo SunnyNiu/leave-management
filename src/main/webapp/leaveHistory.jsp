@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,8 +74,6 @@
                         <div class="col-sm-2 col-md-2">
                         </div>
                     </div>
-
-
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                         <button class="btn btn-primary pull-right" type="submit">Submit</button>
                     </div>
@@ -108,8 +106,8 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <c:forEach begin="1" end="5" var="i">
-                                <li class="page-item"><a class="page-link" href="#">${i}</a></li>
+                            <c:forEach begin="1" end="${pagesNumber}" var="i">
+                                <li class="page-item"><a class="page-link" href="#" name="pageNumber">${i}</a></li>
                             </c:forEach>
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>

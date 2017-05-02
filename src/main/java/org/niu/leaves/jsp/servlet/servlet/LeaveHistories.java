@@ -35,7 +35,7 @@ public class LeaveHistories extends HttpServlet {
 
         List<String> errorList = new ArrayList<>();
         //get user detailed info
-        UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo)session.getAttribute("userWithDepartmentInfo");
+        UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
 
         try {
             List<UserInfo> userList = userService.getAllUsers();
@@ -75,6 +75,9 @@ public class LeaveHistories extends HttpServlet {
         if (errorList.isEmpty()) {
             try {
                 List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate);
+                int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
+                int pagesNumber = totalRecord / 2 + totalRecord % 2;
+                request.setAttribute("pagesNumber", pagesNumber);
                 request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
             } catch (SQLException ex) {
                 errorList.add(ex.toString());

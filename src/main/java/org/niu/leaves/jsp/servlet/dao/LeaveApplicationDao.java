@@ -13,4 +13,5 @@ public interface LeaveApplicationDao {
     public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException,IOException;
     public void updateApplicationStatus(int applicationId, String status) throws SQLException,IOException;
     public int getTotalDays(String from, String to) throws SQLException,IOException;
+    public int queryTotalRecords(int userId, String leaveType, String fromDate, String toDate) throws SQLException,IOException;
 }
