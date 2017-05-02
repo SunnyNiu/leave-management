@@ -2,3 +2,5 @@
 applicationLeave.iml
 target/S
 /leaveManagement.iml
+/src/main/webapp/paginationLeaveHistory.jsp
+!/src/main/webapp/paginationLeaveHistory.jsp
