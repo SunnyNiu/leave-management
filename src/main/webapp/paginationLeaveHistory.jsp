@@ -44,6 +44,7 @@
                                         <%
                                             int start = 1;
                                             if (request.getParameter("page") != null) {
+                                                start = Integer.parseInt(request.getParameter("page"));
                                                 if (start > 1) {
                                                     start = start - 1;
                                                 } else {
@@ -60,7 +61,7 @@
                                     <li class="page-item">
                                         <a class="page-link" href="searchLeaveHistory.do?page=${i}"
                                            id="${i}" name="pageNumber"
-                                                <c:if test="${page==i}">
+                                                <c:if test="${pageChosen==i}">
                                                     style="background-color: #A9A9A9"
                                                 </c:if>
                                         >${i}</a>
