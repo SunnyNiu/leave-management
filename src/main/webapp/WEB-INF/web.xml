@@ -109,7 +109,6 @@
     <url-pattern>/searchLeaveHistory.do</url-pattern>
   </servlet-mapping>
 
-
   <servlet>
     <servlet-name>SearchLeaveHistoryPagination</servlet-name>
     <servlet-class>org.niu.leaves.jsp.servlet.servlet.PaginationLeaveHistory</servlet-class>

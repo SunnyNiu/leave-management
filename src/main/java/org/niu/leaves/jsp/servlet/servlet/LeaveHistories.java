@@ -35,7 +35,7 @@ public class LeaveHistories extends HttpServlet {
         List<String> errorList = new ArrayList<>();
         try {
             List<UserInfo> userList = userService.getAllUsers();
-            request.setAttribute("userList",userList);
+            request.setAttribute("userList", userList);
             List<LeaveType> leaveTypesList = leaveTypeService.getLeaveTypes();
             request.setAttribute("leaveTypesList", leaveTypesList);
         } catch (SQLException ex) {
@@ -47,18 +47,21 @@ public class LeaveHistories extends HttpServlet {
             int start = 0;
             if (request.getParameter("page") != null) {
                 start = Integer.parseInt(request.getParameter("page"));
-                request.setAttribute("page",start);
+                request.setAttribute("page", start);
             } else {
                 start = 1;
             }
-            int userId = (int) session.getAttribute("userId");
-            String leaveType = (String) session.getAttribute("leaveType");
-            String fromDate = (String) session.getAttribute("fromDate");
-            String toDate = (String) session.getAttribute("toDate");
-            int end = start + rowsPerPage;
-            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
+            int userId = Integer.parseInt(session.getAttribute("userId").toString());
+            String leaveType = session.getAttribute("leaveType").toString();
+            String fromDate = session.getAttribute("fromDate").toString();
+            String toDate = session.getAttribute("toDate").toString();
             int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
-            int pagesNumber = totalRecord / 2 + totalRecord % 2;
+            int end = start + rowsPerPage;
+            if (end > totalRecord) {
+                end = totalRecord;
+            }
+            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
+            int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
             request.setAttribute("pagesNumber", pagesNumber);
             request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
             RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp");
@@ -130,7 +133,7 @@ public class LeaveHistories extends HttpServlet {
             try {
                 int start = 1;
                 int end = start + rowsPerPage;
-                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, rowsPerPage);
+                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
                 int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
                 int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
                 request.setAttribute("pagesNumber", pagesNumber);
@@ -143,7 +146,14 @@ public class LeaveHistories extends HttpServlet {
         String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         request.setAttribute("errorList", errorList);
         request.setAttribute("today", today);
-        RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp");
+        StringBuffer URL = new StringBuffer();
+        URL.append("/leaveHistory.jsp?page=1 & ");
+        URL.append("leaveType =" + leaveType + "&");
+        URL.append("userId =" + userId + "&");
+        URL.append("fromDate =" + fromDate + "&");
+        URL.append("toDate =" + toDate);
+        //RequestDispatcher rd = request.getRequestDispatcher(URL.toString());
+        RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp?page=1");
         rd.forward(request, response);
     }
 }
