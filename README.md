@@ -10,6 +10,3 @@ There are functionalities as below for this projects,
 6. Staff update password.
 7. Staff update personal info.
 
-
-Will continue to add other functionalities gradually.
-
