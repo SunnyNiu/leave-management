@@ -42,24 +42,35 @@
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link"
                                         <%
-                                            int start = 1;
+                                            int startPage = 1;
                                             if (request.getParameter("page") != null) {
-                                                start = Integer.parseInt(request.getParameter("page"));
-                                                if (start > 1) {
-                                                    start = start - 1;
+                                                startPage = Integer.parseInt(request.getParameter("page"));
+                                                if (startPage > 1) {
+                                                    startPage = startPage - 1;
                                                 } else {
-                                                    start = 1;
+                                                    startPage = 1;
                                                 }
                                             }
-                                            request.setAttribute("start", start);
+                                            request.setAttribute("page", startPage);
+                                            String leaveType = request.getAttribute("selectedLeaveType").toString();
+                                            String fromDate = request.getAttribute("selectedFromDate").toString();
+                                            String toDate = request.getAttribute("selectedToDate").toString();
+                                            int userId = Integer.parseInt(request.getAttribute("selectedUserId").toString());
+                                            String urlStart = "searchLeaveHistory.do?page=" + startPage + "&";
+                                            String url = "userId=" + userId + "&";
+                                            url = url + "leaveType=" + leaveType + "&";
+                                            url = url + "fromDate=" + fromDate + "&";
+                                            url = url + "toDate=" + toDate;
+                                            request.setAttribute("urlStarts", urlStart + url);
+                                            request.setAttribute("url", url);
                                         %>
-                                                         id="${start}" href="searchLeaveHistory.do?page=${start}"
-                                                         name="pageNumber"
-                                >Previous</a>
+                                                         id="${start}" href="${urlStarts}"
+                                                         name="pageNumber">Previous</a>
                                 </li>
                                 <c:forEach begin="1" end="${pagesNumber}" var="i" varStatus="myIndex">
                                     <li class="page-item">
-                                        <a class="page-link" href="searchLeaveHistory.do?page=${i}"
+                                        <a class="page-link"
+                                           href="searchLeaveHistory.do?page=${i}&<c:out value="${url}"/>"
                                            id="${i}" name="pageNumber"
                                                 <c:if test="${pageChosen==i}">
                                                     style="background-color: #A9A9A9"
@@ -69,18 +80,20 @@
                                 </c:forEach>
                                 <li class="page-item"><a class="page-link"
                                         <%
-                                            int last = 1;
+                                            int lastPage = 1;
                                             if (request.getParameter("page") != null) {
-                                                last = Integer.parseInt(request.getParameter("page"));
+                                                lastPage = Integer.parseInt(request.getParameter("page"));
                                                 int pagesNumber = Integer.parseInt(request.getAttribute("pagesNumber").toString());
-                                                if (last < pagesNumber) {
-                                                    last = last + 1;
+                                                if (lastPage < pagesNumber) {
+                                                    lastPage = lastPage + 1;
                                                 } else {
-                                                    last = pagesNumber;
+                                                    lastPage = pagesNumber;
                                                 }
                                             }
-                                            request.setAttribute("last", last);
-                                        %> href="searchLeaveHistory.do?page=${last}" name="pageNumber">Next</a></li>
+                                            request.setAttribute("page", lastPage);
+                                            String urlEnd = "searchLeaveHistory.do?page=" + lastPage + "&";
+                                            request.setAttribute("urlEnds", urlEnd + url);
+                                        %> href="${urlEnds}" name="pageNumber">Next</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -45,18 +45,24 @@ public class LeaveHistories extends HttpServlet {
         int rowsPerPage = 2;
         try {
             int start = 1;
+            int page = 1;
             if (request.getParameter("page") != null) {
-                start = Integer.parseInt(request.getParameter("page"));
-                request.setAttribute("pageChosen", start);
-            } else {
-                start = 1;
+                page = Integer.parseInt(request.getParameter("page"));
+                request.setAttribute("pageChosen", page);
             }
-            int userId = Integer.parseInt(session.getAttribute("userId").toString());
-            String leaveType = session.getAttribute("leaveType").toString();
-            String fromDate = session.getAttribute("fromDate").toString();
-            String toDate = session.getAttribute("toDate").toString();
+            if (page > 1) {
+                start = (page - 1) * rowsPerPage + 1;
+            }
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            String leaveType = request.getParameter("leaveType");
+            String fromDate = request.getParameter("fromDate");
+            String toDate = request.getParameter("toDate");
+            request.setAttribute("selectedLeaveType", leaveType);
+            request.setAttribute("selectedFromDate", fromDate);
+            request.setAttribute("selectedToDate", toDate);
+            request.setAttribute("selectedUserId", userId);
             int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
-            int end = start + rowsPerPage;
+            int end = page * rowsPerPage;
             if (end > totalRecord) {
                 end = totalRecord;
             }
@@ -69,7 +75,12 @@ public class LeaveHistories extends HttpServlet {
             request.setAttribute("messages", "");
             request.setAttribute("errorList", errorList);
             request.setAttribute("today", today);
-            RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp?page="+start);
+            String url = "/leaveHistory.jsp?page=" + page + "&";
+            url = url + "userId=" + userId + "&";
+            url = url + "leaveType=" + leaveType + "&";
+            url = url + "fromDate=" + fromDate + "&";
+            url = url + "toDate=" + toDate;
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         } catch (SQLException ex) {
             errorList.add(ex.toString());
@@ -124,16 +135,16 @@ public class LeaveHistories extends HttpServlet {
 
         String username = request.getParameter("username");
         int userId = Integer.parseInt(username);
-        session.setAttribute("userId", userId);
-        session.setAttribute("leaveType", leaveType);
-        session.setAttribute("fromDate", fromDate);
-        session.setAttribute("toDate", toDate);
+        request.setAttribute("selectedLeaveType", leaveType);
+        request.setAttribute("selectedFromDate", fromDate);
+        request.setAttribute("selectedToDate", toDate);
+        request.setAttribute("selectedUserId", userId);
         //get data from database and convey them to jsp
         int start = 1;
         if (errorList.isEmpty()) {
             int rowsPerPage = 2;
             try {
-                int end = start + rowsPerPage;
+                int end = start + rowsPerPage - 1;
                 List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
                 int totalRecord = leaveApplicationService.queryTotalRecords(userId, leaveType, fromDate, toDate);
                 int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
@@ -147,14 +158,14 @@ public class LeaveHistories extends HttpServlet {
         String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         request.setAttribute("errorList", errorList);
         request.setAttribute("today", today);
-        StringBuffer URL = new StringBuffer();
-        URL.append("/leaveHistory.jsp?page=1 & ");
-        URL.append("leaveType =" + leaveType + "&");
-        URL.append("userId =" + userId + "&");
-        URL.append("fromDate =" + fromDate + "&");
-        URL.append("toDate =" + toDate);
-        //RequestDispatcher rd = request.getRequestDispatcher(URL.toString());
-        RequestDispatcher rd = request.getRequestDispatcher("/leaveHistory.jsp?page="+start);
+
+        String url = "/leaveHistory.jsp?page=" + start + "&";
+        url = url + "userId=" + userId + "&";
+        url = url + "leaveType=" + leaveType + "&";
+        url = url + "fromDate=" + fromDate + "&";
+        url = url + "toDate=" + toDate;
+
+        RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }
 }

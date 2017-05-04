@@ -36,12 +36,12 @@
                         <label for="fromId"
                                class="col-sm-2 col-sm-offset-2 col-md-2 col-md-offset-2 control-label">From: </label>
                         <div class="col-sm-2 col-md-2">
-                            <input class="form-control" id="fromId" type="date" name="userFromDate" required/>
+                            <input class="form-control" id="fromId" type="date" name="userFromDate" value="${selectedFromDate}" required>
                         </div>
 
                         <label for="toId" class="col-sm-2 col-md-2 control-label">To: </label>
                         <div class="col-sm-2 col-md-2">
-                            <input class="form-control" id="toId" type="date" name="userToDate" required/>
+                            <input class="form-control" id="toId" type="date" name="userToDate" value="${selectedToDate}" required/>
                         </div>
                         <div class="col-sm-2 col-md-2">
                         </div>
@@ -53,7 +53,8 @@
                         <div class="col-sm-2 col-md-2">
                             <select name="leaveType" id="staffId" class="form-control">
                                 <c:forEach items="${leaveTypesList}" var="entry">
-                                    <option value="${entry.getId()}">
+                                    <option value="${entry.getId()}"
+                                            <c:if test="${entry.getId() == selectedLeaveType }">selected</c:if>>
                                             ${entry.getLeaveType()}
                                     </option>
                                 </c:forEach>
@@ -65,7 +66,8 @@
                         <div class="col-sm-2 col-md-2">
                             <select name="username" id="leaveTypeId" class="form-control">
                                 <c:forEach items="${userList}" var="entry">
-                                    <option value="${entry.getUserId()}">
+                                    <option value="${entry.getUserId()}"
+                                        <c:if test="${entry.getUserId() == selectedUserId }">selected</c:if>>
                                             ${entry.getUserName()}
                                     </option>
                                 </c:forEach>
@@ -81,39 +83,6 @@
             </form>
         </div>
         <div>
-            <!--<table class="table table-striped table-responsive">
-                <tr>
-                    <th>Name</th>
-                    <th>LeaveType</th>
-                    <th>FromDate</th>
-                    <th>ToDate</th>
-                    <th>LeaveDays</th>
-                    <th>Status</th>
-                    <th>Approver</th>
-                </tr>
-                <c:forEach items="${leaveApplicationHistoryList}" var="leaveApplicationHistory">
-                    <tr>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getUserName()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getLeaveType()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getFromDate()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getToDate()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getDays()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getStatus()}</label></td>
-                        <td><label style="font-weight: 100">${leaveApplicationHistory.getApproverName()}</label></td>
-                    </tr>
-                </c:forEach>
-                <div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="searchLeaveHistory.do">Previous</a></li>
-                            <c:forEach begin="1" end="${pagesNumber}" var="i">
-                                <li class="page-item"><a class="page-link" href="searchLeaveHistory.do" name="pageNumber">${i}</a></li>
-                            </c:forEach>
-                            <li class="page-item"><a class="page-link" href="searchLeaveHistory.do">Next</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </table>-->
             <%@ include file="paginationLeaveHistory.jsp" %>
         </div>
     </section>

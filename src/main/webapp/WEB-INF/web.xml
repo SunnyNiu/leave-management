@@ -216,4 +216,14 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout.do</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/k.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>

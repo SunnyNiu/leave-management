@@ -40,7 +40,7 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
                 "and application.from_date >= TO_DATE(?,'yyyy/mm/dd') " +
                 "and application.TO_DATE <=TO_DATE(?,'yyyy/mm/dd') " +
                 "left join AP_USERS u on application.APPROVER_USER_ID=u.USERID " +
-                "left join AP_USERS users on users.USERID = application.USERID )  a where rownum < ?)where runm > = ?";
+                "left join AP_USERS users on users.USERID = application.USERID )  a where rownum <= ?)where runm > = ?";
 
         ResultSet rs = null;
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList;
