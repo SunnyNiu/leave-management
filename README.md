@@ -1,12 +1,5 @@
 # leave-management
-Use java, servlet, jstl, css 
+This project is a leave management system, help staff applies for leave, check their leave history, check and update personal info.  The managers can approve, reject staffs' leave application, or withdraw his approval, rejection.  Admin can add the new member and set new staffs' personal info.
 
-There are functionalities as below for this projects,
-1. Staff check personal info.
-2. Staff apply for leave and send email to manager.
-3. Manager approve/reject/withdraw staff's leave application and feedback email to staff.
-4. Staff search leave history.
-5. Admin add new member and set new member's basic info.
-6. Staff update password.
-7. Staff update personal info.
+Technologies involved are Java,  Servlet, JSTL, JSP,  Oracle, CSS, Bootstrap and HTML
 
