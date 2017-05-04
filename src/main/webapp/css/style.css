@@ -44,6 +44,11 @@ label {
 #mainPageUploadFile{
     width: 120px;
 }
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
 /*
 ul {
     list-style-type: none;

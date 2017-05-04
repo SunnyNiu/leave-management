@@ -165,6 +165,7 @@ public class LeaveHistories extends HttpServlet {
         url = url + "fromDate=" + fromDate + "&";
         url = url + "toDate=" + toDate;
 
+        request.setAttribute("pageChosen", 1);
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }

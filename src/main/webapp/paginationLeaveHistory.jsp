@@ -40,60 +40,31 @@
                     <div>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link"
-                                        <%
-                                            int startPage = 1;
-                                            if (request.getParameter("page") != null) {
-                                                startPage = Integer.parseInt(request.getParameter("page"));
-                                                if (startPage > 1) {
-                                                    startPage = startPage - 1;
-                                                } else {
-                                                    startPage = 1;
-                                                }
-                                            }
-                                            request.setAttribute("page", startPage);
-                                            String leaveType = request.getAttribute("selectedLeaveType").toString();
-                                            String fromDate = request.getAttribute("selectedFromDate").toString();
-                                            String toDate = request.getAttribute("selectedToDate").toString();
-                                            int userId = Integer.parseInt(request.getAttribute("selectedUserId").toString());
-                                            String urlStart = "searchLeaveHistory.do?page=" + startPage + "&";
-                                            String url = "userId=" + userId + "&";
-                                            url = url + "leaveType=" + leaveType + "&";
-                                            url = url + "fromDate=" + fromDate + "&";
-                                            url = url + "toDate=" + toDate;
-                                            request.setAttribute("urlStarts", urlStart + url);
-                                            request.setAttribute("url", url);
-                                        %>
-                                                         id="${start}" href="${urlStarts}"
-                                                         name="pageNumber">Previous</a>
-                                </li>
-                                <c:forEach begin="1" end="${pagesNumber}" var="i" varStatus="myIndex">
-                                    <li class="page-item">
-                                        <a class="page-link"
-                                           href="searchLeaveHistory.do?page=${i}&<c:out value="${url}"/>"
-                                           id="${i}" name="pageNumber"
-                                                <c:if test="${pageChosen==i}">
-                                                    style="background-color: #A9A9A9"
+                                <c:if test="${pageChosen!=null}">
+                                    <li class='page-item ${pageChosen == 1 ? "disabled": ""}'>
+                                        <a class="page-link" id="${start}" name="pageNumber"
+                                                <c:if test="${pageChosen > 1}">
+                                                    href="searchLeaveHistory.do?page=${pageChosen-1}&userId=${selectedUserId}&leaveType=${selectedLeaveType}&fromDate=${selectedFromDate}&toDate=${selectedToDate}"
                                                 </c:if>
+                                        >Previous</a>
+
+                                    </li>
+                                </c:if>
+                                <c:forEach begin="1" end="${pagesNumber}" var="i" varStatus="myIndex">
+                                    <li class='page-item ${pageChosen == i ? "active disabled": ""}'>
+                                        <a class="page-link"
+                                           href="searchLeaveHistory.do?page=${i}&userId=${selectedUserId}&leaveType=${selectedLeaveType}&fromDate=${selectedFromDate}&toDate=${selectedToDate}"
+                                           id="${i}" name="pageNumber"
                                         >${i}</a>
                                     </li>
                                 </c:forEach>
-                                <li class="page-item"><a class="page-link"
-                                        <%
-                                            int lastPage = 1;
-                                            if (request.getParameter("page") != null) {
-                                                lastPage = Integer.parseInt(request.getParameter("page"));
-                                                int pagesNumber = Integer.parseInt(request.getAttribute("pagesNumber").toString());
-                                                if (lastPage < pagesNumber) {
-                                                    lastPage = lastPage + 1;
-                                                } else {
-                                                    lastPage = pagesNumber;
-                                                }
-                                            }
-                                            request.setAttribute("page", lastPage);
-                                            String urlEnd = "searchLeaveHistory.do?page=" + lastPage + "&";
-                                            request.setAttribute("urlEnds", urlEnd + url);
-                                        %> href="${urlEnds}" name="pageNumber">Next</a></li>
+                                <c:if test="${pageChosen!=null}">
+                                    <li class='page-item ${pageChosen == pagesNumber ? "disabled": ""}'>
+                                        <a class="page-link"
+                                                <c:if test="${pageChosen < pagesNumber}">
+                                                    href="searchLeaveHistory.do?page=${pageChosen+1}&userId=${selectedUserId}&leaveType=${selectedLeaveType}&fromDate=${selectedFromDate}&toDate=${selectedToDate}"
+                                                    name="pageNumber"</c:if>>Next</a></li>
+                                </c:if>
                             </ul>
                         </nav>
                     </div>
