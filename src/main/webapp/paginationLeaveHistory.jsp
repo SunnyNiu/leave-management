@@ -38,7 +38,7 @@
                         </tr>
                     </c:forEach>
                     <div>
-                        <nav aria-label="Page navigation example">
+                        <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <c:if test="${pageChosen!=null}">
                                     <li class='page-item ${pageChosen == 1 ? "disabled": ""}'>

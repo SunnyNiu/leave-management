@@ -30,7 +30,7 @@ public class ConfirmOrCancelYourDecision extends HttpServlet {
             request.getRequestDispatcher("/sessionTimeout.jsp").forward(request, response);
             return;
         }
-        UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo)session.getAttribute("userWithDepartmentInfo");
+        UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
         List<String> errorList = new ArrayList<String>();
 
         List<ApplicationStatus> statusList = new ArrayList<>();
@@ -85,14 +85,25 @@ public class ConfirmOrCancelYourDecision extends HttpServlet {
             request.setAttribute("messages", Messages.Make_Your_Decision);
         }
 
+
+        String selectedStatus = request.getParameter("selectedStatus");
         try {
-            List<LeaveApplicationHistory> leaveApplicationHistoryList = new LeaveApplicationService().queryApplicationByStatus(userWithDepartmentInfo.getUserId(), "Pending");
+            int start = 1;
+            //Default search pending application
+            int rowsPerPage = 2;
+            int end = start + rowsPerPage - 1;
+            List<LeaveApplicationHistory> leaveApplicationHistoryList = new LeaveApplicationService().queryApplicationByStatus(userWithDepartmentInfo.getUserId(), selectedStatus, start, end);
             request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
         } catch (SQLException ex) {
             errorList.add(ex.toString());
         }
+
+        request.setAttribute("pageChosen", 1);
         request.setAttribute("errorList", errorList);
-        RequestDispatcher rd = request.getRequestDispatcher("/applicationNeedsYourApproval.jsp");
+        String pages = request.getParameter("pagesNumber").toString();
+        request.setAttribute("pagesNumber", pages);
+        request.setAttribute("selectedStatus", selectedStatus);
+        RequestDispatcher rd = request.getRequestDispatcher("/updateApplicationStatus.jsp?page=1");
         rd.forward(request, response);
     }
 }

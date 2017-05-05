@@ -27,23 +27,27 @@ public class AuthorizationFilter implements Filter {
                 for (UserWithDepartmentInfo departmentInfo : departmentInfoList) {
                     if (departmentInfo.getManagerUserId() == userWithDepartmentInfo.getUserId()) {
                         chain.doFilter(req, resp);
-                        break;
+                        return;
                     }
                 }
                 req.getRequestDispatcher("/unauthorized.jsp").forward(req, resp);
+                return;
             } catch (SQLException ex) {
                 req.getRequestDispatcher("/unauthorized.jsp").forward(req, resp);
+                return;
             }
         } else if (((HttpServletRequest) req).getRequestURI().contains("/addNewMember")) {
             try {
                 int levelId = titleService.getLevelId(userWithDepartmentInfo.getTitle());
                 if (!(levelId == 1)) {
                     req.getRequestDispatcher("/unauthorized.jsp").forward(req, resp);
+                    return;
                 } else {
                     chain.doFilter(req, resp);
                 }
             } catch (SQLException ex) {
                 req.getRequestDispatcher("/unauthorized.jsp").forward(req, resp);
+                return;
             }
         } else {
             chain.doFilter(req, resp);

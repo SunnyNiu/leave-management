@@ -28,7 +28,7 @@ public class MockLeaveApplicationDao implements LeaveApplicationDao {
         return leaveApplicationHistoryList;
     }
 
-    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException {
+    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status, int start, int end) throws SQLException {
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList = new ArrayList<>();
         if (approverId == 1) {
             LeaveApplicationHistory leaveApplicationHistory = new LeaveApplicationHistory();
@@ -69,6 +69,10 @@ public class MockLeaveApplicationDao implements LeaveApplicationDao {
     }
 
     public int queryTotalRecords(int userId, String leaveType, String fromDate, String toDate) {
+        return 0;
+    }
+
+    public int queryTotalApplicationByStatus(int applicationId, String status) {
         return 0;
     }
 }

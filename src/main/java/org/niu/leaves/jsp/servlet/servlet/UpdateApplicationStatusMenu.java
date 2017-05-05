@@ -20,7 +20,7 @@ import java.util.List;
 
 public class UpdateApplicationStatusMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
-    LeaveApplicationService leaveApplicationService = new LeaveApplicationService();
+    //LeaveApplicationService leaveApplicationService = new LeaveApplicationService();
     UserService userService = new UserService();
     TitleService titleService = new TitleService();
     DepartmentService departmentService = new DepartmentService();
@@ -33,7 +33,7 @@ public class UpdateApplicationStatusMenu extends HttpServlet {
             return;
         }
 
-        UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
+        //UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
 
         List<String> errorList = new ArrayList<String>();
         List<ApplicationStatus> statusList = new ArrayList<>();
@@ -43,19 +43,25 @@ public class UpdateApplicationStatusMenu extends HttpServlet {
         }
         request.setAttribute("status", statusList);
 
-        try {
+        /*try {
+            int start = 1;
             //Default search pending application
-            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), "Pending");
+            int rowsPerPage = 2;
+            int end = start + rowsPerPage - 1;
+            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), "Pending", start, end);
+            int totalNumber = leaveApplicationService.queryTotalApplicationByStatus(userWithDepartmentInfo.getUserId(), "Pending");
+            int pagesNumber = totalNumber / rowsPerPage + totalNumber % rowsPerPage;
+            request.setAttribute("pagesNumber", pagesNumber);
             request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
-            session.setAttribute("leaveStatus","Pending");
+            session.setAttribute("leaveStatus", "Pending");
         } catch (SQLException ex) {
             errorList.add(ex.toString());
-        }
+        }*/
 
         String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         request.setAttribute("today", today);
         request.setAttribute("errorList", errorList);
-        RequestDispatcher rd = request.getRequestDispatcher("/applicationNeedsYourApproval.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/updateApplicationStatus.jsp?");
         rd.forward(request, response);
     }
 }

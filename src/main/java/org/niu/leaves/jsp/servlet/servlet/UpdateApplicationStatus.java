@@ -23,6 +23,64 @@ public class UpdateApplicationStatus extends HttpServlet {
     TitleService titleService = new TitleService();
     DepartmentService departmentService = new DepartmentService();
 
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String login = (String) session.getAttribute("login");
+        if (login == null || login.isEmpty()) {
+            request.getRequestDispatcher("/sessionTimeout.jsp").forward(request, response);
+            return;
+        }
+        List<String> errorList = new ArrayList<>();
+
+        //Automatically fill in managerList Dropdownlist
+        List<ApplicationStatus> statusList = new ArrayList<>();
+        for (ApplicationStatus status : ApplicationStatus.values()) {
+            statusList.add(status);
+        }
+        request.setAttribute("status", statusList);
+
+        //Allow 2 records in each page
+        int rowsPerPage = 2;
+        try {
+            int start = 1;
+            int page = 1;
+            if (request.getParameter("page") != null) {
+                page = Integer.parseInt(request.getParameter("page"));
+                request.setAttribute("pageChosen", page);
+            }
+            if (page > 1) {
+                start = (page - 1) * rowsPerPage + 1;
+            }
+
+            String selectedStatus = request.getParameter("selectedStatus");
+            request.setAttribute("selectedStatus", selectedStatus);
+
+            UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
+            int totalRecord = leaveApplicationService.queryTotalApplicationByStatus(userWithDepartmentInfo.getUserId(), selectedStatus);
+            int end = page * rowsPerPage;
+            if (end > totalRecord) {
+                end = totalRecord;
+            }
+            int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
+            request.setAttribute("pagesNumber", pagesNumber);
+
+            List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), selectedStatus, start, end);
+            request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
+
+            request.setAttribute("errorList", errorList);
+            String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+            request.setAttribute("today", today);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/updateApplicationStatus.jsp?page=1&selectedStatus=" + selectedStatus + "&pagesNumber=" + pagesNumber);
+            rd.forward(request, response);
+        } catch (SQLException ex) {
+            errorList.add(ex.toString());
+        }
+
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String login = (String) session.getAttribute("login");
@@ -43,19 +101,34 @@ public class UpdateApplicationStatus extends HttpServlet {
 
         String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         request.setAttribute("today", today);
+
         String searchBtn = request.getParameter("searchApplication");
+        int totalNumber = 0;
+        int pagesNumber = 0;
+        String selectedStatus = "Pending";
+
         if (searchBtn != null) {
-            String status = request.getParameter("status");
-            session.setAttribute("leaveStatus",status);
+            selectedStatus = request.getParameter("status");
+            request.setAttribute("selectedStatus", selectedStatus);
+            int start = 1;
+            //Default search pending application
+            int rowsPerPage = 2;
+            int end = start + rowsPerPage - 1;
+
+            request.setAttribute("pageChosen", 1);
             try {
-                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), status);
+                List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationByStatus(userWithDepartmentInfo.getUserId(), selectedStatus, start, end);
+                totalNumber = leaveApplicationService.queryTotalApplicationByStatus(userWithDepartmentInfo.getUserId(), selectedStatus);
+                pagesNumber = totalNumber / rowsPerPage + totalNumber % rowsPerPage;
+                request.setAttribute("pagesNumber", pagesNumber);
                 request.setAttribute("leaveApplicationHistoryList", leaveApplicationHistoryList);
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }
             request.setAttribute("errorList", errorList);
-            RequestDispatcher rd = request.getRequestDispatcher("/applicationNeedsYourApproval.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/updateApplicationStatus.jsp?page=1&selectedStatus=" + selectedStatus + "&pagesNumber=" + pagesNumber);
             rd.forward(request, response);
+            return;
         }
 
         String approveBtn = request.getParameter("approveBtn");
@@ -66,12 +139,16 @@ public class UpdateApplicationStatus extends HttpServlet {
                 LeaveApplicationHistory leaveApplicationHistory = leaveApplicationService.getApplicationById(applicationId);
                 request.setAttribute("leaveApplicationHistory", leaveApplicationHistory);
                 request.setAttribute("Status", status);
-                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp");
+                pagesNumber = Integer.parseInt(request.getParameter("pagesNumber"));
+                String searchSelectedStatus = request.getParameter("selectedStatus");
+                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp?page=1&pagesNumber=" + pagesNumber + "&selectedStatus=" + searchSelectedStatus);
                 rd.forward(request, response);
+                return;
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }
         }
+
         String rejectBtn = request.getParameter("rejectBtn");
         if (rejectBtn != null) {
             int applicationId = Integer.parseInt(rejectBtn);
@@ -80,8 +157,12 @@ public class UpdateApplicationStatus extends HttpServlet {
                 LeaveApplicationHistory leaveApplicationHistory = leaveApplicationService.getApplicationById(applicationId);
                 request.setAttribute("leaveApplicationHistory", leaveApplicationHistory);
                 request.setAttribute("Status", status);
-                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp");
+                pagesNumber = Integer.parseInt(request.getParameter("pagesNumber"));
+                String searchSelectedStatus = request.getParameter("selectedStatus");
+                //String searchSelectedStatus = request.getParameter("selectedStatus");
+                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp?page=1&pagesNumber=" + pagesNumber + "&selectedStatus=" + searchSelectedStatus);
                 rd.forward(request, response);
+                return;
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }
@@ -95,8 +176,12 @@ public class UpdateApplicationStatus extends HttpServlet {
                 LeaveApplicationHistory leaveApplicationHistory = leaveApplicationService.getApplicationById(applicationId);
                 request.setAttribute("leaveApplicationHistory", leaveApplicationHistory);
                 request.setAttribute("Status", status);
-                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp");
+                pagesNumber = Integer.parseInt(request.getParameter("pagesNumber"));
+                String searchSelectedStatus = request.getParameter("selectedStatus");
+                //String searchSelectedStatus = request.getParameter("selectedStatus");
+                RequestDispatcher rd = request.getRequestDispatcher("/doubleConfirmYourDecision.jsp?page=1&pagesNumber=" + pagesNumber + "&selectedStatus=" + searchSelectedStatus);
                 rd.forward(request, response);
+                return;
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }

@@ -50,8 +50,8 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
             ps.setInt(i++, Integer.parseInt(leaveType));
             ps.setString(i++, fromDate);
             ps.setString(i++, toDate);
-            ps.setInt(i++,endRow);
-            ps.setInt(i++,startRow);
+            ps.setInt(i++, endRow);
+            ps.setInt(i++, startRow);
             rs = ps.executeQuery();
             leaveApplicationHistoryList = getLeaveHistoryResult(rs);
             return leaveApplicationHistoryList;
@@ -91,8 +91,8 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
         }
     }
 
-    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException, IOException {
-        String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +
+    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status, int start, int end) throws SQLException, IOException {
+        String sql = "select * from (select rownum runm, a.* from (select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +
                 "                application.TO_DATE as toDate,application.STATUS as status,  " +
                 "                application.REASONS as reason,application.TOTAL_DAYS as days,  " +
                 "                leaveType.LEAVE_TYPE as leaveType,u.FIRST_NAME||u.LAST_NAME as managerName, " +
@@ -101,13 +101,15 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
                 "                inner join AP_LEAVE_TYPE leaveType " +
                 "                on application.LEAVE_TYPE_ID=leaveType.ID and application.APPROVER_USER_ID =? and application.STATUS=? " +
                 "                left join AP_USERS u on application.APPROVER_USER_ID=u.USERID  " +
-                "                left join AP_USERS users on users.USERID = application.USERID order by application.id ";
+                "                left join AP_USERS users on users.USERID = application.USERID order by application.id)  a where rownum <= ?)where runm > = ?";
         ResultSet rs = null;
         ArrayList<LeaveApplicationHistory> leaveApplicationHistoryList;
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(i++, approverId);
             ps.setString(i++, status);
+            ps.setInt(i++, end);
+            ps.setInt(i++, start);
             rs = ps.executeQuery();
             leaveApplicationHistoryList = getLeaveHistoryResult(rs);
             return leaveApplicationHistoryList;
@@ -116,6 +118,33 @@ public class LeaveApplicationDaoImpl implements LeaveApplicationDao {
                 rs.close();
         }
     }
+
+    public int queryTotalApplicationByStatus(int approverId, String status) throws SQLException, IOException {
+        String sql = " select count(*)  as totalNumber from (select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +
+                "                application.TO_DATE as toDate,application.STATUS as status,  " +
+                "                application.REASONS as reason,application.TOTAL_DAYS as days,  " +
+                "                leaveType.LEAVE_TYPE as leaveType,u.FIRST_NAME||u.LAST_NAME as managerName, " +
+                "                users.FIRST_NAME||users.LAST_NAME as username " +
+                "                from AP_LEAVE_APPLICATION application  " +
+                "                inner join AP_LEAVE_TYPE leaveType " +
+                "                on application.LEAVE_TYPE_ID=leaveType.ID and application.APPROVER_USER_ID =? and application.STATUS=? " +
+                "                left join AP_USERS u on application.APPROVER_USER_ID=u.USERID  " +
+                "                left join AP_USERS users on users.USERID = application.USERID)";
+        ResultSet rs = null;
+        int i = 1;
+        try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(i++, approverId);
+            ps.setString(i++, status);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("totalNumber");
+            } else return 0;
+        } finally {
+            if (rs != null)
+                rs.close();
+        }
+    }
+
 
     public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException, IOException {
         String sql = "select application.ID as id,application.USERID as userId,application.FROM_DATE as fromDate,  " +

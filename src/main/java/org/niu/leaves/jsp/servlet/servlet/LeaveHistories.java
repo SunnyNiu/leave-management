@@ -41,7 +41,9 @@ public class LeaveHistories extends HttpServlet {
         } catch (SQLException ex) {
             errorList.add(ex.toString());
         }
-        LeaveApplicationService leaveApplicationService = new LeaveApplicationService();
+
+        //find current page should from which row to which row to search from database
+        //Allow 2 rows in each page
         int rowsPerPage = 2;
         try {
             int start = 1;
@@ -66,6 +68,8 @@ public class LeaveHistories extends HttpServlet {
             if (end > totalRecord) {
                 end = totalRecord;
             }
+
+            //search leaveHistory base on conditions
             List<LeaveApplicationHistory> leaveApplicationHistoryList = leaveApplicationService.queryApplicationHistory(userId, leaveType, fromDate, toDate, start, end);
             int pagesNumber = totalRecord / rowsPerPage + totalRecord % rowsPerPage;
             request.setAttribute("pagesNumber", pagesNumber);
@@ -139,7 +143,9 @@ public class LeaveHistories extends HttpServlet {
         request.setAttribute("selectedFromDate", fromDate);
         request.setAttribute("selectedToDate", toDate);
         request.setAttribute("selectedUserId", userId);
+
         //get data from database and convey them to jsp
+        //default page should be first page when search result
         int start = 1;
         if (errorList.isEmpty()) {
             int rowsPerPage = 2;

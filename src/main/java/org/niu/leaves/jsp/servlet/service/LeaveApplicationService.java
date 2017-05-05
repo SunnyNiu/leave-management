@@ -15,8 +15,8 @@ public class LeaveApplicationService {
         leaveApplicationDao = GuiceInjector.getInstance(LeaveApplicationDao.class);
     }
 
-    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status) throws SQLException, IOException {
-        return leaveApplicationDao.queryApplicationByStatus(approverId, status);
+    public List<LeaveApplicationHistory> queryApplicationByStatus(int approverId, String status, int start, int end) throws SQLException, IOException {
+        return leaveApplicationDao.queryApplicationByStatus(approverId, status, start, end);
     }
 
     public LeaveApplicationHistory getApplicationById(int applicationId) throws SQLException, IOException {
@@ -25,6 +25,10 @@ public class LeaveApplicationService {
 
     public void updateStatus(int applicationId, String status) throws SQLException, IOException {
         leaveApplicationDao.updateApplicationStatus(applicationId, status);
+    }
+
+    public int queryTotalApplicationByStatus(int applicationId, String status) throws SQLException, IOException {
+        return leaveApplicationDao.queryTotalApplicationByStatus(applicationId, status);
     }
 
     public List<LeaveApplicationHistory> queryApplicationHistory(int userId, String leaveType, String fromDate, String toDate, int start, int end) throws SQLException, IOException {

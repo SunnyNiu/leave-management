@@ -110,15 +110,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>SearchLeaveHistoryPagination</servlet-name>
-    <servlet-class>org.niu.leaves.jsp.servlet.servlet.PaginationLeaveHistory</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SearchLeaveHistoryPagination</servlet-name>
-    <url-pattern>/searchLeaveHistoryPagination.do</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>WhoNeedsYourApprovalMenu</servlet-name>
     <servlet-class>org.niu.leaves.jsp.servlet.servlet.UpdateApplicationStatusMenu</servlet-class>
   </servlet>

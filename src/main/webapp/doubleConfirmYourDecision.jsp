@@ -32,6 +32,14 @@
                         value="${leaveApplicationHistory.getId()}">Cancel
                 </button>
                 <input type="text" hidden name="applicationStatus" value="${Status}"/>
+                <%
+                    String pagesNumber = request.getParameter("pagesNumber");
+                    request.setAttribute("pagesNumber", pagesNumber);
+                    String selectedStatus = request.getParameter("selectedStatus");
+                    request.setAttribute("selectedStatus", selectedStatus);
+                %>
+                <input type="text" name="pagesNumber" value="${pagesNumber}"/>
+                <input type="text" name="selectedStatus" value="${selectedStatus}"/>
             </div>
         </form>
     </section>
