@@ -163,6 +163,25 @@
     <url-pattern>/addNewMember.do</url-pattern>
   </servlet-mapping>
 
+
+  <servlet>
+    <servlet-name>UpdateMemberMenu</servlet-name>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.updateUserMenu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateMemberMenu</servlet-name>
+    <url-pattern>/updateMemberMenu.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateMember</servlet-name>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.updateUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateMember</servlet-name>
+    <url-pattern>/updateOrRemoveMember.do</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>UpdatePasswordMenu</servlet-name>
     <servlet-class>org.niu.leaves.jsp.servlet.servlet.PasswordUpdatedMenu</servlet-class>

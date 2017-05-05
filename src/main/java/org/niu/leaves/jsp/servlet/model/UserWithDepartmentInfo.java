@@ -21,6 +21,7 @@ public class UserWithDepartmentInfo {
     private String managerEmailPassword;
     private String phoneNumber;
     private String physicalAddress;
+    private String userPassword;
 
     public int getUserId() {
         return userId;
@@ -164,6 +165,14 @@ public class UserWithDepartmentInfo {
 
     public void setPhysicalAddress(String physicalAddress) {
         this.physicalAddress = physicalAddress;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
     }
 
 }

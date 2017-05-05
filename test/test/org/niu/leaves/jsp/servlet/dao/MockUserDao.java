@@ -77,6 +77,10 @@ public class MockUserDao implements UserDao {
         return userWithDepartmentInfo;
     }
 
+    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String lastName) throws SQLException {
+        return null;
+    }
+
     public Integer getUserId(String user) throws SQLException {
         if (user.equals("SunnyN")) {
             return 4;

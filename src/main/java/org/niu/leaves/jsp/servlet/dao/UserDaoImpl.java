@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    public List<Integer> queryHRManagerLevelUserIds() throws SQLException,IOException {
+    public List<Integer> queryHRManagerLevelUserIds() throws SQLException, IOException {
         ResultSet rs = null;
         List<Integer> userIds = new ArrayList<>();
         String sql = "select u.USERID  as userId from AP_TITLE t, AP_USERS u " +
@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     //get user's info from database
-    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException,IOException {
+    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException, IOException {
         UserWithDepartmentInfo userWithDepartmentInfo = new UserWithDepartmentInfo();
         ResultSet rs = null;
         String sql = "select userId, userFirstName, userLastName,userFirstName||userLastName as userFullName, " +
@@ -79,8 +79,47 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String lastName) throws SQLException, IOException {
+        UserWithDepartmentInfo userWithDepartmentInfo = new UserWithDepartmentInfo();
+        ResultSet rs = null;
+        String sql = "select apUser.FIRST_NAME as firstName, apUser.LAST_NAME as lastName, " +
+                "apUser.USERID as userid, apUser.LOGIN as login, apUser.PASSWORD as userPassword, " +
+                "apUser.DEPARTMENT_ID as departmentId, apUser.OFFICE_EMAIL as userEmail, apUser.EMAIL_PASSWORD as userEmailPassword, " +
+                "dp.DEPARTMENT_NAME as departmentName, apTitle.TITLE as title  " +
+                "from AP_USERS apUser, AP_DEPARTMENT dp, AP_TITLE apTitle " +
+                "where apUser.DEPARTMENT_ID = dp.ID " +
+                "and apUser.TITLE_ID= apTitle.ID " +
+                "and (apUser.FIRST_NAME like ? " +
+                "or apUser.LAST_NAME like ?) ";
+
+        int i = 1;
+        try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(i++, firstName + "%");
+            ps.setString(i++, lastName + "%");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                userWithDepartmentInfo.setUserId(rs.getInt("userId"));
+                userWithDepartmentInfo.setUserFirstName(rs.getString("firstName"));
+                userWithDepartmentInfo.setUserLastName(rs.getString("lastName"));
+                userWithDepartmentInfo.setLogin(rs.getString("login"));
+                userWithDepartmentInfo.setUserPassword(rs.getString("userPassword"));
+                userWithDepartmentInfo.setDepartmentId(rs.getString("departmentId"));
+                userWithDepartmentInfo.setDepartmentName(rs.getString("departmentName"));
+                userWithDepartmentInfo.setTitle(rs.getString("title"));
+                userWithDepartmentInfo.setUserEmail(rs.getString("userEmail"));
+                userWithDepartmentInfo.setUserEmailPassword(rs.getString("userEmailPassword"));
+            }
+            return userWithDepartmentInfo;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+        }
+    }
+
+
     //get userId from database by username
-    public Integer getUserId(String user) throws SQLException,IOException {
+    public Integer getUserId(String user) throws SQLException, IOException {
         ResultSet rs = null;
 
         try (Connection conn = ConnectionPool.getConnection(); Statement stmt = conn.createStatement()) {
@@ -98,7 +137,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     //check user is exist in database
-    public boolean ifUserIdExist(String login) throws SQLException,IOException {
+    public boolean ifUserIdExist(String login) throws SQLException, IOException {
         ResultSet rs = null;
         try (Connection conn = ConnectionPool.getConnection(); Statement stmt = conn.createStatement()) {
             rs = stmt.executeQuery("select userid from AP_USERS where login =" + "'" + login + "'");
@@ -110,7 +149,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     //insert user info into AP_USERS table//login, password,department,title,joinDate,birthDate,firstName,lastName
-    public void insertUser(String login, String password, String departmentId, String title, String joinDate, String birthDate, String firstName, String lastName, String email) throws SQLException,IOException {
+    public void insertUser(String login, String password, String departmentId, String title, String joinDate, String birthDate, String firstName, String lastName, String email) throws SQLException, IOException {
         String sql = "INSERT INTO AP_USERS (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, TITLE_ID,DEPARTMENT_ID,BIRTHDAY,JOINED_DATE, OFFICE_EMAIL) " +
                 " VALUES (?,?,?,?,?,?, TO_DATE( ?,'yyyy/mm/dd'),TO_DATE(?,'yyyy/mm/dd'),?)";
         int i = 1;
@@ -130,7 +169,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     //update user's password by username
-    public void updateUserPassword(String login, String password) throws SQLException,IOException {
+    public void updateUserPassword(String login, String password) throws SQLException, IOException {
         String sql = "UPDATE AP_USERS SET PASSWORD =? WHERE LOGIN =?";
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -141,7 +180,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public List<UserInfo> queryAllUsers() throws SQLException,IOException {
+    public List<UserInfo> queryAllUsers() throws SQLException, IOException {
         String sql = "select userId as userId, login as login, password as password,  " +
                 "first_name as firstName, last_name as lastName, " +
                 "title_id as titleId, department_id as departmentId, birthday, " +
@@ -172,7 +211,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException,IOException {
+    public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException, IOException {
         String sql = "UPDATE AP_USERS SET FIRST_NAME =? ,LAST_NAME =?, PHONE_NUMBER=?, PHYSICAL_ADDRESS=?  WHERE LOGIN =?";
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {

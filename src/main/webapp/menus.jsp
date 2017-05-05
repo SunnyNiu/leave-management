@@ -30,6 +30,7 @@
                     </c:if>
                     <c:if test="${addMemberIsPermitted}" var="hasPermission">
                         <li class="nav"><a href="addNewMemberMenu.do">Add New Member</a></li>
+                        <li class="nav"><a href="updateMemberMenu.do">Update Member</a></li>
                     </c:if>
                     <li class="nav"><a href="updatePasswordMenu.do">Change Password</a></li>
                     <li class="nav"><a href="updateInfoMenu.do">Change Personal Info</a></li>
