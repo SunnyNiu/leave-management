@@ -1,6 +1,6 @@
 .idea/
 applicationLeave.iml
-target/S
+target/
 /leaveManagement.iml
 /src/main/webapp/paginationLeaveHistory.jsp
 !/src/main/webapp/paginationLeaveHistory.jsp
