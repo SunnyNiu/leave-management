@@ -21,9 +21,11 @@
                     </ol>
                 </div>
             </div>
-            <label>
-                <%@ include file="error.jsp" %>
-            </label>
+            <div align="center">
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+            </div>
 
             <form action="searchLeaveHistory.do" method="post" class="form-horizontal">
                 <div class="table table-bordered" id="borderPadding">

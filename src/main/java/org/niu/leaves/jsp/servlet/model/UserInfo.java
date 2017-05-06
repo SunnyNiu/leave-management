@@ -11,6 +11,7 @@ public class UserInfo {
     private String birthday;
     private String joinDate;
     private String userName;
+    private int flag;
 
     public int getUserId() {
         return userId;
@@ -90,5 +91,13 @@ public class UserInfo {
 
     public void setUserName(String firstName, String lastName) {
         this.userName = firstName + lastName;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }

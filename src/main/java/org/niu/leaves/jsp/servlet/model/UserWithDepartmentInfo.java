@@ -12,6 +12,7 @@ public class UserWithDepartmentInfo {
     private String departmentName;
     private String birthday;
     private String joinDate;
+    private int titleId;
     private String title;
     private int managerUserId;
     private String managerName;
@@ -22,6 +23,7 @@ public class UserWithDepartmentInfo {
     private String phoneNumber;
     private String physicalAddress;
     private String userPassword;
+    private int flag;
 
     public int getUserId() {
         return userId;
@@ -94,6 +96,14 @@ public class UserWithDepartmentInfo {
 
     public void setJoinDate(String value) {
         joinDate = value;
+    }
+
+    public int getTitleId() {
+        return titleId;
+    }
+
+    public void setTitleId(int titleId) {
+        this.titleId = titleId;
     }
 
     public String getTitle() {
@@ -175,4 +185,11 @@ public class UserWithDepartmentInfo {
         return userPassword;
     }
 
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
 }

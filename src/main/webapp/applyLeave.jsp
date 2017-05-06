@@ -25,11 +25,12 @@
                             </ol>
                         </div>
                     </div>
-                    <label>
-                        <%@ include file="error.jsp" %>
-                    </label>
-                    <label>${messages}</label>
-
+                    <div align="center">
+                        <label>${messages}</label>
+                        <label>
+                            <%@ include file="error.jsp" %>
+                        </label>
+                    </div>
                     <div class="table table-bordered" id="borderPadding">
                         <div class="form-group ">
                             <label for="leaveTypeId"

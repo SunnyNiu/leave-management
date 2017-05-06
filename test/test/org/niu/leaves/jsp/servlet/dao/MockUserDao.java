@@ -5,6 +5,7 @@ import org.niu.leaves.jsp.servlet.model.UserInfo;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.utility.Messages;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,5 +150,11 @@ public class MockUserDao implements UserDao {
     }
 
     public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException {
+    }
+
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
+    }
+
+    public void removeStaff(int userId) throws SQLException, IOException {
     }
 }

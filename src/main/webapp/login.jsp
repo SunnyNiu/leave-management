@@ -15,9 +15,11 @@
     <section id="body" class="container">
         <form action="login.do" method="post" class="form-horizontal table-bordered">
             <div id="borderPadding">
-                <label>
-                    <%@ include file="error.jsp" %>
-                </label>
+                <div align="center">
+                    <label>
+                        <%@ include file="error.jsp" %>
+                    </label>
+                </div>
                 <div class="form-group">
                     <label for="username" class="control-label col-md-4">Username:</label>
                     <div class="col-md-8">

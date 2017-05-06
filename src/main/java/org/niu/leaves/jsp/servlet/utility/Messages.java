@@ -24,4 +24,6 @@ public class Messages {
     public static String Days_FORMAT_INCORRECT = "Day format is not correct";
     public static String FROM_LESS_THAN_TO = "There is something wrong with calculation of 'from' and 'to' ";
     public static String FROM_TO_DAYS_INCORRECT = "Days is not correct base on from, to";
+    public static String REMOVE_STAFF = "Remove staff successfully";
+    public static String USER_IS_NOT_EXIST = "User is not exist";
 }

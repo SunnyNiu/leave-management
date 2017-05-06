@@ -16,35 +16,35 @@ public class UserService {
     private LoginDao loginDao;
     private UserDao userDao;
 
-    public UserService(){
+    public UserService() {
         loginDao = GuiceInjector.getInstance(LoginDao.class);
         userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
-    public String getPasswordByLogin(String login) throws SQLException,IOException {
+    public String getPasswordByLogin(String login) throws SQLException, IOException {
         return loginDao.getPassword(login);
     }
 
-    public void updateUserPassword(String login, String newPassword) throws SQLException,IOException {
+    public void updateUserPassword(String login, String newPassword) throws SQLException, IOException {
         userDao.updateUserPassword(login, newPassword);
     }
 
-    public List<UserInfo> getAllUsers() throws SQLException,IOException {
+    public List<UserInfo> getAllUsers() throws SQLException, IOException {
         List<UserInfo> userInfo = userDao.queryAllUsers();
         return userInfo;
     }
 
-    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException,IOException {
+    public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException, IOException {
         UserWithDepartmentInfo userDepartmentTitle = userDao.getUserWithDepartmentInfo(login);
         return userDepartmentTitle;
     }
 
-    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String LastName) throws SQLException,IOException {
+    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String LastName) throws SQLException, IOException {
         UserWithDepartmentInfo userBasicInfo = userDao.getUserBasicInfo(firstName, LastName);
         return userBasicInfo;
     }
 
-    public void addNewMember(String login, String password, String department, String title, String joinDate, String birthDate, String firstName, String lastName, String email, boolean userIsExist) throws SQLException,IOException {
+    public void addNewMember(String login, String password, String department, String title, String joinDate, String birthDate, String firstName, String lastName, String email, boolean userIsExist) throws SQLException, IOException {
         try {
             //Verify joinDate and birthDate is date format
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -61,11 +61,19 @@ public class UserService {
         }
     }
 
-    public boolean userExist(String login) throws SQLException,IOException {
+    public boolean userExist(String login) throws SQLException, IOException {
         return userDao.ifUserIdExist(login);
     }
 
-    public void updateBasicInfo(String login,String firstName,String lastName,String phoneNumber,String physicalAddress)throws SQLException,IOException{
+    public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException, IOException {
         userDao.updateBasicInfo(login, firstName, lastName, phoneNumber, physicalAddress);
+    }
+
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
+        userDao.updateStaffInfo(userId, departmentId, titleId, email, emailPassword);
+    }
+
+    public void removeStaff(int userId) throws SQLException, IOException {
+        userDao.removeStaff(userId);
     }
 }

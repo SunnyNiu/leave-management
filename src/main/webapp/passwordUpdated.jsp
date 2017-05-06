@@ -24,10 +24,12 @@
                 </div>
             </div>
             <div align="center">
-                <label>
-                    <%@ include file="error.jsp" %>
-                </label>
-                <label>${messages}</label>
+                <div align="center">
+                    <label>${messages}</label>
+                    <label>
+                        <%@ include file="error.jsp" %>
+                    </label>
+                </div>
 
                 <form action="updatePassword.do" method="post" class="form-horizontal table-bordered">
                     <div id="borderPadding">

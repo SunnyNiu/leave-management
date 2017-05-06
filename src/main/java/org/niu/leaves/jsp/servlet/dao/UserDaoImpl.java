@@ -33,15 +33,15 @@ public class UserDaoImpl implements UserDao {
     public UserWithDepartmentInfo getUserWithDepartmentInfo(String login) throws SQLException, IOException {
         UserWithDepartmentInfo userWithDepartmentInfo = new UserWithDepartmentInfo();
         ResultSet rs = null;
-        String sql = "select userId, userFirstName, userLastName,userFirstName||userLastName as userFullName, " +
-                "birthday, joinDate, departmentId, levelId, title, userEmail, userEmailPassword,phoneNumber, physicalAddress," +
+        String sql = "select userId, login, userPassword, userFirstName, userLastName,userFirstName||userLastName as userFullName, " +
+                "birthday, joinDate, departmentId, levelId, titleId, flag, title, userEmail, userEmailPassword,phoneNumber, physicalAddress," +
                 "departmentName, managerUserId, firstName||lastName as managerName, managerEmail, managerEmailPassword " +
                 "from " +
-                "(select users.USERID as userId,users.FIRST_NAME userFirstName, " +
-                "users.LAST_NAME userLastName, users.BIRTHDAY as birthday, " +
+                "(select users.USERID as userId,users.LOGIN as login, users.PASSWORD as userPassword, users.FIRST_NAME userFirstName, " +
+                "users.LAST_NAME userLastName, users.BIRTHDAY as birthday, users.flag as flag, " +
                 "users.JOINED_DATE as joinDate,users.DEPARTMENT_ID as departmentId, " +
                 "users.OFFICE_EMAIL as userEmail, users.EMAIL_PASSWORD as userEmailPassword, users.PHONE_NUMBER as phoneNumber, users.PHYSICAL_ADDRESS as physicalAddress," +
-                "t.LEVEL_ID as levelId, t.TITLE as title, dp.DEPARTMENT_NAME as departmentName, " +
+                "t.LEVEL_ID as levelId, t.id as titleId, t.TITLE as title, dp.DEPARTMENT_NAME as departmentName, " +
                 "dp.MANAGER_USER_ID as managerUserId, manager.FIRST_NAME as firstName, manager.OFFICE_EMAIL as managerEmail, " +
                 "manager.EMAIL_PASSWORD as managerEmailPassword,manager.LAST_NAME as lastName from  " +
                 "AP_USERS users inner join AP_TITLE t " +
@@ -57,10 +57,14 @@ public class UserDaoImpl implements UserDao {
                 userWithDepartmentInfo.setUserFirstName(rs.getString("userFirstName"));
                 userWithDepartmentInfo.setUserLastName(rs.getString("userLastName"));
                 userWithDepartmentInfo.setUserName(rs.getString("userFullName"));
+                userWithDepartmentInfo.setLogin(rs.getString("login"));
+                userWithDepartmentInfo.setUserPassword(rs.getString("userPassword"));
                 userWithDepartmentInfo.setDepartmentId(rs.getString("departmentId"));
                 userWithDepartmentInfo.setDepartmentName(rs.getString("departmentName"));
                 userWithDepartmentInfo.setBirthday(rs.getString("birthday").substring(0, 10));
                 userWithDepartmentInfo.setJoinDate(rs.getString("joinDate").substring(0, 10));
+                userWithDepartmentInfo.setTitleId(rs.getInt("titleId"));
+                userWithDepartmentInfo.setFlag(rs.getInt("flag"));
                 userWithDepartmentInfo.setTitle(rs.getString("title"));
                 userWithDepartmentInfo.setUserEmail(rs.getString("userEmail"));
                 userWithDepartmentInfo.setManagerUserId(rs.getInt("managerUserId"));
@@ -80,36 +84,37 @@ public class UserDaoImpl implements UserDao {
     }
 
     public UserWithDepartmentInfo getUserBasicInfo(String firstName, String lastName) throws SQLException, IOException {
-        UserWithDepartmentInfo userWithDepartmentInfo = new UserWithDepartmentInfo();
+        UserWithDepartmentInfo userBasicInfo = new UserWithDepartmentInfo();
         ResultSet rs = null;
         String sql = "select apUser.FIRST_NAME as firstName, apUser.LAST_NAME as lastName, " +
                 "apUser.USERID as userid, apUser.LOGIN as login, apUser.PASSWORD as userPassword, " +
-                "apUser.DEPARTMENT_ID as departmentId, apUser.OFFICE_EMAIL as userEmail, apUser.EMAIL_PASSWORD as userEmailPassword, " +
+                "apUser.DEPARTMENT_ID as departmentId, apUser.OFFICE_EMAIL as userEmail, apUser.EMAIL_PASSWORD as userEmailPassword, apUser.flag as flag, " +
                 "dp.DEPARTMENT_NAME as departmentName, apTitle.TITLE as title  " +
                 "from AP_USERS apUser, AP_DEPARTMENT dp, AP_TITLE apTitle " +
                 "where apUser.DEPARTMENT_ID = dp.ID " +
-                "and apUser.TITLE_ID= apTitle.ID " +
+                "and apUser.TITLE_ID= apTitle.ID  " +
                 "and (apUser.FIRST_NAME like ? " +
-                "or apUser.LAST_NAME like ?) ";
+                "and apUser.LAST_NAME like ? ) ";
 
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(i++, firstName + "%");
-            ps.setString(i++, lastName + "%");
+            ps.setString(i++, "%" + firstName + "%");
+            ps.setString(i++, "%" + lastName + "%");
             rs = ps.executeQuery();
             if (rs.next()) {
-                userWithDepartmentInfo.setUserId(rs.getInt("userId"));
-                userWithDepartmentInfo.setUserFirstName(rs.getString("firstName"));
-                userWithDepartmentInfo.setUserLastName(rs.getString("lastName"));
-                userWithDepartmentInfo.setLogin(rs.getString("login"));
-                userWithDepartmentInfo.setUserPassword(rs.getString("userPassword"));
-                userWithDepartmentInfo.setDepartmentId(rs.getString("departmentId"));
-                userWithDepartmentInfo.setDepartmentName(rs.getString("departmentName"));
-                userWithDepartmentInfo.setTitle(rs.getString("title"));
-                userWithDepartmentInfo.setUserEmail(rs.getString("userEmail"));
-                userWithDepartmentInfo.setUserEmailPassword(rs.getString("userEmailPassword"));
+                userBasicInfo.setUserId(rs.getInt("userId"));
+                userBasicInfo.setUserFirstName(rs.getString("firstName"));
+                userBasicInfo.setUserLastName(rs.getString("lastName"));
+                userBasicInfo.setLogin(rs.getString("login"));
+                userBasicInfo.setUserPassword(rs.getString("userPassword"));
+                userBasicInfo.setFlag(rs.getInt("flag"));
+                userBasicInfo.setDepartmentId(rs.getString("departmentId"));
+                userBasicInfo.setDepartmentName(rs.getString("departmentName"));
+                userBasicInfo.setTitle(rs.getString("title"));
+                userBasicInfo.setUserEmail(rs.getString("userEmail"));
+                userBasicInfo.setUserEmailPassword(rs.getString("userEmailPassword"));
             }
-            return userWithDepartmentInfo;
+            return userBasicInfo;
         } finally {
             if (rs != null) {
                 rs.close();
@@ -150,8 +155,8 @@ public class UserDaoImpl implements UserDao {
 
     //insert user info into AP_USERS table//login, password,department,title,joinDate,birthDate,firstName,lastName
     public void insertUser(String login, String password, String departmentId, String title, String joinDate, String birthDate, String firstName, String lastName, String email) throws SQLException, IOException {
-        String sql = "INSERT INTO AP_USERS (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, TITLE_ID,DEPARTMENT_ID,BIRTHDAY,JOINED_DATE, OFFICE_EMAIL) " +
-                " VALUES (?,?,?,?,?,?, TO_DATE( ?,'yyyy/mm/dd'),TO_DATE(?,'yyyy/mm/dd'),?)";
+        String sql = "INSERT INTO AP_USERS (LOGIN, PASSWORD, FIRST_NAME, LAST_NAME, TITLE_ID,DEPARTMENT_ID,BIRTHDAY,JOINED_DATE, OFFICE_EMAIL, FLAG) " +
+                " VALUES (?,?,?,?,?,?, TO_DATE( ?,'yyyy/mm/dd'),TO_DATE(?,'yyyy/mm/dd'),?,?)";
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(i++, login);
@@ -163,6 +168,7 @@ public class UserDaoImpl implements UserDao {
             ps.setString(i++, birthDate);
             ps.setString(i++, joinDate);
             ps.setString(i++, email);
+            ps.setString(i++, "1");
             ps.executeUpdate();
             ps.close();
         }
@@ -220,6 +226,30 @@ public class UserDaoImpl implements UserDao {
             ps.setString(i++, phoneNumber);
             ps.setString(i++, physicalAddress);
             ps.setString(i++, login);
+            ps.executeUpdate();
+            ps.close();
+        }
+    }
+
+
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
+        String sql = "UPDATE AP_USERS SET DEPARTMENT_ID =? ,TITLE_ID =?, OFFICE_EMAIL=?, EMAIL_PASSWORD=?  WHERE USERID =?";
+        int i = 1;
+        try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(i++, departmentId);
+            ps.setInt(i++, titleId);
+            ps.setString(i++, email);
+            ps.setString(i++, emailPassword);
+            ps.setInt(i++, userId);
+            ps.executeUpdate();
+            ps.close();
+        }
+    }
+
+    public void removeStaff(int userId) throws SQLException, IOException {
+        String sql = "UPDATE AP_USERS SET FLAG=0 WHERE USERID =?";
+        try(Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, userId);
             ps.executeUpdate();
             ps.close();
         }

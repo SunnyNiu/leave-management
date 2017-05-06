@@ -23,9 +23,12 @@
             </div>
         </div>
         <div align="center">
-            <label>
-                <%@ include file="error.jsp" %>
-            </label>
+            <div align="center">
+                <label>${messages}</label>
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+            </div>
 
             <div class="col-md-12">
                 <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">

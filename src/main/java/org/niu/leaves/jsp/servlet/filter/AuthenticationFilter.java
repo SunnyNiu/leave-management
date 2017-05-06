@@ -18,7 +18,7 @@ public class AuthenticationFilter implements Filter {
             //check if this user can log in this management system
             HttpSession session = ((HttpServletRequest) req).getSession();
             UserWithDepartmentInfo userWithDepartmentInfo = (UserWithDepartmentInfo) session.getAttribute("userWithDepartmentInfo");
-            if (userWithDepartmentInfo != null) {
+            if (userWithDepartmentInfo != null && userWithDepartmentInfo.getFlag() == 1) {
                 chain.doFilter(req, resp);
             } else {
                 req.getRequestDispatcher("/unauthorized.jsp").forward(req, resp);
@@ -27,7 +27,6 @@ public class AuthenticationFilter implements Filter {
         } else {
             chain.doFilter(req, resp);
         }
-        //chain.doFilter(req, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

@@ -22,10 +22,12 @@
                     </ol>
                 </div>
             </div>
-            <label>
-                <%@ include file="error.jsp" %>
-            </label>
-            <label>${messages}</label>
+            <div align="center">
+                <label>${messages}</label>
+                <label>
+                    <%@ include file="error.jsp" %>
+                </label>
+            </div>
             <form action="addNewMember.do" method="post" class="form-horizontal">
                 <div class="table table-bordered" id="borderPadding">
                     <div class="form-group">

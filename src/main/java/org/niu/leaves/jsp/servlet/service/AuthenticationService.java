@@ -18,15 +18,20 @@ public class AuthenticationService {
         userDao = GuiceInjector.getInstance(UserDao.class);
     }
 
-    public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException,IOException {
+    public UserWithDepartmentInfo authenticateUser(String login, String password) throws SQLException, IOException {
         if (ifUserPasswordCorrect(login, password)) {
-            return userDao.getUserWithDepartmentInfo(login);
+            UserWithDepartmentInfo userInfo = userDao.getUserWithDepartmentInfo(login);
+            if (userInfo.getFlag() == 1) {
+                return userInfo;
+            } else {
+                throw new SQLException(Messages.USER_IS_NOT_EXIST);
+            }
         } else {
             throw new SQLException(Messages.USER_PASSWORD_INCORRECT);
         }
     }
 
-    public boolean ifUserPasswordCorrect(String login, String password) throws SQLException,IOException {
+    public boolean ifUserPasswordCorrect(String login, String password) throws SQLException, IOException {
 
         String passwordFromDatabase = new LoginDaoImpl().getPassword(login);
         //user input empty username and logon
