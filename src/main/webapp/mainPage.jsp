@@ -29,7 +29,6 @@
                     <%@ include file="error.jsp" %>
                 </label>
             </div>
-
             <div class="col-md-12">
                 <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
                     <table class="table table-bordered table-responsive">
@@ -97,7 +96,7 @@
                     <fieldset>
                         <div class="form-group">
                             <img height="200" width="200"
-                                 src="http://localhost:8092/${userWithDepartmentInfo.getUserName()}profile.jpg">
+                                 src="http://localhost:8080/${userWithDepartmentInfo.getLogin()}profile.jpg">
                         </div>
                         <div class="form-group">
                             <div class="col-md-4">
@@ -107,11 +106,8 @@
                                 <input class="btn btn-primary"
                                        type="submit"/>
                             </div>
-
                         </div>
                     </fieldset>
-
-
                 </form>
             </div>
         </div>

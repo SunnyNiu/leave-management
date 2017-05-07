@@ -46,6 +46,21 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
 
+
+  <servlet>
+    <servlet-name>UploadProfile</servlet-name>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.MainPage</servlet-class>
+    <multipart-config>
+      <max-file-size>10485760</max-file-size>
+      <max-request-size>20971520</max-request-size>
+      <file-size-threshold>5242880</file-size-threshold>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadProfile</servlet-name>
+    <url-pattern>/upload.do</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>ApplicationLeave</servlet-name>
     <servlet-class>org.niu.leaves.jsp.servlet.servlet.LeaveApplication</servlet-class>
@@ -62,15 +77,6 @@
   <servlet-mapping>
     <servlet-name>MainPageMenu</servlet-name>
     <url-pattern>/mainPageMenu.do</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>UploadProfile</servlet-name>
-    <servlet-class>org.niu.leaves.jsp.servlet.servlet.MainPage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UploadProfile</servlet-name>
-    <url-pattern>/upload.do</url-pattern>
   </servlet-mapping>
 
   <servlet>

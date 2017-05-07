@@ -70,68 +70,29 @@
                                         <td hidden><label class="control-label"
                                                           type="text">${userBasicInfoNeedUpdate.getUserId()}</label>
                                         </td>
-                                        <td hidden><label class="control-label" name="Id" type="text"
-                                                          value="${userBasicInfo.getUserId()}"
-                                                          hidden/></td>
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getUserFirstName()}</label>
                                         </td>
 
-                                        <td hidden><input class="control-label" name="firstName" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getUserFirstName()}"
-                                                          hidden> </input>
-                                        </td>
-
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getUserLastName()}</label></td>
-                                        <td hidden><input class="control-label" name="lastName" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getUserLastName()}"
-                                                          hidden>
-                                        </td>
 
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getLogin()}</label></td>
-                                        <td hidden><input class="control-label" name="login" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getLogin()}"
-                                                          hidden>
-                                        </td>
 
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getUserPassword()}</label>
-                                        </td>
-                                        <td hidden><input class="control-label" name="userPassword" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getUserPassword()}" hidden>
-                                        </td>
-
-                                        <td hidden><input class="control-label" name="departmentId" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getDepartmentId()}"
-                                                          hidden>
                                         </td>
 
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getDepartmentName()}</label>
                                         </td>
-                                        <td hidden><input class="control-label" name="departmentName" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getDepartmentName()}" hidden>
-                                        </td>
 
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getTitle()}</label>
                                         </td>
-                                        <td hidden><input class="control-label" name="title" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getTitle()}"
-                                                          hidden>
-                                        </td>
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getUserEmail()}</label>
-                                        </td>
-                                        <td hidden><input class="control-label" name="userEmail" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getUserEmail()}"
-                                                          hidden>
-                                        </td>
-                                        <td hidden><input class="control-label" name="userEmailPassword" type="text"
-                                                          value="${userBasicInfoNeedUpdate.getUserEmailPassword()}"
-                                                          hidden>
                                         </td>
                                         <td><label style="font-weight: 100" class="control-label"
                                                    type="text">${userBasicInfoNeedUpdate.getFlag()}</label>
