@@ -1,11 +1,16 @@
 package leaveManagementTests;
 
+import leaveManagementAutomationFramework.Driver;
 import leaveManagementAutomationFramework.LoginPage;
+import leaveManagementAutomationFramework.MainPage;
 import org.junit.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class LoginTest {
+
+    @Before
+    public void Init() {
+        Driver.Initialize();
+    }
 
     @Test
     public void User_Can_Login() throws InterruptedException {
@@ -13,12 +18,12 @@ public class LoginTest {
         LoginPage.LoginAs("William")
                 .WithPassword("Wil123")
                 .Login();
-        assertEquals("Leave Types are not correct", 0, 0);
-        assertTrue("",0==0);
+        Boolean isAt = MainPage.IsAt();
+        Assert.assertTrue("Failed to login",isAt);
     }
 
-    @Test
-    public void GoTo(){
-        LoginPage.GoTo();
+    @After
+    public void Cleanup() {
+        Driver.Close();
     }
 }

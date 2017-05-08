@@ -18,7 +18,7 @@
         <div class="page-header">
             <div>
                 <ol class="breadcrumb right">
-                    <li class="active">MainPage Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
+                    <li id="mainPageTitle" class="active">MainPage Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
                 </ol>
             </div>
         </div>
