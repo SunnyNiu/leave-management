@@ -46,7 +46,6 @@
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
 
-
   <servlet>
     <servlet-name>UploadProfile</servlet-name>
     <servlet-class>org.niu.leaves.jsp.servlet.servlet.MainPage</servlet-class>

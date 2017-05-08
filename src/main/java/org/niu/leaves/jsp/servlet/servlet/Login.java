@@ -1,5 +1,6 @@
 package org.niu.leaves.jsp.servlet.servlet;
 
+import org.apache.xalan.lib.Redirect;
 import org.niu.leaves.jsp.servlet.model.Permission;
 import org.niu.leaves.jsp.servlet.model.UserWithDepartmentInfo;
 import org.niu.leaves.jsp.servlet.service.AuthenticationService;
@@ -57,7 +58,8 @@ public class Login extends HttpServlet {
             if (errorList.isEmpty()) {
                 //ensure only the right approver can approve this leave application, add new member
                 request.setAttribute("today", new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
-                request.getRequestDispatcher("/mainPage.jsp").forward(request, response);
+                response.sendRedirect("/mainPage.jsp");
+                //getRequestDispatcher("/mainPage.jsp").forward(request, response);
             } else {
                 request.setAttribute("errorList", errorList);
                 request.getRequestDispatcher("/login.jsp").forward(request, response);

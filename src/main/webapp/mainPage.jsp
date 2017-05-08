@@ -94,7 +94,7 @@
             <div class="col-md-6 col-lg-6 col-md-offset-4 col-lg-offset-4">
                 <form id="formBorder" action="upload.do" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <div class="form-group">
+                        <div class="form-group" id="defaultImg">
                             <img height="200" width="200"
                                  src="http://localhost:8080/${userWithDepartmentInfo.getLogin()}profile.jpg">
                         </div>
