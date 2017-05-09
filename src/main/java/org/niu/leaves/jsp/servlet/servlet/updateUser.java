@@ -50,13 +50,6 @@ public class updateUser extends HttpServlet {
                     errorList.add(ex.toString());
                 }
             }
-
-            String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-            request.setAttribute("errorList", errorList);
-            request.setAttribute("today", today);
-            RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
-            rd.forward(request, response);
-            return;
         }
 
         String changeBtn = request.getParameter("changeBtn");
@@ -82,12 +75,6 @@ public class updateUser extends HttpServlet {
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }
-            String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-            request.setAttribute("errorList", errorList);
-            request.setAttribute("today", today);
-            RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
-            rd.forward(request, response);
-            return;
         }
 
         String updateBtn = request.getParameter("updateBtn");
@@ -98,23 +85,23 @@ public class updateUser extends HttpServlet {
             int titleId = Integer.parseInt(request.getParameter("title"));
             String userEmail = request.getParameter("email");
             String userEmailPassword = request.getParameter("emailPassword");
+            int flag = Integer.parseInt(request.getParameter("flag"));
 
             try {
-                userService.updateStaffInfo(userId, departmentId, titleId, userEmail, userEmailPassword);
+                userService.updateStaffInfo(userId, departmentId, titleId, userEmail, userEmailPassword, flag);
             } catch (SQLException ex) {
                 request.setAttribute("errorList", errorList);
             }
-
-            String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-            request.setAttribute("errorList", errorList);
-            request.setAttribute("today", today);
-            request.setAttribute("messages", Messages.UPDATE_BASIC_INFO_SUCCESS_MESSAGE);
-            RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
-            rd.forward(request, response);
-            return;
         }
 
-        String removeBtn = request.getParameter("removeBtn");
+        String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+        request.setAttribute("errorList", errorList);
+        request.setAttribute("today", today);
+        RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
+        rd.forward(request, response);
+        return;
+
+        /*String removeBtn = request.getParameter("removeBtn");
         if (removeBtn != null) {
             int userId = Integer.parseInt(request.getParameter("removeBtn"));
             try{
@@ -129,7 +116,7 @@ public class updateUser extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
             rd.forward(request, response);
             return;
-        }
+        }*/
     }
 }
 

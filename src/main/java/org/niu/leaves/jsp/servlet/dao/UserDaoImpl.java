@@ -232,14 +232,15 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
-        String sql = "UPDATE AP_USERS SET DEPARTMENT_ID =? ,TITLE_ID =?, OFFICE_EMAIL=?, EMAIL_PASSWORD=?  WHERE USERID =?";
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword, int flag) throws SQLException, IOException {
+        String sql = "UPDATE AP_USERS SET DEPARTMENT_ID =? ,TITLE_ID =?, OFFICE_EMAIL=?, EMAIL_PASSWORD=? , FLAG=?  WHERE USERID =?";
         int i = 1;
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(i++, departmentId);
             ps.setInt(i++, titleId);
             ps.setString(i++, email);
             ps.setString(i++, emailPassword);
+            ps.setInt(i++, flag);
             ps.setInt(i++, userId);
             ps.executeUpdate();
             ps.close();

@@ -4,3 +4,4 @@ target/
 /leaveManagement.iml
 /src/main/webapp/paginationLeaveHistory.jsp
 !/src/main/webapp/paginationLeaveHistory.jsp
+/test/test/org/niu/leaves/jsp/servlet/SeleniumTest.java

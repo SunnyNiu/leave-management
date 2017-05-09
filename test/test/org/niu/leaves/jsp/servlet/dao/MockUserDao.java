@@ -152,7 +152,7 @@ public class MockUserDao implements UserDao {
     public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException {
     }
 
-    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword, int flag) throws SQLException, IOException {
     }
 
     public void removeStaff(int userId) throws SQLException, IOException {

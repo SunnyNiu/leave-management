@@ -69,8 +69,8 @@ public class UserService {
         userDao.updateBasicInfo(login, firstName, lastName, phoneNumber, physicalAddress);
     }
 
-    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword) throws SQLException, IOException {
-        userDao.updateStaffInfo(userId, departmentId, titleId, email, emailPassword);
+    public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword, int flag) throws SQLException, IOException {
+        userDao.updateStaffInfo(userId, departmentId, titleId, email, emailPassword, flag);
     }
 
     public void removeStaff(int userId) throws SQLException, IOException {

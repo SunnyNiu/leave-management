@@ -85,9 +85,10 @@
                                 <label for="totalDay" style="text-align: right" class="col-sm-1 col-md-1 control-label">
                                     Days:</label>
                                 <div class="col-sm-2 col-md-2">
-                                    <input type="text" id="totalDay" name="totalDays" maxlength="2"
+                                    <input type="text" id="totalDay" name="totalDays" maxlength="3"
                                            id="days" value="${leave.getTotalDays()}" class="form-control"/>
                                 </div>
+                                <label>Total Days only allow half day or whole day, not allow 1, 2 ,3...hours</label>
 
                                 <div class="col-sm-2 col-md-2">
                                     <button class="btn btn-primary" type="submit" name="btnRemove"
@@ -100,11 +101,11 @@
                         <input type="text" hidden name="totalRows" value="${totalRows}">
                         <input type="text" hidden name="applicationForm" value="${applicationForm}">
                         </table>
-
                         <div>
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" type="submit" name="btnApply" onclick="calculateDate()">
+                                <button class="btn btn-primary" id="applySubmit" type="submit" name="btnApply"
+                                        onclick="calculateDate()">
                                     Submit
                                 </button>
                             </div>
@@ -120,16 +121,20 @@
 </div>
 <script src="js/jquery-2.0.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
+<script type="text/javascript">
+    document.getElementById('applySubmit').onclick = function () {
+        calculateDate()
+    };
     function calculateDate() {
-        var fromDate = document.getElementById('fromDate');
-        var toDate = document.getElementById('toDate');
+        var fromDate = document.getElementById('fromDate').toString();
+        var toDate = document.getElementById('toDate').toString();
         var inputDays = document.getElementById('days');
         var diffc = toDate.getTime() - fromDate.getTime();
         var days = Math.round(Math.abs(diffc / (1000 * 60 * 60 * 24)));
         if (days != inputDays)
             alert('Please populate correct days!');
     }
+    ;
 </script>
 </body>
 </html>

@@ -99,20 +99,20 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <div class="col-md-4">
+                                                <div>
                                                     <button class="btn btn-primary width" type="submit"
                                                             name="changeBtn"
                                                             value=${userBasicInfoNeedUpdate.getLogin()}>
                                                         Change
                                                     </button>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <!--<div class="col-md-4">
                                                     <button class="btn btn-primary width" type="submit"
                                                             name="removeBtn"
                                                             value=${userBasicInfoNeedUpdate.getUserId()}>
                                                         remove
                                                     </button>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </td>
                                     </tr>
@@ -186,13 +186,24 @@
                                            maxlength="10"
                                            width="15px">
                                 </div>
-                                <div class="col-sm-1 col-md-1"></div>
                             </div>
-                            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                                <button class="btn btn-primary pull-right" type="submit" name="updateBtn"
-                                        value="${userBasicInfoNeedUpdate.getUserId()}">Update
-                                </button>
+                            <div class="col-sm-2 col-md-2">
+                                <select name="flag" id="flag" class="form-control">
+                                    <option value="1"
+                                            <c:if test="${userBasicInfoNeedUpdate.getFlag()==1}"> selected="selected"</c:if>
+                                    >Active
+                                    </option>
+                                    <option value="0"
+                                            <c:if test="${userBasicInfoNeedUpdate.getFlag()==0}"> selected="selected"</c:if>
+                                    >Inactive
+                                    </option>
+                                </select>
                             </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                            <button class="btn btn-primary pull-right" type="submit" name="updateBtn"
+                                    value="${userBasicInfoNeedUpdate.getUserId()}">Update
+                            </button>
                         </div>
                     </form>
                 </c:if>

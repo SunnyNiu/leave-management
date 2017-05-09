@@ -3,7 +3,6 @@ package org.niu.leaves.jsp.servlet.servlet;
 import org.niu.leaves.jsp.servlet.model.*;
 import org.niu.leaves.jsp.servlet.service.*;
 import org.niu.leaves.jsp.servlet.utility.AddRowDetail;
-import org.niu.leaves.jsp.servlet.utility.CheckFromToDaysForamt;
 import org.niu.leaves.jsp.servlet.utility.InitializeLeaveApplicationForm;
 import org.niu.leaves.jsp.servlet.utility.Messages;
 
@@ -92,6 +91,7 @@ public class LeaveApplication extends HttpServlet {
             ArrayList<RowDetail> rowDetailList = new ArrayList<>();
             String totalRows = request.getParameter("totalRows");
             int total = Integer.parseInt(totalRows);
+
             for (int i = 0; i < total; i++) {
                 String from = request.getParameterValues("fromDate")[i];
                 String to = request.getParameterValues("toDate")[i];
@@ -101,21 +101,16 @@ public class LeaveApplication extends HttpServlet {
 
                 try {
                     double totalDays = Double.parseDouble(totalDay);
-                    new CheckFromToDaysForamt().checkDateDaysFormat(from, to, totalDay);
-                    //int days = checkTotalDaysByFromToService.checkTotalDaysByFromTo(from, to);
-                    //checkTotalDaysByFromToService.checkFromLessThanTo(from, to);
-
-                    //if ((double) days == totalDays) {
-                    //    errorList.add("Please populate correct days");
-                    //}
+                    checkTotalDaysByFromToService.checkTotalDaysByFromTo(totalDays, from, to);
                 } catch (NumberFormatException ex) {
                     errorList.add(Messages.Days_FORMAT_INCORRECT);
                 } catch (ParseException ex) {
                     errorList.add(Messages.DATE_FORMAT_INCORRECT_MESSAGE);
-                } //catch (SQLException ex) {
-                  //  errorList.add(ex.toString());
-                //}
+                } catch (SQLException ex) {
+                    errorList.add(ex.toString());
+                }
             }
+
             applicationForm.setLeaveList(rowDetailList);
             request.setAttribute("totalRows", totalRows);
             if (errorList.isEmpty()) {
