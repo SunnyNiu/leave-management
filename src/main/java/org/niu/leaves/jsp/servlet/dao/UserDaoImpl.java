@@ -83,8 +83,8 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String lastName) throws SQLException, IOException {
-        UserWithDepartmentInfo userBasicInfo = new UserWithDepartmentInfo();
+    public List<UserWithDepartmentInfo> getUserBasicInfo(String firstName, String lastName) throws SQLException, IOException {
+
         ResultSet rs = null;
         String sql = "select apUser.FIRST_NAME as firstName, apUser.LAST_NAME as lastName, " +
                 "apUser.USERID as userid, apUser.LOGIN as login, apUser.PASSWORD as userPassword, " +
@@ -97,11 +97,13 @@ public class UserDaoImpl implements UserDao {
                 "and apUser.LAST_NAME like ? ) ";
 
         int i = 1;
+        List<UserWithDepartmentInfo> userWithDepartmentList = new ArrayList<>();
         try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(i++, "%" + firstName + "%");
             ps.setString(i++, "%" + lastName + "%");
             rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
+                UserWithDepartmentInfo userBasicInfo = new UserWithDepartmentInfo();
                 userBasicInfo.setUserId(rs.getInt("userId"));
                 userBasicInfo.setUserFirstName(rs.getString("firstName"));
                 userBasicInfo.setUserLastName(rs.getString("lastName"));
@@ -113,8 +115,9 @@ public class UserDaoImpl implements UserDao {
                 userBasicInfo.setTitle(rs.getString("title"));
                 userBasicInfo.setUserEmail(rs.getString("userEmail"));
                 userBasicInfo.setUserEmailPassword(rs.getString("userEmailPassword"));
+                userWithDepartmentList.add(userBasicInfo);
             }
-            return userBasicInfo;
+            return userWithDepartmentList;
         } finally {
             if (rs != null) {
                 rs.close();
@@ -249,7 +252,7 @@ public class UserDaoImpl implements UserDao {
 
     public void removeStaff(int userId) throws SQLException, IOException {
         String sql = "UPDATE AP_USERS SET FLAG=0 WHERE USERID =?";
-        try(Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)){
+        try (Connection conn = ConnectionPool.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, userId);
             ps.executeUpdate();
             ps.close();

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
     public static void GoTo(){
-        Driver.Instance.get("http://localhost:8080/login.jsp");
+        Driver.Instance.get(Driver.baseAddress + "login.jsp");
         WebDriverWait wait = new WebDriverWait(Driver.Instance,5 );
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("loginSubmit")));
     }

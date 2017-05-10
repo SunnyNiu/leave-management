@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class updateUser extends HttpServlet {
+public class UpdateUser extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     DepartmentService departmentService = new DepartmentService();
     TitleService titleService = new TitleService();
@@ -44,8 +44,8 @@ public class updateUser extends HttpServlet {
             String LastName = request.getParameter("lastName");
             if (errorList.isEmpty()) {
                 try {
-                    UserWithDepartmentInfo userBasicInfo = userService.getUserBasicInfo(firstName, LastName);
-                    request.setAttribute("userBasicInfoNeedUpdate", userBasicInfo);
+                    List<UserWithDepartmentInfo> userBasicInfoList = userService.getUserBasicInfo(firstName, LastName);
+                    request.setAttribute("userBasicInfoNeedUpdate", userBasicInfoList);
                 } catch (SQLException ex) {
                     errorList.add(ex.toString());
                 }
@@ -71,7 +71,9 @@ public class updateUser extends HttpServlet {
 
             try {
                 UserWithDepartmentInfo userBasicInfoNeedUpdate = userService.getUserWithDepartmentInfo(userLogin);
-                request.setAttribute("userBasicInfoNeedUpdate", userBasicInfoNeedUpdate);
+                List<UserWithDepartmentInfo> userList = new ArrayList<>();
+                userList.add(userBasicInfoNeedUpdate);
+                request.setAttribute("userBasicInfoNeedUpdate", userList);
             } catch (SQLException ex) {
                 errorList.add(ex.toString());
             }
@@ -89,6 +91,7 @@ public class updateUser extends HttpServlet {
 
             try {
                 userService.updateStaffInfo(userId, departmentId, titleId, userEmail, userEmailPassword, flag);
+                request.setAttribute("message",Messages.UPDATE_BASIC_INFO_SUCCESS_MESSAGE);
             } catch (SQLException ex) {
                 request.setAttribute("errorList", errorList);
             }
@@ -100,23 +103,6 @@ public class updateUser extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
         rd.forward(request, response);
         return;
-
-        /*String removeBtn = request.getParameter("removeBtn");
-        if (removeBtn != null) {
-            int userId = Integer.parseInt(request.getParameter("removeBtn"));
-            try{
-                userService.removeStaff(userId);
-            }catch (SQLException ex){
-                request.setAttribute("errorList", errorList);
-            }
-            String today = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-            request.setAttribute("errorList", errorList);
-            request.setAttribute("today", today);
-            request.setAttribute("messages", Messages.REMOVE_STAFF);
-            RequestDispatcher rd = request.getRequestDispatcher("/updateOrDeleteMember.jsp");
-            rd.forward(request, response);
-            return;
-        }*/
     }
 }
 

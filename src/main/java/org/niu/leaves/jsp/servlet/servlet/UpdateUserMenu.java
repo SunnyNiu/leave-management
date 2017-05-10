@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class updateUserMenu extends HttpServlet {
+public class UpdateUserMenu extends HttpServlet {
     PermissionService permissionService = new PermissionService();
     DepartmentService departmentService = new DepartmentService();
     TitleService titleService = new TitleService();

@@ -171,7 +171,7 @@
 
   <servlet>
     <servlet-name>UpdateMemberMenu</servlet-name>
-    <servlet-class>org.niu.leaves.jsp.servlet.servlet.updateUserMenu</servlet-class>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.UpdateUserMenu</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateMemberMenu</servlet-name>
@@ -180,7 +180,7 @@
 
   <servlet>
     <servlet-name>UpdateMember</servlet-name>
-    <servlet-class>org.niu.leaves.jsp.servlet.servlet.updateUser</servlet-class>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.UpdateUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateMember</servlet-name>
@@ -189,7 +189,7 @@
 
   <servlet>
     <servlet-name>UpdateMemberDetail</servlet-name>
-    <servlet-class>org.niu.leaves.jsp.servlet.servlet.updateUser</servlet-class>
+    <servlet-class>org.niu.leaves.jsp.servlet.servlet.UpdateUser</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateMemberDetail</servlet-name>

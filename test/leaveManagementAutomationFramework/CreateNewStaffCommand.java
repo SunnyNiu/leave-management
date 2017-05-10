@@ -52,7 +52,7 @@ public class CreateNewStaffCommand {
         Driver.Instance.findElement(By.id("lastName")).sendKeys(lastName);
         Driver.Instance.findElement(By.id("email")).sendKeys(email);
 
-        Thread.sleep(1000);
+        Driver.wait(1000);
         Driver.Instance.findElement(By.id("addNewStaff")).click();
     }
 }

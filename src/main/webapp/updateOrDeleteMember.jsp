@@ -17,7 +17,7 @@
             <div class="page-header">
                 <div>
                     <ol class="breadcrumb right">
-                        <li class="active">Update or Remove Staff Information
+                        <li class="active" id="searchStaffTitle">Search, Update or Remove Staff Information
                             Welcome! ${userWithDepartmentInfo.getUserName()} ${today}</li>
                     </ol>
                 </div>
@@ -67,7 +67,8 @@
                                     <th>C/R</th>
                                 </tr>
                                 <tbody>
-                                <c:if test="${userBasicInfoNeedUpdate.getLogin()!=null}">
+                                <c:if test="${userBasicInfoNeedUpdate.size()!=null}">
+                                    <c:forEach items="${userBasicInfoNeedUpdate}" var="userBasicInfoNeedUpdate">
                                     <tr>
                                         <td hidden><label class="control-label"
                                                           type="text">${userBasicInfoNeedUpdate.getUserId()}</label>
@@ -103,7 +104,7 @@
                                             <div>
                                                 <div>
                                                     <button class="btn btn-primary width" type="submit"
-                                                            name="changeBtn"
+                                                            name="changeBtn" id="changeBtnId"
                                                             value=${userBasicInfoNeedUpdate.getLogin()}>
                                                         Change
                                                     </button>
@@ -111,6 +112,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    </c:forEach>
                                 </c:if>
                                 </tbody>
                             </table>
@@ -121,19 +123,19 @@
                     <form action="changeUser.do" method="post" class="form-horizontal">
                         <div class="table table-bordered">
 
-                                <input hidden type="text" name="userId" value="${userBasicInfoNeedUpdate.getUserId()}">
+                                <input hidden type="text" name="userId" value="${userBasicInfoNeedUpdate.get(0).getUserId()}">
                                 <div class="form-group form-horizontal">
                                     <label for="firstName"
                                            class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">FirstName:</label>
 
                                     <label name="firstName" style="text-align: left" class="col-sm-3 col-md-3 control-label"
-                                           id="firstName">${userBasicInfoNeedUpdate.getUserFirstName()}</label>
+                                           id="firstName">${userBasicInfoNeedUpdate.get(0).getUserFirstName()}</label>
 
                                     <label for="lastName"
                                            class="col-sm-2 col-md-2 control-label">LastName:</label>
 
                                     <label name="lastName" style="text-align: left" class="col-sm-3 col-md-3 control-label"
-                                           id="lastName">${userBasicInfoNeedUpdate.getUserLastName()}</label>
+                                           id="lastName">${userBasicInfoNeedUpdate.get(0).getUserLastName()}</label>
                                     <div class="col-sm-1 col-md-1"></div>
                                 </div>
                                 <div class="form-group form-horizontal">
@@ -143,7 +145,7 @@
                                         <select name="department" id="departmentId" class="form-control">
                                             <c:forEach items="${departmentManagerList}" var="entry">
                                                 <option value="${entry.getDepartmentId()}"
-                                                        <c:if test="${entry.getDepartmentId() == userBasicInfoNeedUpdate.getDepartmentId() }">selected</c:if>>
+                                                        <c:if test="${entry.getDepartmentId() == userBasicInfoNeedUpdate.get(0).getDepartmentId() }">selected</c:if>>
                                                         ${entry.getDepartmentName()}
                                                 </option>
                                             </c:forEach>
@@ -155,7 +157,7 @@
                                         <select name="title" id="titleId" class="form-control">
                                             <c:forEach items="${titleList}" var="entry">
                                                 <option value="${entry.getId()}"
-                                                        <c:if test="${entry.getId() == userBasicInfoNeedUpdate.getTitleId() }">selected</c:if>>
+                                                        <c:if test="${entry.getId() == userBasicInfoNeedUpdate.get(0).getTitleId() }">selected</c:if>>
                                                         ${entry.getTitle()}
                                                 </option>
                                             </c:forEach>
@@ -169,7 +171,7 @@
                                         Address:</label>
                                     <div class="col-sm-3 col-md-3">
                                         <input type="email" class="form-control" name="email" id="email" maxlength="25"
-                                               value="${userBasicInfoNeedUpdate.getUserEmail()}"
+                                               value="${userBasicInfoNeedUpdate.get(0).getUserEmail()}"
                                                width="15px">
                                     </div>
 
@@ -178,7 +180,7 @@
                                         Password:</label>
                                     <div class="col-sm-3 col-md-3">
                                         <input type="text" class="form-control" name="emailPassword" id="emailPassword"
-                                               value="${userBasicInfoNeedUpdate.getUserEmailPassword()}"
+                                               value="${userBasicInfoNeedUpdate.get(0).getUserEmailPassword()}"
                                                maxlength="10"
                                                width="15px">
                                     </div>
@@ -190,11 +192,11 @@
                                 <div class="col-sm-3 col-md-3">
                                     <select name="flag" id="flagStatus" class="form-control">
                                         <option value="1"
-                                                <c:if test="${userBasicInfoNeedUpdate.getFlag()==1}"> selected="selected"</c:if>
+                                                <c:if test="${userBasicInfoNeedUpdate.get(0).getFlag()==1}"> selected="selected"</c:if>
                                         >Active
                                         </option>
                                         <option value="0"
-                                                <c:if test="${userBasicInfoNeedUpdate.getFlag()==0}"> selected="selected"</c:if>
+                                                <c:if test="${userBasicInfoNeedUpdate.get(0).getFlag()==0}"> selected="selected"</c:if>
                                         >Inactive
                                         </option>
                                     </select>
@@ -204,7 +206,7 @@
                         </div>
                         <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                             <button class="btn btn-primary pull-right" type="submit" name="updateBtn"
-                                    value="${userBasicInfoNeedUpdate.getUserId()}">Update
+                                    value="${userBasicInfoNeedUpdate.get(0).getUserId()}">Update
                             </button>
                         </div>
                     </form>

@@ -78,7 +78,7 @@ public class MockUserDao implements UserDao {
         return userWithDepartmentInfo;
     }
 
-    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String lastName) throws SQLException {
+    public List<UserWithDepartmentInfo> getUserBasicInfo(String firstName, String lastName) throws SQLException {
         return null;
     }
 

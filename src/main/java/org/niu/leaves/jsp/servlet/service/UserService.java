@@ -39,9 +39,9 @@ public class UserService {
         return userDepartmentTitle;
     }
 
-    public UserWithDepartmentInfo getUserBasicInfo(String firstName, String LastName) throws SQLException, IOException {
-        UserWithDepartmentInfo userBasicInfo = userDao.getUserBasicInfo(firstName, LastName);
-        return userBasicInfo;
+    public List<UserWithDepartmentInfo> getUserBasicInfo(String firstName, String LastName) throws SQLException, IOException {
+        List<UserWithDepartmentInfo> userBasicInfoList = userDao.getUserBasicInfo(firstName, LastName);
+        return userBasicInfoList;
     }
 
     public void addNewMember(String login, String password, String department, String title, String joinDate, String birthDate, String firstName, String lastName, String email, boolean userIsExist) throws SQLException, IOException {
