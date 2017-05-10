@@ -44,7 +44,9 @@
                                 <input type="text" name="lastName" id="searchLastName"/>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-primary" type="submit" name="searchStaffBtn">Search</button>
+                                <button class="btn btn-primary" type="submit" id="searchStaffBtnId"
+                                        name="searchStaffBtn">Search
+                                </button>
                             </div>
                         </div>
                     </fieldset>
@@ -106,13 +108,6 @@
                                                         Change
                                                     </button>
                                                 </div>
-                                                <!--<div class="col-md-4">
-                                                    <button class="btn btn-primary width" type="submit"
-                                                            name="removeBtn"
-                                                            value=${userBasicInfoNeedUpdate.getUserId()}>
-                                                        remove
-                                                    </button>
-                                                </div>-->
                                             </div>
                                         </td>
                                     </tr>
@@ -125,79 +120,86 @@
                 <c:if test="${changeBtn!=null}">
                     <form action="changeUser.do" method="post" class="form-horizontal">
                         <div class="table table-bordered">
-                            <input hidden type="text" name="userId" value="${userBasicInfoNeedUpdate.getUserId()}">
+
+                                <input hidden type="text" name="userId" value="${userBasicInfoNeedUpdate.getUserId()}">
+                                <div class="form-group form-horizontal">
+                                    <label for="firstName"
+                                           class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">FirstName:</label>
+
+                                    <label name="firstName" style="text-align: left" class="col-sm-3 col-md-3 control-label"
+                                           id="firstName">${userBasicInfoNeedUpdate.getUserFirstName()}</label>
+
+                                    <label for="lastName"
+                                           class="col-sm-2 col-md-2 control-label">LastName:</label>
+
+                                    <label name="lastName" style="text-align: left" class="col-sm-3 col-md-3 control-label"
+                                           id="lastName">${userBasicInfoNeedUpdate.getUserLastName()}</label>
+                                    <div class="col-sm-1 col-md-1"></div>
+                                </div>
+                                <div class="form-group form-horizontal">
+                                    <label for="departmentId"
+                                           class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">Department:</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="department" id="departmentId" class="form-control">
+                                            <c:forEach items="${departmentManagerList}" var="entry">
+                                                <option value="${entry.getDepartmentId()}"
+                                                        <c:if test="${entry.getDepartmentId() == userBasicInfoNeedUpdate.getDepartmentId() }">selected</c:if>>
+                                                        ${entry.getDepartmentName()}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+
+                                    <label for="titleId" class="col-sm-2 col-md-2 control-label">Title:</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="title" id="titleId" class="form-control">
+                                            <c:forEach items="${titleList}" var="entry">
+                                                <option value="${entry.getId()}"
+                                                        <c:if test="${entry.getId() == userBasicInfoNeedUpdate.getTitleId() }">selected</c:if>>
+                                                        ${entry.getTitle()}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1 col-md-1"></div>
+                                </div>
+                                <div class="form-group form-horizontal">
+                                    <label for="email"
+                                           class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">Email
+                                        Address:</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="email" class="form-control" name="email" id="email" maxlength="25"
+                                               value="${userBasicInfoNeedUpdate.getUserEmail()}"
+                                               width="15px">
+                                    </div>
+
+                                    <label for="emailPassword"
+                                           class="col-sm-2 col-md-2 control-label">Email
+                                        Password:</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="text" class="form-control" name="emailPassword" id="emailPassword"
+                                               value="${userBasicInfoNeedUpdate.getUserEmailPassword()}"
+                                               maxlength="10"
+                                               width="15px">
+                                    </div>
+                                </div>
                             <div class="form-group form-horizontal">
-                                <label for="firstName"
-                                       class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">FirstName:</label>
-
-                                <label name="firstName" class="col-sm-3 col-md-3 control-label"
-                                       id="firstName">${userBasicInfoNeedUpdate.getUserFirstName()}</label>
-
-                                <label for="lastName"
-                                       class="col-sm-2 col-md-2 control-label">LastName:</label>
-
-                                <label name="lastName" class="col-sm-3 col-md-3 control-label"
-                                       id="lastName">${userBasicInfoNeedUpdate.getUserLastName()}</label>
-                                <div class="col-sm-1 col-md-1"></div>
-                            </div>
-                            <div class="form-group form-horizontal">
-                                <label for="departmentId"
-                                       class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">Department:</label>
+                                <label for="flagStatus"
+                                       class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">Flag Status:
+                                </label>
                                 <div class="col-sm-3 col-md-3">
-                                    <select name="department" id="departmentId" class="form-control">
-                                        <c:forEach items="${departmentManagerList}" var="entry">
-                                            <option value="${entry.getDepartmentId()}"
-                                                    <c:if test="${entry.getDepartmentId() == userBasicInfoNeedUpdate.getDepartmentId() }">selected</c:if>>
-                                                    ${entry.getDepartmentName()}
-                                            </option>
-                                        </c:forEach>
+                                    <select name="flag" id="flagStatus" class="form-control">
+                                        <option value="1"
+                                                <c:if test="${userBasicInfoNeedUpdate.getFlag()==1}"> selected="selected"</c:if>
+                                        >Active
+                                        </option>
+                                        <option value="0"
+                                                <c:if test="${userBasicInfoNeedUpdate.getFlag()==0}"> selected="selected"</c:if>
+                                        >Inactive
+                                        </option>
                                     </select>
                                 </div>
 
-                                <label for="titleId" class="col-sm-2 col-md-2 control-label">Title:</label>
-                                <div class="col-sm-3 col-md-3">
-                                    <select name="title" id="titleId" class="form-control">
-                                        <c:forEach items="${titleList}" var="entry">
-                                            <option value="${entry.getId()}"
-                                                    <c:if test="${entry.getId() == userBasicInfoNeedUpdate.getTitleId() }">selected</c:if>>
-                                                    ${entry.getTitle()}
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="col-sm-1 col-md-1"></div>
-                            </div>
-                            <div class="form-group form-horizontal">
-                                <label for="email"
-                                       class="col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 control-label">Email
-                                    Address:</label>
-                                <div class="col-sm-3 col-md-3">
-                                    <input type="email" class="form-control" name="email" id="email" maxlength="25"
-                                           value="${userBasicInfoNeedUpdate.getUserEmail()}"
-                                           width="15px">
-                                </div>
-
-                                <label for="emailPassword"
-                                       class="col-sm-2 col-md-2 control-label">Email
-                                    Password:</label>
-                                <div class="col-sm-3 col-md-3">
-                                    <input type="text" class="form-control" name="emailPassword" id="emailPassword"
-                                           value="${userBasicInfoNeedUpdate.getUserEmailPassword()}"
-                                           maxlength="10"
-                                           width="15px">
-                                </div>
-                            </div>
-                            <div class="col-sm-2 col-md-2">
-                                <select name="flag" id="flag" class="form-control">
-                                    <option value="1"
-                                            <c:if test="${userBasicInfoNeedUpdate.getFlag()==1}"> selected="selected"</c:if>
-                                    >Active
-                                    </option>
-                                    <option value="0"
-                                            <c:if test="${userBasicInfoNeedUpdate.getFlag()==0}"> selected="selected"</c:if>
-                                    >Inactive
-                                    </option>
-                                </select>
                             </div>
                         </div>
                         <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">

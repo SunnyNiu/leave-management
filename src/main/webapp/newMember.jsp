@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div align="center">
-                <label>${messages}</label>
+                <label id="message">${messages}</label>
                 <label>
                     <%@ include file="error.jsp" %>
                 </label>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                        <button class="btn btn-primary pull-right" type="submit" name="addBtn">Submit</button>
+                        <button class="btn btn-primary pull-right" type="submit" id="addNewStaff" name="addBtn">Submit</button>
                     </div>
                 </div>
             </form>

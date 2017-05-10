@@ -24,7 +24,8 @@
                     <label for="username" class="control-label col-md-4">Username:</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input type="text" name="username" id="username" maxlength="15" value="William">
+                            <!--<input type="text" name="username" id="username" maxlength="15" value="William">-->
+                            <input type="text" name="username" id="username" maxlength="15">
                         </div>
                     </div>
                 </div>
@@ -32,7 +33,8 @@
                     <label for="password" class="control-label col-md-4">Password:</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input type="password" name="password" id="password" maxlength="15" value="Wil123">
+                            <!--<input type="password" name="password" id="password" maxlength="15" value="Wil123">-->
+                            <input type="password" name="password" id="password" maxlength="15">
                         </div>
                     </div>
                 </div>
