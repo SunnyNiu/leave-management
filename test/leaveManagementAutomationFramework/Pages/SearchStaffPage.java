@@ -1,13 +1,13 @@
-package leaveManagementAutomationFramework;
+package leaveManagementAutomationFramework.Pages;
 
+import leaveManagementAutomationFramework.Navigation.AllNavigation;
+import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class SearchStaffPage {
 
     public static void GoTo() {
-        WebElement menuNewStaff = Driver.Instance.findElement(By.cssSelector("a[href='updateMemberMenu.do']"));
-        menuNewStaff.click();
+        AllNavigation.SearchUpdateStaffPage.Select();
     }
 
     public static SearchStaffPageCommand Search(String firstName, String lastName) {

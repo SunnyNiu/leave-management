@@ -1,5 +1,6 @@
-package leaveManagementAutomationFramework;
+package leaveManagementAutomationFramework.Pages;
 
+import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
 
 public class SearchStaffPageCommand {
@@ -18,5 +19,9 @@ public class SearchStaffPageCommand {
         Driver.wait(1000);
         Driver.Instance.findElement(By.id("searchStaffBtnId")).click();
         Driver.wait(1000);
+    }
+
+    public void getChangeStaff() throws InterruptedException{
+        Driver.Instance.findElement(By.id("changeBtnId")).click();
     }
 }

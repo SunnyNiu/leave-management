@@ -1,6 +1,7 @@
-package leaveManagementTests;
+package leaveManagementTests.SmokeTests;
 
-import leaveManagementAutomationFramework.MainPage;
+import leaveManagementAutomationFramework.Pages.MainPage;
+import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.*;
 
 public class LoginTest extends LeaveManagementTest {

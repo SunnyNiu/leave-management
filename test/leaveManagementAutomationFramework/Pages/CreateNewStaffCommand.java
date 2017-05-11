@@ -1,5 +1,6 @@
-package leaveManagementAutomationFramework;
+package leaveManagementAutomationFramework.Pages;
 
+import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
 
 public class CreateNewStaffCommand {

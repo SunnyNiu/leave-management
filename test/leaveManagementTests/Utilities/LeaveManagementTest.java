@@ -1,7 +1,7 @@
-package leaveManagementTests;
+package leaveManagementTests.Utilities;
 
-import leaveManagementAutomationFramework.Driver;
-import leaveManagementAutomationFramework.LoginPage;
+import leaveManagementAutomationFramework.Selenium.Driver;
+import leaveManagementAutomationFramework.Pages.LoginPage;
 import org.junit.After;
 import org.junit.Before;
 

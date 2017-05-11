@@ -1,13 +1,13 @@
-package leaveManagementAutomationFramework;
+package leaveManagementAutomationFramework.Pages;
 
+import leaveManagementAutomationFramework.Navigation.AllNavigation;
+import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-public class CreateNewStaff {
+public class CreateNewStaffPage {
 
     public static void GoTo() {
-        WebElement menuNewStaff = Driver.Instance.findElement(By.cssSelector("a[href='addNewMemberMenu.do']"));
-        menuNewStaff.click();
+        AllNavigation.CreateNewStaff.Select();
     }
 
     public static CreateNewStaffCommand CreateStaff(String login, String password) {

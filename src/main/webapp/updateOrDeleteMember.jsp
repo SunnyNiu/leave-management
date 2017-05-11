@@ -206,7 +206,7 @@
                         </div>
                         <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                             <button class="btn btn-primary pull-right" type="submit" name="updateBtn"
-                                    value="${userBasicInfoNeedUpdate.get(0).getUserId()}">Update
+                                    id="udpateBtn" value="${userBasicInfoNeedUpdate.get(0).getUserId()}">Update
                             </button>
                         </div>
                     </form>
