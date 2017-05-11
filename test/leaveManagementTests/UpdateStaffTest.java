@@ -19,16 +19,16 @@ public class UpdateStaffTest extends LeaveManagementTest {
     public void Create_Search_Update() throws InterruptedException {
         //Create a new Staff
         CreateNewStaffPage.GoTo();
-        CreateNewStaffPage.CreateStaff("ser", "ser")
+        CreateNewStaffPage.CreateStaff("nnnn", "nnnn")
                 .WithDepartmentTitle("CUSTOMER SERVICE", "HELPDESK")
-                .WithJoinDateBirthDate("2017-01-01", "2015-01-01")
-                .WithFirstLastName("ser", "ser")
+                .WithJoinDateBirthDate("2017-01-01", "2014-01-01")
+                .WithFirstLastName("nnnn", "nnnn")
                 .WithEmail("Reason@gmail.com")
                 .Create();
 
         //Go to search
         SearchStaffPage.GoTo();
-        SearchStaffPage.Search("ser","ser").Search();
+        SearchStaffPage.Search("nnnn","nnnn").Search();
         boolean researchIsEmpty = SearchStaffPage.NotEmptyForSearch();
         Assert.assertTrue("Search result is empty",researchIsEmpty);
 
@@ -42,7 +42,7 @@ public class UpdateStaffTest extends LeaveManagementTest {
         Assert.assertEquals("Update Staff failed", "Update basic info successfully!",staffIsChanged);
 
         //Go to search to check if update correct
-        SearchStaffPage.Search("ser","ser").Search();
+        SearchStaffPage.Search("nnnn","nnnn").Search();
 
         //Remove that created staff
     }

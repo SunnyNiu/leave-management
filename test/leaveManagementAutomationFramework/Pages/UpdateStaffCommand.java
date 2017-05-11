@@ -27,6 +27,10 @@ public class UpdateStaffCommand {
     }
 
     public void Change() throws InterruptedException {
+        Driver.Instance.findElement(By.id("departmentId")).clear();
+        Driver.Instance.findElement(By.id("titleId")).clear();
+        Driver.Instance.findElement(By.id("email")).clear();
+        Driver.Instance.findElement(By.id("emailPassword")).clear();
         Driver.Instance.findElement(By.id("departmentId")).sendKeys(DepartmentId);
         Driver.Instance.findElement(By.id("titleId")).sendKeys(Title);
         Driver.Instance.findElement(By.id("email")).sendKeys(EmailAddress);
