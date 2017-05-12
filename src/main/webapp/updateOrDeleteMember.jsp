@@ -26,7 +26,7 @@
                 <label> <strong> Staff Management</strong></label>
                 <br>
                 <div align="center">
-                    <label>${messages}</label>
+                    <label id="message">${messages}</label>
                     <label>
                         <%@ include file="error.jsp" %>
                     </label>

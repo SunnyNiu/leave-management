@@ -25,8 +25,8 @@ public class ConnectionPool {
             }
 
             ds = new ComboPooledDataSource();
-            //ds.setJdbcUrl(props.getProperty("DOCKER_DATABASE"));
-            ds.setJdbcUrl(props.getProperty("LOCAL_DATABASE"));
+            ds.setJdbcUrl(props.getProperty("DOCKER_DATABASE"));
+            //ds.setJdbcUrl(props.getProperty("LOCAL_DATABASE"));
             ds.setUser(props.getProperty("DATABASE_USERNAME"));
             ds.setPassword(props.getProperty("DATABASE_PASSWORD"));
             ds.setAcquireIncrement(Integer.parseInt(props.getProperty("ACQUIRE_INCREMENT")));

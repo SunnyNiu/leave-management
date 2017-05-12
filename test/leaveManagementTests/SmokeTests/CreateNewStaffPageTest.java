@@ -14,7 +14,7 @@ public class CreateNewStaffPageTest extends LeaveManagementTest {
                 .WithDepartmentTitle("CUSTOMER SERVICE","HELPDESK")
                 .WithJoinDateBirthDate("2015-01-01","2015-01-01")
                 .WithFirstLastName("Snow","Pai")
-                .WithEmail("Snow@gmail.com")
+                .WithEmail("test@gmail.com")
                 .Create();
         String staffIsCreatedMessage = CreateNewStaffPage.StaffIsCreated();
         Assert.assertEquals("Create New Staff failed", "Add new member successfully!",staffIsCreatedMessage);

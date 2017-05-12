@@ -91,7 +91,7 @@ public class UpdateUser extends HttpServlet {
 
             try {
                 userService.updateStaffInfo(userId, departmentId, titleId, userEmail, userEmailPassword, flag);
-                request.setAttribute("message",Messages.UPDATE_BASIC_INFO_SUCCESS_MESSAGE);
+                request.setAttribute("messages",Messages.UPDATE_BASIC_INFO_SUCCESS_MESSAGE);
             } catch (SQLException ex) {
                 request.setAttribute("errorList", errorList);
             }
