@@ -27,7 +27,7 @@ public class TitleServiceTest {
         TitleService titleService = new TitleService();
         List<Title> titles = titleService.getTitles();
         String title = "Software tester";
-        assertEquals("Title are not correct", title, titles.get(0).getTitle());
+        assertEquals("title are not correct", title, titles.get(0).getTitle());
     }
 
     @Test

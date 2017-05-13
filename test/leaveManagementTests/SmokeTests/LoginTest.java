@@ -7,8 +7,8 @@ import org.junit.*;
 public class LoginTest extends LeaveManagementTest {
 
     @Test
-    public void User_Can_Login() throws InterruptedException {
-        Boolean isAt = MainPage.IsAt();
+    public void userCanLogin() throws InterruptedException {
+        Boolean isAt = MainPage.isAt();
         Assert.assertTrue("Failed to login",isAt);
     }
 }

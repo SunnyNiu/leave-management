@@ -6,11 +6,11 @@ import org.openqa.selenium.By;
 
 public class CreateNewStaffPage {
 
-    public static void GoTo() {
-        AllNavigation.CreateNewStaff.Select();
+    public static void goTo() {
+        AllNavigation.CreateNewStaff.select();
     }
 
-    public static CreateNewStaffCommand CreateStaff(String login, String password) {
+    public static CreateNewStaffCommand createStaff(String login, String password) {
         return new CreateNewStaffCommand(login, password);
     }
 

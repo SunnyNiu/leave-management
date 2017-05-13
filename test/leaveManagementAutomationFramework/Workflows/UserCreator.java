@@ -2,83 +2,49 @@ package leaveManagementAutomationFramework.Workflows;
 
 
 import leaveManagementAutomationFramework.Pages.CreateNewStaffPage;
+import leaveManagementAutomationFramework.Selenium.Driver;
+import leaveManagementAutomationFramework.Utilities.RandomCreator;
+import org.openqa.selenium.By;
 
-import java.util.Random;
-
-import static leaveManagementAutomationFramework.Pages.Department.CUSTOMER_SERVICE;
-import static leaveManagementAutomationFramework.Pages.Department.HR;
-import static leaveManagementAutomationFramework.Pages.Department.IT;
-import static leaveManagementAutomationFramework.Pages.Title.*;
-import static leaveManagementAutomationFramework.Pages.Title.ACCOUNT;
-import static leaveManagementAutomationFramework.Pages.Title.SALES;
+import static leaveManagementAutomationFramework.Utilities.RandomCreator.generateRandom;
 
 public class UserCreator {
 
-    public static void CreateAUser() throws InterruptedException {
-        CreateNewStaffPage.GoTo();
+    public static void createAUser() throws InterruptedException {
+        CreateNewStaffPage.goTo();
+        boolean allowCreateNewStaff = true;
 
-        previousLogin = CreateLogin();
-        previousPassword = CreatePassword();
-        previousDepartment = CreateDepartment();
-        previousTitle = CreateTitle();
-        previousJoinDate = CreateJoinDate();
-        previousBirthDate = CreateBirthDate();
-        previousFirstName = CreateFirstName();
-        previousLastName = CreateLastName();
-        previousEmail = CreateEmail();
+        while (allowCreateNewStaff) {
+            previousLogin = CreateLogin();
+            previousPassword = CreatePassword();
+            previousDepartment = CreateDepartment();
+            previousTitle = CreateTitle();
+            previousJoinDate = CreateJoinDate();
+            previousBirthDate = CreateBirthDate();
+            previousFirstName = CreateFirstName();
+            previousLastName = CreateLastName();
+            previousEmail = CreateEmail();
 
 
-        CreateNewStaffPage.CreateStaff(previousLogin, previousPassword)
-                .WithDepartmentTitle(previousDepartment, previousTitle)
-                .WithJoinDateBirthDate(previousJoinDate, previousBirthDate)
-                .WithFirstLastName(previousFirstName, previousLastName)
-                .WithEmail(previousEmail).Create();
+            CreateNewStaffPage.goTo();
+            CreateNewStaffPage.createStaff(previousLogin, previousPassword)
+                    .WithDepartmentTitle(previousDepartment, previousTitle)
+                    .WithJoinDateBirthDate(previousJoinDate, previousBirthDate)
+                    .WithFirstLastName(previousFirstName, previousLastName)
+                    .WithEmail(previousEmail).create();
+            try {
+                String s = Driver.Instance.findElement(By.cssSelector("#message+label>ul>li"))
+                        .getText().toString();
+                s.contains("Username is existed user in database, please add different user");
+                allowCreateNewStaff = true;
+            } catch (Exception ex) {
+                allowCreateNewStaff = false;
+            }
+        }
+
     }
 
-    private static String GenerateRandom(String[] str) {
-        Random random = new Random();
-        return str[random.nextInt(str.length)];
-    }
-
-    private static String CreateLogin() {
-        return GenerateRandom(Login);
-    }
-
-    private static String CreatePassword() {
-        return GenerateRandom(Password);
-    }
-
-    private static String CreateDepartment() {
-        return GenerateRandom(Department);
-    }
-
-    private static String CreateTitle() {
-        return GenerateRandom(Title);
-    }
-
-
-    private static String CreateEmail() {
-        return GenerateRandom(Email);
-    }
-
-    private static String CreateLastName() {
-        return GenerateRandom(LastName);
-    }
-
-    private static String CreateFirstName() {
-        return GenerateRandom(FirstName);
-    }
-
-    private static String CreateBirthDate() {
-        return GenerateRandom(BirthDate);
-    }
-
-    private static String CreateJoinDate() {
-        return GenerateRandom(JoinDate);
-    }
-
-
-    public static void Initialize() {
+    public static void initialize() {
         previousLogin = null;
         previousPassword = null;
         previousDepartment = null;
@@ -90,19 +56,18 @@ public class UserCreator {
         previousEmail = null;
     }
 
-    public static void Cleanup() {
-        if (createdAUser)
+    public static void cleanup() throws InterruptedException {
+        if (getCreatedAUser())
             removeUser();
     }
 
-    private static void removeUser() {
-        //ListPostsPage.TrashPost(PreviousTitle);
-        //Initialize();
+    private static void removeUser() throws InterruptedException {
+        UserUpdating.updateAUser();
+        initialize();
     }
 
-    static Boolean createdAUser;
 
-    public Boolean getCreatedAUser() {
+    public static Boolean getCreatedAUser() {
         return !previousLogin.isEmpty();
     }
 
@@ -188,23 +153,41 @@ public class UserCreator {
         this.previousEmail = previousEmail;
     }
 
-    static String[] Login = new String[]{"boy", "cat", "dog", "rabbit", "baseball", "throw", "find", "scary", "code",
-            "mustard"};
+    private static String CreateLogin() {
+        return generateRandom(RandomCreator.login);
+    }
 
-    static String[] Password = new String[]{"theboy", "thecat", "thedog", "therabbit", "thebaseball", "thethrow", "thefind", "thescary", "thecode",
-            "themustard"};
+    private static String CreatePassword() {
+        return generateRandom(RandomCreator.password);
+    }
 
-    static String[] Department = new String[]{IT.getName(), HR.getName(), CUSTOMER_SERVICE.getName()};
+    private static String CreateDepartment() {
+        return generateRandom(RandomCreator.department);
+    }
 
-    static String[] Title = new String[]{SOFTWARE_ENGINEER.getName(), MANAGER.getName(), CUSTOMER_SUPPORTER.getName(), HELPDESK.getName(), ACCOUNT.getName(), SALES.getName()};
+    private static String CreateTitle() {
+        return generateRandom(RandomCreator.title);
+    }
 
-    static String[] JoinDate = new String[]{"01-12-2010", "02-12-2010", "03-12-2010", "04-12-2010", "06-12-2010", "07-12-2010"};
 
-    static String[] BirthDate = new String[]{"01-12-2010", "04-12-2010", "07-11-2010", "03-12-2010", "08-12-2010", "07-12-2010"};
+    private static String CreateEmail() {
+        return generateRandom(RandomCreator.email);
+    }
 
-    static String[] FirstName = new String[]{"firstTestA", "firstTestB", "firstTestC", "firstTestD", "firstTestE", "firstTestG"};
+    private static String CreateLastName() {
+        return generateRandom(RandomCreator.lastName);
+    }
 
-    static String[] LastName = new String[]{"lastTestA", "lastTestB", "lastTestC", "lastTestD", "lastTestE", "lastTestG"};
+    private static String CreateFirstName() {
+        return generateRandom(RandomCreator.firstName);
+    }
 
-    static String[] Email = new String[]{"lastTestA@gmail.com", "lastTestB@gmail.com", "lastTestC@gmail.com", "lastTestD@gmail.com", "lastTestE@gmail.com"};
+    private static String CreateBirthDate() {
+        return generateRandom(RandomCreator.birthDate);
+    }
+
+    private static String CreateJoinDate() {
+        return generateRandom(RandomCreator.joinDate);
+    }
+
 }

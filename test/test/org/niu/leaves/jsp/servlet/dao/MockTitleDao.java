@@ -39,7 +39,7 @@ public class MockTitleDao implements TitleDao {
         }else if(title.equals("Software tester")){
             return 3;
         }else{
-            throw new SQLException("Title is null, please check it");
+            throw new SQLException("title is null, please check it");
         }
     }
 }

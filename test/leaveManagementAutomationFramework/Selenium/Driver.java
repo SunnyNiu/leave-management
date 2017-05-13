@@ -17,7 +17,7 @@ public class Driver {
         this.Instance = instance;
     }
 
-    public static void Initialize() {
+    public static void initialize() {
         System.setProperty("webdriver.chrome.driver", "C://software//chromedriver.exe");
         Instance = new ChromeDriver();
         Instance.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -27,7 +27,7 @@ public class Driver {
         Thread.sleep(timeSpan);
     }
 
-    public static void Close() {
+    public static void close() {
         Instance.close();
     }
 }

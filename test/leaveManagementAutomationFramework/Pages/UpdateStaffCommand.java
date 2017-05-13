@@ -26,7 +26,7 @@ public class UpdateStaffCommand {
         return this;
     }
 
-    public void Change() throws InterruptedException {
+    public void change() throws InterruptedException {
         Driver.wait(1000);
         Driver.Instance.findElement(By.id("email")).clear();
         Driver.Instance.findElement(By.id("emailPassword")).clear();

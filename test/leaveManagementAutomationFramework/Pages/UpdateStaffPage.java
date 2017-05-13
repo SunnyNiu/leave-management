@@ -11,11 +11,11 @@ public class UpdateStaffPage {
         Driver.Instance.findElement(By.id("changeBtnId")).click();
     }
 
-    public static UpdateStaffCommand UpdateStaff(String department, String title) {
+    public static UpdateStaffCommand updateStaff(String department, String title) {
         return new UpdateStaffCommand(department, title);
     }
 
-    public static String StaffIsChange() {
+    public static String staffIsChange() {
         String message = Driver.Instance.findElement(By.id("message")).getText();
         return message;
     }

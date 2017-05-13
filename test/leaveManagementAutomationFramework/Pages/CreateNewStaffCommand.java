@@ -42,7 +42,7 @@ public class CreateNewStaffCommand {
         return this;
     }
 
-    public void Create() throws InterruptedException {
+    public void create() throws InterruptedException {
         Driver.Instance.findElement(By.id("nameId")).sendKeys(login);
         Driver.Instance.findElement(By.id("passwordId")).sendKeys(password);
         Driver.Instance.findElement(By.id("departmentId")).sendKeys(department);

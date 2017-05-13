@@ -14,7 +14,7 @@ public class MockLoginDao implements LoginDao {
         }else if(login.equals("John")){
             return "Joh123";
         }else{
-            throw new SQLException("Password not found");
+            throw new SQLException("password not found");
         }
     }
 }

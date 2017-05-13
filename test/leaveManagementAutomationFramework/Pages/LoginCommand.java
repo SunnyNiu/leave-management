@@ -12,12 +12,12 @@ public class LoginCommand {
         this.userName = userName;
     }
 
-    public LoginCommand WithPassword(String password) {
+    public LoginCommand withPassword(String password) {
         this.password = password;
         return this;
     }
 
-    public void Login() {
+    public void login() {
         WebElement loginInput = Driver.Instance.findElement(By.id("username"));
         loginInput.sendKeys(userName);
 

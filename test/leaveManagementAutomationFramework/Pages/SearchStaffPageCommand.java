@@ -12,16 +12,12 @@ public class SearchStaffPageCommand {
         this.lastName = lastName;
     }
 
-    public void Search() throws InterruptedException {
+    public void search() throws InterruptedException {
         Driver.Instance.findElement(By.id("searchFirsName")).sendKeys(firstName);
         Driver.Instance.findElement(By.id("searchLastName")).sendKeys(lastName);
 
-        Driver.wait(1000);
+        Driver.wait(5000);
         Driver.Instance.findElement(By.id("searchStaffBtnId")).click();
-        Driver.wait(1000);
-    }
-
-    public void getChangeStaff() throws InterruptedException{
-        Driver.Instance.findElement(By.id("changeBtnId")).click();
+        Driver.wait(5000);
     }
 }

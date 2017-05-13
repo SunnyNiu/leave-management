@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class MainPage {
 
-    public static boolean IsAt() {
+    public static boolean isAt() {
         WebElement mainPageTitle = Driver.Instance.findElement(By.id("mainPageTitle"));
         if (mainPageTitle.getText().contains("MainPage")) {
             return true;

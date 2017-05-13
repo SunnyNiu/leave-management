@@ -8,11 +8,11 @@ import org.junit.Test;
 public class SearchStaffTest extends LeaveManagementTest {
 
     @Test
-    public void Admin_Can_Search_Staff() throws InterruptedException {
-        SearchStaffPage.GoTo();
-        Assert.assertTrue("Can't access to searchStaffPage",SearchStaffPage.IsSearchStaffPage());
-        SearchStaffPage.Search("HIG","FRI").Search();
-        boolean researchIsEmpty = SearchStaffPage.NotEmptyForSearch();
-        Assert.assertTrue("Search result is empty",researchIsEmpty);
+    public void adminCanSearchStaff() throws InterruptedException {
+        SearchStaffPage.goTo();
+        Assert.assertTrue("Can't access to searchStaffPage",SearchStaffPage.isSearchStaffPage());
+        SearchStaffPage.search("HIG","FRI").search();
+        boolean researchIsEmpty = SearchStaffPage.notEmptyForSearch();
+        Assert.assertTrue("search result is empty",researchIsEmpty);
     }
 }

@@ -1,4 +1,4 @@
-package leaveManagementAutomationFramework.Pages;
+package leaveManagementAutomationFramework.Utilities;
 
 public enum Department {
     IT("IT"),

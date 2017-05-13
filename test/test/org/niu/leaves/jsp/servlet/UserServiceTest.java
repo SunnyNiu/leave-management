@@ -30,7 +30,7 @@ public class UserServiceTest {
         String login = "SunnyN";
         String password = "Sun123";
         String passwordFromDatabase = userService.getPasswordByLogin(login);
-        assertEquals("Username and Password are not correct", password, passwordFromDatabase);
+        assertEquals("Username and password are not correct", password, passwordFromDatabase);
     }
 
     @Test

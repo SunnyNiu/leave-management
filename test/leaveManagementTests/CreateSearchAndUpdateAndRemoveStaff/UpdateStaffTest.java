@@ -1,8 +1,6 @@
 package leaveManagementTests.CreateSearchAndUpdateAndRemoveStaff;
 
-import leaveManagementAutomationFramework.Pages.Department;
 import leaveManagementAutomationFramework.Pages.SearchStaffPage;
-import leaveManagementAutomationFramework.Pages.Title;
 import leaveManagementAutomationFramework.Pages.UpdateStaffPage;
 import leaveManagementAutomationFramework.Selenium.Driver;
 import leaveManagementAutomationFramework.Workflows.UserCreator;
@@ -12,41 +10,38 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UpdateStaffTest extends LeaveManagementTest {
-    //Search Staff by First Name
-    //Search Staff by Last Name
-    //Search Staff by First, Last Name together
-    //Can update Department
-    //Can update Title
-    //Can update Email Address
-    //Can update Email Password
+    //search Staff by First Name
+    //search Staff by Last Name
+    //search Staff by First, Last Name together
+    //Can update department
+    //Can update title
+    //Can update email Address
+    //Can update email password
     //Can update Flag
 
     @Test
-    public void Create_Search_Update() throws InterruptedException {
-        //Create a new Staff
-        UserCreator.CreateAUser();
+    public void createSearchUpdateStaff() throws InterruptedException {
+        //create a new Staff
+        UserCreator.createAUser();
 
         //Go to search
-        SearchStaffPage.GoTo();
-        SearchStaffPage.Search(UserCreator.previousFirstName, UserCreator.previousLastName).Search();
-        boolean researchIsEmpty = SearchStaffPage.NotEmptyForSearch();
-        Assert.assertTrue("Search result is empty",researchIsEmpty);
+        SearchStaffPage.search(UserCreator.previousFirstName, UserCreator.previousLastName).search();
+        boolean researchIsEmpty = SearchStaffPage.notEmptyForSearch();
+        Assert.assertTrue("search result is empty", !researchIsEmpty);
         Driver.wait(6000);
 
         //Go to update
         UpdateStaffPage.linkChangedStaff();
 
         //Update staff and inactive staff
-        UserUpdating.UpdateAUser();
-        String staffIsChanged = UpdateStaffPage.StaffIsChange();
-        Assert.assertEquals("Update Staff failed", "Update basic info successfully!",staffIsChanged);
+        UserUpdating.updateAUser();
+        String staffIsChanged = UpdateStaffPage.staffIsChange();
+        Assert.assertEquals("Update Staff failed", "Update basic info successfully!", staffIsChanged);
 
         //Go to search to check if staff is removed
-        SearchStaffPage.Search(UserCreator.previousFirstName, UserCreator.previousLastName).Search();
+        SearchStaffPage.search(UserCreator.previousFirstName, UserCreator.previousLastName).search();
         UpdateStaffPage.linkChangedStaff();
         String staffFlag = UpdateStaffPage.getFlag();
-        Assert.assertEquals("Remove staff failed","0",staffFlag);
-
-        Driver.wait(6000);
+        Assert.assertEquals("Remove staff failed", "0", staffFlag);
     }
 }
