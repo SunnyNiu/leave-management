@@ -15,15 +15,15 @@ public class UserCreator {
         boolean allowCreateNewStaff = true;
 
         while (allowCreateNewStaff) {
-            previousLogin = CreateLogin();
-            previousPassword = CreatePassword();
-            previousDepartment = CreateDepartment();
-            previousTitle = CreateTitle();
-            previousJoinDate = CreateJoinDate();
-            previousBirthDate = CreateBirthDate();
-            previousFirstName = CreateFirstName();
-            previousLastName = CreateLastName();
-            previousEmail = CreateEmail();
+            previousLogin = createLogin();
+            previousPassword = createPassword();
+            previousDepartment = createDepartment();
+            previousTitle = createTitle();
+            previousJoinDate = createJoinDate();
+            previousBirthDate = createBirthDate();
+            previousFirstName = createFirstName();
+            previousLastName = createLastName();
+            previousEmail = createEmail();
 
 
             CreateNewStaffPage.goTo();
@@ -68,7 +68,10 @@ public class UserCreator {
 
 
     public static Boolean getCreatedAUser() {
-        return !previousLogin.isEmpty();
+        if (previousLogin == null) {
+            return false;
+        } else
+            return true;
     }
 
     public static String previousLogin;
@@ -81,113 +84,39 @@ public class UserCreator {
     public static String previousLastName;
     public static String previousEmail;
 
-    public String getPreviousLogin() {
-        return this.previousLogin;
-    }
-
-    public void setPreviousLogin(String previousLogin) {
-        this.previousLogin = previousLogin;
-    }
-
-    public String getPreviousPassword() {
-        return this.previousPassword;
-    }
-
-    public void setPreviousPassword(String previousPassword) {
-        this.previousPassword = previousPassword;
-    }
-
-    public String getPreviousDepartment() {
-        return this.previousDepartment;
-    }
-
-    public void setPreviousDepartment(String previousDepartment) {
-        this.previousDepartment = previousDepartment;
-    }
-
-    public String getPreviousTitle() {
-        return this.previousTitle;
-    }
-
-    public void setPreviousTitle(String previousTitle) {
-        this.previousTitle = previousTitle;
-    }
-
-    public String getPreviousJoinDate() {
-        return this.previousJoinDate;
-    }
-
-    public void setPreviousJoinDate(String previousJoinDate) {
-        this.previousJoinDate = previousJoinDate;
-    }
-
-    public String getPreviousBirthDate() {
-        return this.previousBirthDate;
-    }
-
-    public void setPreviousBirthDate(String previousBirthDate) {
-        this.previousBirthDate = previousBirthDate;
-    }
-
-    public String getPreviousFirstName() {
-        return this.previousFirstName;
-    }
-
-    public void setPreviousFirstName(String previousFirstName) {
-        this.previousFirstName = previousFirstName;
-    }
-
-    public String getPreviousLastName() {
-        return this.previousLastName;
-    }
-
-    public void setPreviousLastName(String previousLastName) {
-        this.previousLastName = previousLastName;
-    }
-
-    public String getPreviousEmail() {
-        return this.previousEmail;
-    }
-
-    public void setPreviousEmail(String previousEmail) {
-        this.previousEmail = previousEmail;
-    }
-
-    private static String CreateLogin() {
+    private static String createLogin() {
         return generateRandom(RandomCreator.login);
     }
 
-    private static String CreatePassword() {
+    private static String createPassword() {
         return generateRandom(RandomCreator.password);
     }
 
-    private static String CreateDepartment() {
+    private static String createDepartment() {
         return generateRandom(RandomCreator.department);
     }
 
-    private static String CreateTitle() {
+    private static String createTitle() {
         return generateRandom(RandomCreator.title);
     }
 
-
-    private static String CreateEmail() {
+    private static String createEmail() {
         return generateRandom(RandomCreator.email);
     }
 
-    private static String CreateLastName() {
+    private static String createLastName() {
         return generateRandom(RandomCreator.lastName);
     }
 
-    private static String CreateFirstName() {
+    private static String createFirstName() {
         return generateRandom(RandomCreator.firstName);
     }
 
-    private static String CreateBirthDate() {
+    private static String createBirthDate() {
         return generateRandom(RandomCreator.birthDate);
     }
 
-    private static String CreateJoinDate() {
+    private static String createJoinDate() {
         return generateRandom(RandomCreator.joinDate);
     }
-
 }

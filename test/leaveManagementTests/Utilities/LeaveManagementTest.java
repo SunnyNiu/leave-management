@@ -6,9 +6,11 @@ import leaveManagementAutomationFramework.Workflows.UserCreator;
 import org.junit.After;
 import org.junit.Before;
 
+import java.net.MalformedURLException;
+
 public class LeaveManagementTest {
     @Before
-    public void init() {
+    public void init() throws MalformedURLException {
         Driver.initialize();
 
         UserCreator.initialize();
