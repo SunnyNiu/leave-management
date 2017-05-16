@@ -11,7 +11,6 @@ import static leaveManagementAutomationFramework.Utilities.RandomCreator.generat
 public class UserCreator {
 
     public static void createAUser() throws InterruptedException {
-        CreateNewStaffPage.goTo();
         boolean allowCreateNewStaff = true;
 
         while (allowCreateNewStaff) {
@@ -28,10 +27,10 @@ public class UserCreator {
 
             CreateNewStaffPage.goTo();
             CreateNewStaffPage.createStaff(previousLogin, previousPassword)
-                    .WithDepartmentTitle(previousDepartment, previousTitle)
-                    .WithJoinDateBirthDate(previousJoinDate, previousBirthDate)
-                    .WithFirstLastName(previousFirstName, previousLastName)
-                    .WithEmail(previousEmail).create();
+                    .withDepartmentTitle(previousDepartment, previousTitle)
+                    .withJoinDateBirthDate(previousJoinDate, previousBirthDate)
+                    .withFirstLastName(previousFirstName, previousLastName)
+                    .withEmail(previousEmail).create();
             try {
                 String s = Driver.Instance.findElement(By.cssSelector("#message+label>ul>li"))
                         .getText().toString();

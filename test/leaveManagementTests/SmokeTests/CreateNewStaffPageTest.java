@@ -11,10 +11,10 @@ public class CreateNewStaffPageTest extends LeaveManagementTest {
     public void canCreateANewStaff() throws InterruptedException {
         CreateNewStaffPage.goTo();
         CreateNewStaffPage.createStaff("Mr","Snow123")
-                .WithDepartmentTitle("CUSTOMER SERVICE","HELPDESK")
-                .WithJoinDateBirthDate("2015-01-01","2015-01-01")
-                .WithFirstLastName("Snow","Pai")
-                .WithEmail("test@gmail.com")
+                .withDepartmentTitle("CUSTOMER SERVICE","HELPDESK")
+                .withJoinDateBirthDate("2015-01-01","2015-01-01")
+                .withFirstLastName("Snow","Pai")
+                .withEmail("test@gmail.com")
                 .create();
         String staffIsCreatedMessage = CreateNewStaffPage.StaffIsCreated();
         Assert.assertEquals("create New Staff failed", "Add new member successfully!",staffIsCreatedMessage);

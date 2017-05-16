@@ -19,25 +19,25 @@ public class CreateNewStaffCommand {
         this.password = password;
     }
 
-    public CreateNewStaffCommand WithDepartmentTitle(String department, String title) {
+    public CreateNewStaffCommand withDepartmentTitle(String department, String title) {
         this.department = department;
         this.title = title;
         return this;
     }
 
-    public CreateNewStaffCommand WithJoinDateBirthDate(String joinDate, String birthDate) {
+    public CreateNewStaffCommand withJoinDateBirthDate(String joinDate, String birthDate) {
         this.joinDate = joinDate;
         this.birthDate = birthDate;
         return this;
     }
 
-    public CreateNewStaffCommand WithFirstLastName(String firstName, String lastName) {
+    public CreateNewStaffCommand withFirstLastName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         return this;
     }
 
-    public CreateNewStaffCommand WithEmail(String email) {
+    public CreateNewStaffCommand withEmail(String email) {
         this.email = email;
         return this;
     }

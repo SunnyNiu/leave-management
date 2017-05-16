@@ -25,8 +25,8 @@
                         </div>
                     </div>
                     <div class="button" align="center">
-                        <button class="btn btn-primary" type="submit" name="sendEmailBtn">Okay</button>
-                        <button class="btn btn-primary" type="submit" name="cancelBtn">Cancel</button>
+                        <button class="btn btn-primary" id="submitApplication" type="submit" name="sendEmailBtn">Okay</button>
+                        <button class="btn btn-primary" id="cancelApplication" type="submit" name="cancelBtn">Cancel</button>
                     </div>
                     <form class="form-horizontal">
                         <div id="borderPadding">

@@ -6,9 +6,6 @@ import leaveManagementAutomationFramework.Utilities.RandomCreator;
 
 import static leaveManagementAutomationFramework.Utilities.RandomCreator.*;
 
-/**
- * Created by Sunny on 12/05/2017.
- */
 public class UserUpdating {
 
     public static void updateAUser() throws InterruptedException {

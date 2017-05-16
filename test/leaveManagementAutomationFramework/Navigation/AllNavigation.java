@@ -25,6 +25,13 @@ public class AllNavigation {
 
     public static class ApplyLeave {
         public static void select() {
+            WebElement menuApplyLeave = Driver.Instance.findElement(By.cssSelector("a[href='leaveMenu.do']"));
+            menuApplyLeave.click();
+        }
+    }
+
+    public static class ApplyLeaveHistory {
+        public static void select() {
             WebElement menuApplyLeave = Driver.Instance.findElement(By.cssSelector("a[href='leaveHistoryMenu.do']"));
             menuApplyLeave.click();
         }

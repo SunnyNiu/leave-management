@@ -5,9 +5,6 @@ import java.util.Random;
 import static leaveManagementAutomationFramework.Utilities.Department.*;
 import static leaveManagementAutomationFramework.Utilities.Title.*;
 
-/**
- * Created by Sunny on 13/05/2017.
- */
 public class RandomCreator {
 
     public static String generateRandom(String[] str) {
@@ -36,4 +33,15 @@ public class RandomCreator {
     public static String[] email = new String[]{"lastTestA@gmail.com", "lastTestB@gmail.com", "lastTestC@gmail.com", "lastTestD@gmail.com", "lastTestE@gmail.com"};
 
     public static String[] emailPassword = new String[]{"lastTestA", "lastTestB", "lastTestC", "lastTestD", "lastTestE"};
+
+    public static String[] leaveType = new String[]{"Annual Leave","Sick Leave","Parental leave","Bereavement leave","Other types of leave"};
+
+    public static String[] reason = new String[]{"have a rest","have a travel","have a cold","visit parents","deal with car accident"};
+
+    public static String[] from = new String[]{"05-15-2017"};
+    //,"2017-05-16","2017-05-17"
+    public static String[] to = new String[]{"05-15-2017"};
+    //,"2017-05-16","2017-05-17"
+    public static String[] days = new String[]{"1"};
+    //,"2","3"
 }

@@ -88,8 +88,6 @@
                                     <input type="text" id="totalDay" name="totalDays" maxlength="3"
                                            id="days" value="${leave.getTotalDays()}" class="form-control"/>
                                 </div>
-                                <label>Total Days only allow half day or whole day, not allow 1, 2 ,3...hours</label>
-
                                 <div class="col-sm-2 col-md-2">
                                     <button class="btn btn-primary" type="submit" name="btnRemove"
                                             value="${rows.index}">
@@ -101,14 +99,14 @@
                         <input type="text" hidden name="totalRows" value="${totalRows}">
                         <input type="text" hidden name="applicationForm" value="${applicationForm}">
                         </table>
-                        <div>
-                            <div class="col-md-10"></div>
-                            <div class="col-md-2">
-                                <button class="btn btn-primary" id="applySubmit" type="submit" name="btnApply"
-                                        onclick="calculateDate()">
-                                    Submit
-                                </button>
-                            </div>
+                        <label class="col-sm-6 col-md-6">Total Days only allow half day or whole day, not allow 1, 2
+                            ,3...hours</label>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" id="applySubmit" type="submit" name="btnApply"
+                                    onclick="calculateDate()">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
