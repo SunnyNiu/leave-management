@@ -19,4 +19,5 @@ public interface UserDao {
     public void updateBasicInfo(String login, String firstName, String lastName, String phoneNumber, String physicalAddress) throws SQLException,IOException;
     public void updateStaffInfo(int userId, int departmentId, int titleId, String email, String emailPassword, int flag) throws SQLException, IOException;
     public void removeStaff(int userId)  throws SQLException, IOException;
+    public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException, IOException;
 }

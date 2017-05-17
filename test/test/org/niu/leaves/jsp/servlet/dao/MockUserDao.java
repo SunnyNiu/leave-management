@@ -157,4 +157,8 @@ public class MockUserDao implements UserDao {
 
     public void removeStaff(int userId) throws SQLException, IOException {
     }
+
+    public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException, IOException {
+        return null;
+    }
 }
