@@ -3,5 +3,5 @@ This project is a leave management system, help staff applies for leave, check t
 
 Technologies involved are Java,  Servlet, JSTL, JSP,  Oracle, CSS, Bootstrap and HTML.
 
-I built basic Selenium testing framwork for this project. 
+Also built basic Selenium testing framwork for this project. 
 
