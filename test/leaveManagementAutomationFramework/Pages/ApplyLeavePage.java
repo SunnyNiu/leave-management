@@ -3,6 +3,7 @@ package leaveManagementAutomationFramework.Pages;
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
 import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class ApplyLeavePage {
     public static void goTo() {
@@ -20,5 +21,13 @@ public class ApplyLeavePage {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    public static Boolean isAt() {
+        WebElement mainPageTitle = Driver.Instance.findElement(By.className("active"));
+        if (mainPageTitle.getText().contains("ApplyLeave")) {
+            return true;
+        } else
+            return false;
     }
 }
