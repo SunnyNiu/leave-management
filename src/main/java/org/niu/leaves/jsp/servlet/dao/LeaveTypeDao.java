@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface LeaveTypeDao {
-    public List<LeaveType> queryLeaveTypes() throws SQLException,IOException;
+    List<LeaveType> queryLeaveTypes() throws SQLException,IOException;
 }

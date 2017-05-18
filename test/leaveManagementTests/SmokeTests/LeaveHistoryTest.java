@@ -3,10 +3,11 @@ package leaveManagementTests.SmokeTests;
 
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
 import leaveManagementAutomationFramework.Pages.LeaveHistoryPage;
+import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LeaveHistoryTest {
+public class LeaveHistoryTest extends LeaveManagementTest {
 
     @Test
     public void userCanAccessLeaveHistoryPage() throws InterruptedException {

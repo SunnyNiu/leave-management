@@ -72,4 +72,12 @@ public class YourDecisionPage {
     public static Boolean approvedSuccess() {
         return true;
     }
+
+    public static boolean isAt() {
+        WebElement mainPageTitle = Driver.Instance.findElement(By.className("active"));
+        if (mainPageTitle.getText().contains("NeedYourApprove")) {
+            return true;
+        } else
+            return false;
+    }
 }

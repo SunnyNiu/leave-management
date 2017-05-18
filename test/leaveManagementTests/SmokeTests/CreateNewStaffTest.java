@@ -5,7 +5,7 @@ import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CreateNewStaffPageTest extends LeaveManagementTest {
+public class CreateNewStaffTest extends LeaveManagementTest {
 
     @Test
     public void canCreateANewStaff() throws InterruptedException {

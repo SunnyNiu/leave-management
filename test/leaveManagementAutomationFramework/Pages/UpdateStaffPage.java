@@ -2,6 +2,7 @@ package leaveManagementAutomationFramework.Pages;
 
 import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class UpdateStaffPage {
     public static void linkChangedStaff() {
@@ -19,5 +20,13 @@ public class UpdateStaffPage {
 
     public static String getFlag() {
         return Driver.Instance.findElement(By.id("flagStatus")).getAttribute("value");
+    }
+
+    public static boolean isAt() {
+        WebElement mainPageTitle = Driver.Instance.findElement(By.id("searchStaffTitle"));
+        if (mainPageTitle.getText().contains("Search, Update or Remove Staff")) {
+            return true;
+        } else
+            return false;
     }
 }

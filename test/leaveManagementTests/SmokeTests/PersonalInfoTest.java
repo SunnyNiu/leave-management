@@ -3,10 +3,11 @@ package leaveManagementTests.SmokeTests;
 
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
 import leaveManagementAutomationFramework.Pages.MainPage;
+import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PersonalInfoTest {
+public class PersonalInfoTest extends LeaveManagementTest {
 
     @Test
     public void userCanAccessPersonalInfoPage() throws InterruptedException {

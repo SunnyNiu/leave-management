@@ -2,16 +2,17 @@ package leaveManagementTests.SmokeTests;
 
 
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
-import leaveManagementAutomationFramework.Pages.LeaveHistoryPage;
+import leaveManagementAutomationFramework.Pages.YourDecisionPage;
+import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class YourDecisionTest {
+public class YourDecisionTest extends LeaveManagementTest {
 
     @Test
     public void userCanAccessLeaveHistoryPage() throws InterruptedException {
-        AllNavigation.ApplyLeaveHistory.select();
-        Boolean isAt = LeaveHistoryPage.isAt();
+        AllNavigation.YourDecision.select();
+        Boolean isAt = YourDecisionPage.isAt();
         Assert.assertTrue("Failed to login",isAt);
     }
 }

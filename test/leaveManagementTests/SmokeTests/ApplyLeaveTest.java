@@ -2,11 +2,11 @@ package leaveManagementTests.SmokeTests;
 
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
 import leaveManagementAutomationFramework.Pages.ApplyLeavePage;
-import leaveManagementAutomationFramework.Pages.MainPage;
+import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ApplyLeaveTest {
+public class ApplyLeaveTest extends LeaveManagementTest {
 
     @Test
     public void userCanAccessApplyLeavePage() throws InterruptedException {

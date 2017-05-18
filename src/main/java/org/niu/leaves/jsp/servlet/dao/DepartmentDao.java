@@ -7,6 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface DepartmentDao{
-    public List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException,IOException;
-    public UserWithDepartmentInfo getDepartmentManagerByUserId(int userId) throws SQLException,IOException;
+    List<UserWithDepartmentInfo> queryAllDepartments() throws SQLException,IOException;
+    UserWithDepartmentInfo getDepartmentManagerByUserId(int userId) throws SQLException,IOException;
 }
