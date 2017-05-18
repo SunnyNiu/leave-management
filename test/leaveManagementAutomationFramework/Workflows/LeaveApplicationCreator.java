@@ -59,9 +59,6 @@ public class LeaveApplicationCreator {
         chosenFrom = null;
         chosenTo = null;
         chosenDays = null;
-        previousFirstName = null;
-        previousLastName = null;
-        previousEmail = null;
     }
 
     public static String chosenLeavetype;
@@ -70,9 +67,6 @@ public class LeaveApplicationCreator {
     public static String chosenFrom;
     public static String chosenTo;
     public static String chosenDays;
-    public static String previousFirstName;
-    public static String previousLastName;
-    public static String previousEmail;
 
     private static String createLeaveType() {
         return generateRandom(RandomCreator.leaveType);

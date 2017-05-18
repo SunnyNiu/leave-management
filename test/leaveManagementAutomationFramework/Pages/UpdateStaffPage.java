@@ -3,9 +3,6 @@ package leaveManagementAutomationFramework.Pages;
 import leaveManagementAutomationFramework.Selenium.Driver;
 import org.openqa.selenium.By;
 
-/**
- * Created by Sunny on 11/05/2017.
- */
 public class UpdateStaffPage {
     public static void linkChangedStaff() {
         Driver.Instance.findElement(By.id("changeBtnId")).click();

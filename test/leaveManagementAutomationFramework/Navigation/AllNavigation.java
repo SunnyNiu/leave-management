@@ -75,8 +75,11 @@ public class AllNavigation {
 
     public static class Logout {
         public static void select() {
-            WebElement menuLogout = Driver.Instance.findElement(By.cssSelector("a[href='updateInfoMenu.do']"));
-            menuLogout.click();
+            try {
+                WebElement menuLogout = Driver.Instance.findElement(By.cssSelector("a[href='updateInfoMenu.do']"));
+                menuLogout.click();
+            } catch (Exception ex) {
+            }
         }
     }
 }
