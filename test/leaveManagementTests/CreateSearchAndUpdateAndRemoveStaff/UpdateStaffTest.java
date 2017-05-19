@@ -1,5 +1,6 @@
 package leaveManagementTests.CreateSearchAndUpdateAndRemoveStaff;
 
+import Category.GoodTestCategory;
 import leaveManagementAutomationFramework.Pages.SearchStaffPage;
 import leaveManagementAutomationFramework.Pages.UpdateStaffPage;
 import leaveManagementAutomationFramework.Selenium.Driver;
@@ -8,6 +9,7 @@ import leaveManagementAutomationFramework.Workflows.UserUpdating;
 import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class UpdateStaffTest extends LeaveManagementTest {
     //search Staff by First Name
@@ -20,6 +22,7 @@ public class UpdateStaffTest extends LeaveManagementTest {
     //Can update Flag
 
     @Test
+    @Category(GoodTestCategory.class)
     public void createSearchUpdateStaff() throws InterruptedException {
         //create a new Staff
         UserCreator.createAUser();

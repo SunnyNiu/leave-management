@@ -1,5 +1,6 @@
 package leaveManagementTests.StaffApplyLeaveAndManagerApproveIt;
 
+import Category.GoodTestCategory;
 import leaveManagementAutomationFramework.Navigation.AllNavigation;
 import leaveManagementAutomationFramework.Pages.ApplyLeavePage;
 import leaveManagementAutomationFramework.Pages.LoginPage;
@@ -7,12 +8,14 @@ import leaveManagementAutomationFramework.Pages.YourDecisionPage;
 import leaveManagementTests.Utilities.LeaveManagementTest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static leaveManagementAutomationFramework.Workflows.LeaveApplicationCreator.createAndSubmitApplication;
 
 public class StaffApplyLeaveAndManagerApprovesIt extends LeaveManagementTest {
 
     @Test
+    @Category(GoodTestCategory.class)
     public void StaffApplyLeaveAndManagerApprovesIt() throws InterruptedException {
         AllNavigation.Logout.select();
         LoginPage.goTo();
