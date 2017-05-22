@@ -1,8 +1,6 @@
 package testSuite;
 
-import leaveManagementTests.CreateSearchAndUpdateAndRemoveStaff.UpdateStaffTest;
 import leaveManagementTests.SmokeTests.*;
-import leaveManagementTests.StaffApplyLeaveAndManagerApproveIt.StaffApplyLeaveAndManagerApprovesIt;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -17,8 +15,8 @@ import org.junit.runners.Suite;
         LeaveHistoryTest.class,
         UpdateMemeberTest.class,
         ChangePasswordTest.class,
-        UpdateStaffTest.class,
-        StaffApplyLeaveAndManagerApprovesIt.class
+        //UpdateStaffTest.class,
+        //StaffApplyLeaveAndManagerApprovesIt.class
 })
 public class LeaveManageSuite {
 }
