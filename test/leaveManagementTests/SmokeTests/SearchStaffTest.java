@@ -11,7 +11,7 @@ public class SearchStaffTest extends LeaveManagementTest {
     public void adminCanSearchStaff() throws InterruptedException {
         SearchStaffPage.goTo();
         Assert.assertTrue(SearchStaffPage.isSearchStaffPage(), "Can't access to searchStaffPage");
-        SearchStaffPage.search("HIG", "FRI").search();
+        SearchStaffPage.search("Sunny", "Niu").search();
         boolean researchIsEmpty = SearchStaffPage.notEmptyForSearch();
         Assert.assertTrue(!researchIsEmpty, "search result is empty");
     }

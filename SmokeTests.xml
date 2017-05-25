@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll">
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
+
+    <test name="Test Annotations">
+        <classes>
+            <class name="leaveManagementTests.SmokeTests.LoginTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.PersonalInfoTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.ApplyLeaveTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.SearchStaffTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.ChangePasswordTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.CreateNewStaffTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.LeaveHistoryTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.UpdateMemeberTest">
+            </class>
+            <class name="leaveManagementTests.SmokeTests.YourDecisionTest">
+            </class>
+        </classes>
+    </test>
+</suite>
+
