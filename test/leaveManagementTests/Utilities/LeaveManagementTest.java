@@ -1,19 +1,20 @@
 package leaveManagementTests.Utilities;
 
-import leaveManagementAutomationFramework.Selenium.Driver;
+import jxl.read.biff.BiffException;
 import leaveManagementAutomationFramework.Pages.LoginPage;
+import leaveManagementAutomationFramework.Selenium.Driver;
+import leaveManagementAutomationFramework.Utilities.ExcelReader;
 import leaveManagementAutomationFramework.Workflows.UserCreator;
-import org.junit.Before;
-import org.junit.After;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 
 public class LeaveManagementTest {
+    public ExcelReader excelReaderObj;
     @BeforeSuite
-    public void init() throws MalformedURLException {
+    public void init() throws IOException, BiffException {
         Driver.initialize();
 
         UserCreator.initialize();
@@ -22,6 +23,7 @@ public class LeaveManagementTest {
         LoginPage.loginAs("William")
                 .withPassword("Wil123")
                 .login();
+
     }
 
     @AfterSuite
