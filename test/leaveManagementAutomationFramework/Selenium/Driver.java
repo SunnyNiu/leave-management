@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
     public static WebDriver Instance;
-    public static String baseAddress = "http://localhost:8080/";
+    public static String baseAddress = "http://localhost:8081/";
 
     private WebDriver get() {
         return this.Instance;

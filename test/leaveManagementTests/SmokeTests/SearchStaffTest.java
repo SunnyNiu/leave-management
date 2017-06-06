@@ -2,10 +2,12 @@ package leaveManagementTests.SmokeTests;
 
 import leaveManagementAutomationFramework.Pages.SearchStaffPage;
 import leaveManagementTests.Utilities.LeaveManagementTest;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SearchStaffTest extends LeaveManagementTest {
+    Logger log = Logger.getLogger(SearchStaffTest.class.getName());
 
     @Test
     public void adminCanSearchStaff() throws InterruptedException {

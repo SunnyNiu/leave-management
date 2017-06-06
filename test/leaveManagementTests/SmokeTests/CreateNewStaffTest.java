@@ -2,10 +2,12 @@ package leaveManagementTests.SmokeTests;
 
 import leaveManagementAutomationFramework.Pages.CreateNewStaffPage;
 import leaveManagementTests.Utilities.LeaveManagementTest;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateNewStaffTest extends LeaveManagementTest {
+    Logger log = Logger.getLogger(CreateNewStaffTest.class.getName());
 
     @Test
     public void canCreateANewStaff() throws InterruptedException {
